@@ -1,0 +1,27 @@
+# Colored Output for Tests:
+# Three methods:
+#   1. export the environment variable BOOST_TEST_COLOR_OUTPUT to true (I do this in ~/.bash_profile)
+#   2. run the executable test file with --color_output=1
+#   3. run the executable test file with -x
+# I prefer the first method, since the other two do not work when I run "b2 <name>". For those options, I have to run "<name> -x".
+
+path-constant SRC : ./src ;
+
+
+using gcc
+	: 8.3.0
+	: /opt/c++/gcc-8.3.0/bin/g++
+  : <cxxflags>-fdiagnostics-color
+  ;
+
+using clang
+	: 8.0.0
+	: /opt/c++/llvm-8.0.0/bin/clang++
+  : <cxxflags>-fcolor-diagnostics
+  ;
+
+project
+	: requirements <include>./src
+  : requirements <cxxflags>-std=c++2a
+  : build-dir ./bin
+  ;

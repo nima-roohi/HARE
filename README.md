@@ -1,2 +1,3 @@
-# hare
-Hybrid Abstraction Reginement Engine
+Hybrid Abstraction Refinement Engine (HARE)
+===========================================
+
