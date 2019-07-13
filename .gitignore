@@ -1,0 +1,13 @@
+# Output folder created by Boost Build 
+/bin
+
+# Precompiled Headers
+/.vscode/ipch
+
+# Apple MacOS file
+*.DS_Store
+
+# Do not ignore the following 3 files:
+!/.vscode/c_cpp_properties.json
+!/.vscode/launch.json
+!/.vscode/settings.json
