@@ -9,7 +9,7 @@ import testing ;
 
 using clang
 	: 6.0.1
-	: /opt/c++/llvm-8.0.0/bin/clang++
+	: /opt/c++/llvm-6.0.1/bin/clang++
   : <cxxflags>-fcolor-diagnostics
   ;
 
