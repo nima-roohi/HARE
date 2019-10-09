@@ -19,29 +19,6 @@ project HARE
   : requirements <include>./test
   : requirements <cxxflags>-std=c++17
   
-  : requirements <target-os>darwin:<cxxflags>"-isystem/opt/c++/libs/boost-1.69-clang-8.0.0/include/boost-1_69"
-  : requirements <target-os>darwin:<cxxflags>"-isystem/opt/c++/libs/gmp-6.1.2-clang-8.0.0/include"
-  : requirements <target-os>darwin:<cxxflags>"-isystem/opt/c++/libs/z3-4.8.4-clang-8.0.0/include"
-  : requirements <target-os>darwin:<cxxflags>"-isystem/opt/c++/libs/ppl-1.2-clang-8.0.0/include"
-  : requirements <target-os>darwin:<linkflags>-L/opt/c++/libs/boost-1.69-clang-8.0.0/lib
-  : requirements <target-os>darwin:<linkflags>-L/opt/c++/libs/gmp-6.1.2-clang-8.0.0/lib
-  : requirements <target-os>darwin:<linkflags>-L/opt/c++/libs/z3-4.8.4-clang-8.0.0/lib
-  : requirements <target-os>darwin:<linkflags>-L/opt/c++/libs/ppl-1.2-clang-8.0.0/lib
-  : requirements <target-os>darwin:<linkflags>"-lboost_unit_test_framework-clang-darwin80-x64-1_69"
-  : requirements <target-os>darwin:<linkflags>"-lboost_filesystem-clang-darwin80-x64-1_69"
-  : requirements <target-os>darwin:<linkflags>"-lboost_system-clang-darwin80-x64-1_69"
-  : requirements <target-os>darwin:<linkflags>"-lboost_program_options-clang-darwin80-x64-1_69"
-  : requirements <target-os>darwin:<linkflags>"-lboost_stacktrace_basic-clang-darwin80-x64-1_69"
-  : requirements <target-os>darwin:<linkflags>"-lgmp -lgmpxx -lppl -lz3 -lz -lm"
-  : requirements <target-os>darwin:<linkflags>"-Wl,-rpath /opt/c++/libs/boost-1.69-clang-8.0.0/lib/"
-  : requirements <target-os>darwin:<linkflags>"-Wl,-rpath /opt/c++/libs/gmp-6.1.2-clang-8.0.0/lib"
-  : requirements <target-os>darwin:<linkflags>"-Wl,-rpath /opt/c++/libs/z3-4.8.4-clang-8.0.0/lib"
-  : requirements <target-os>darwin:<linkflags>"-Wl,-rpath /opt/c++/libs/ppl-1.2-clang-8.0.0/lib"
-  : requirements <target-os>darwin:<dll-path>/opt/c++/libs/boost-1.69-clang-8.0.0/lib
-  : requirements <target-os>darwin:<dll-path>/opt/c++/libs/gmp-6.1.2-clang-8.0.0/lib
-  : requirements <target-os>darwin:<dll-path>/opt/c++/libs/z3-4.8.4-clang-8.0.0/lib
-  : requirements <target-os>darwin:<dll-path>/opt/c++/libs/ppl-1.2-clang-8.0.0/lib
-  
   : requirements <target-os>linux:<cxxflags>"-isystem/opt/c++/libs/boost-1.68-clang-6.0.1/include/boost-1_68"
   : requirements <target-os>linux:<cxxflags>"-isystem/opt/c++/libs/gmp-6.1.2-clang-6.0.1/include"
   : requirements <target-os>linux:<cxxflags>"-isystem/opt/c++/libs/z3-4.7.1-clang-6.0.1/include"
@@ -64,6 +41,29 @@ project HARE
   : requirements <target-os>linux:<dll-path>/opt/c++/libs/gmp-6.1.2-clang-6.0.1/lib
   : requirements <target-os>linux:<dll-path>/opt/c++/libs/z3-4.7.1-clang-6.0.1/lib
   : requirements <target-os>linux:<dll-path>/opt/c++/libs/ppl-1.2-clang-6.0.1/lib
+  
+  : requirements <target-os>darwin:<cxxflags>"-isystem/opt/c++/libs/boost-1.69-clang-8.0.0/include/boost-1_69"
+  : requirements <target-os>darwin:<cxxflags>"-isystem/opt/c++/libs/gmp-6.1.2-clang-8.0.0/include"
+  : requirements <target-os>darwin:<cxxflags>"-isystem/opt/c++/libs/z3-4.8.4-clang-8.0.0/include"
+  : requirements <target-os>darwin:<cxxflags>"-isystem/opt/c++/libs/ppl-1.2-clang-8.0.0/include"
+  : requirements <target-os>darwin:<linkflags>-L/opt/c++/libs/boost-1.69-clang-8.0.0/lib
+  : requirements <target-os>darwin:<linkflags>-L/opt/c++/libs/gmp-6.1.2-clang-8.0.0/lib
+  : requirements <target-os>darwin:<linkflags>-L/opt/c++/libs/z3-4.8.4-clang-8.0.0/lib
+  : requirements <target-os>darwin:<linkflags>-L/opt/c++/libs/ppl-1.2-clang-8.0.0/lib
+  : requirements <target-os>darwin:<linkflags>"-lboost_unit_test_framework-clang-darwin80-x64-1_69"
+  : requirements <target-os>darwin:<linkflags>"-lboost_filesystem-clang-darwin80-x64-1_69"
+  : requirements <target-os>darwin:<linkflags>"-lboost_system-clang-darwin80-x64-1_69"
+  : requirements <target-os>darwin:<linkflags>"-lboost_program_options-clang-darwin80-x64-1_69"
+  : requirements <target-os>darwin:<linkflags>"-lboost_stacktrace_basic-clang-darwin80-x64-1_69"
+  : requirements <target-os>darwin:<linkflags>"-lgmp -lgmpxx -lppl -lz3 -lz -lm"
+  : requirements <target-os>darwin:<linkflags>"-Wl,-rpath /opt/c++/libs/boost-1.69-clang-8.0.0/lib/"
+  : requirements <target-os>darwin:<linkflags>"-Wl,-rpath /opt/c++/libs/gmp-6.1.2-clang-8.0.0/lib"
+  : requirements <target-os>darwin:<linkflags>"-Wl,-rpath /opt/c++/libs/z3-4.8.4-clang-8.0.0/lib"
+  : requirements <target-os>darwin:<linkflags>"-Wl,-rpath /opt/c++/libs/ppl-1.2-clang-8.0.0/lib"
+  : requirements <target-os>darwin:<dll-path>/opt/c++/libs/boost-1.69-clang-8.0.0/lib
+  : requirements <target-os>darwin:<dll-path>/opt/c++/libs/gmp-6.1.2-clang-8.0.0/lib
+  : requirements <target-os>darwin:<dll-path>/opt/c++/libs/z3-4.8.4-clang-8.0.0/lib
+  : requirements <target-os>darwin:<dll-path>/opt/c++/libs/ppl-1.2-clang-8.0.0/lib
 
   : requirements <testing.arg>"--log_level=all"
 
