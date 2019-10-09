@@ -13,8 +13,20 @@ Virtual Machines
 ----------------
 
 Hare is written in C++ and uses different libraries. 
-While each of those libraries are perhaps the most famous in what they do, installing all of them just to get a sense of what HARE does might be overwhelming. Therefore, we have prepared a virtual machine that contains everything; source codes, binaries, benchmarks, script for running those benchmarks, as well as what you should expect to see at the end of running those benchmarks. All these can be found at https://uofi.app.box.com/v/HARE.
+While each of those libraries are perhaps the most famous in what they do, installing all of them just to get a sense of what HARE does might be overwhelming. Therefore, we have prepared a virtual machine that contains everything; source codes, binaries, benchmarks, script for running those benchmarks, as well as what you should expect to see at the end of running those benchmarks. All these can be found at https://uofi.app.box.com/v/HARE. You will need [7-Zip](https://www.7-zip.org/) to extract downloaded files, and a virtualization software to load our virtual machine (we use [VirtualBox](https://www.virtualbox.org/)).
 
 Prerequisites
 -------------
 
+HARE uses the following libraries. For each of these libraries, we also mention the current version that we are using right now. However, using more recent versions should be fine.
+
+1. [GMP 6.1.2](https://gmplib.org/); this is a free library for arbitrary precision arithmetic, operating on signed integers, rational numbers, and floating-point numbers
+1. [Z3-4.8.4](https://github.com/Z3Prover/z3/releases); this is a state-of-the art theorem prover from [Microsoft Research](https://www.microsoft.com/en-us/research/). It can be used to check the satisfiability of logical formulas over one or more theories
+1. [Parma Polyhedra Library (PPL) 1.2](https://www.bugseng.com/parma-polyhedra-library); this wonderful library is for working polyhedral constraint.
+1. [dReach 3.16.06.02](http://dreal.github.io/dReach/). this is a tool for bounded safety verfication of hybrid systems, and we use it for validating counterexamples. Unfortunately, at the time of writing this document, [dReal 4](https://github.com/dreal/dreal4) does not support integration. Therefore, make sure you download and install the right version.
+1. [Boost 1.69](https://www.boost.org/users/history/version_1_69_0.html). We use the following libraries:
+    1. File System           
+    1. System               
+    1. Program Options      
+    1. Basic Stacktrace     
+    1. Unit Test Framework
