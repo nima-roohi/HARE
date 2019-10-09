@@ -7,3 +7,14 @@ Here we explain how to install and run benchmarks as well as examples.
 
 **_Note:_**
 _The following steps are tested on MacOS and Ubuntu._ 
+
+
+Virtual Machines
+----------------
+
+Hare is written in C++ and uses different libraries. 
+While each of those libraries are perhaps the most famous in what they do, installing all of them just to get a sense of what HARE does might be overwhelming. Therefore, we have prepared a virtual machine that contains everything; source codes, binaries, benchmarks, script for running those benchmarks, as well as what you should expect to see at the end of running those benchmarks. All these can be found at https://uofi.app.box.com/v/HARE.
+
+Prerequisites
+-------------
+
