@@ -3,7 +3,7 @@ Hybrid Abstraction Refinement Engine (HARE)
 
 HARE (Hybrid Abstraction-Refinement Engine) is a counterexample guided abstraction-refinement (CEGAR) based tool to verify safety properties of hybrid automata, whose continuous dynamics in each mode is non-linear, but initial values, invariants, and transition relations are specified using polyhedral constraints. 
 HARE works by abstracting non-linear hybrid automata into hybrid automata with polyhedral inclusion dynamics, and uses [dReach](http://dreal.github.io/dReach/) to validate counterexamples. The CEGAR framework forming the theoretical basis of HARE, makes provable progress in each iteration of the abstraction-refinement loop. The current HARE tool is a significant advance on previous versions of HARE; it considers a richer class of abstract models (polyhedral flows as opposed to rectangular flows), and can be applied to a larger class of concrete models (non-linear hybrid automata as opposed to affine hybrid automata). These advances have led to better performance results for a wider class of examples. In the [tool's page](https://nima-roohi.github.io/HARE), we report our experimental comparison of HARE against other state of the art tools for affine models ([SpaceEx](http://spaceex.imag.fr/), [PHAVer](http://spaceex.imag.fr/phaver-8), and [SpaceEx AGAR](https://swt.informatik.uni-freiburg.de/tool/spaceex/agar)) and non-linear models ([FLOW*](https://flowstar.org/), [HSolver](http://hsolver.sourceforge.net/), and [C2E2](http://publish.illinois.edu/c2e2-tool/)).
-In the rest of this file, we explain how to install and run benchmarks as well as examples.
+In the rest of this file, we explain how to install HARE, run benchmarks, and different options for verifying a model.
 
 Virtual Machine
 ---------------
@@ -61,6 +61,7 @@ Before we use these libraries, we should set the environment variable `LD_LIBRAR
 Here is an example of how it can be done (it is OK to set both `LD_LIBRARY_PATH` and `DYLD_LIBRARY_PATH`).
 Make sure to replace paths in the following example with those you installed these libraries in them.
 Also, remember that unless you put these in a shell script that is executed whenever you go to your terminal (eg. by putting them in `~/.bashrc` in Ubuntu or in `~.bash_profile` in MacOS), you will most likely need to run them every time you open a new terminal.
+
 ```sh
 ~$ export GMP_HOME=/opt/c++/libs/gmp-6.1.2-clang-6.0.1
 ~$ export Z3_HOME=/opt/c++/libs/z3-4.7.1-clang-6.0.1 
@@ -80,11 +81,36 @@ Z3 version 4.7.1 - 64 bit
 Z3 version 4.7.1 - 64 bit
 ```
 ```sh
-~$ BOOST_HOME/bin/b2 -v 
+~$ $BOOST_HOME/bin/b2 -v 
 Boost.Jam  Version 2018.02. OS=LINUX.
    Copyright 1993-2002 Christopher Seiwald and Perforce Software, Inc.
    Copyright 2001 David Turner.
    Copyright 2001-2004 David Abrahams.
    Copyright 2002-2015 Rene Rivera.
    Copyright 2003-2015 Vladimir Prus.
+```
+
+Compiling the Source Code
+-------------------------
+
+We use [Boost Build](https://boostorg.github.io/build/) to compile the codes and running our tests. Therefore, we suggest that put it in your `PATH` environment variable.
+
+```sh
+~$ export PATH=$BOOST_HOME/bin:$PATH
+~$ b2 -v
+Boost.Jam  Version 2018.02. OS=LINUX.
+   Copyright 1993-2002 Christopher Seiwald and Perforce Software, Inc.
+   Copyright 2001 David Turner.
+   Copyright 2001-2004 David Abrahams.
+   Copyright 2002-2015 Rene Rivera.
+   Copyright 2003-2015 Vladimir Prus.
+```
+
+**_Note:_**
+_If you want to compile the source code, you are expected to have some experience working with C++ and compiling codes that use external libraries._
+
+1. Clone the source code on your local computer (if you don't have git, you can download the source code using your browser as well).
+
+```jshelllanguage
+~$ git clone https://github.com/nima-roohi/HARE
 ```
