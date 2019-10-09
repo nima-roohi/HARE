@@ -22,11 +22,20 @@ HARE uses the following libraries. For each of these libraries, we also mention 
 
 1. [GMP 6.1.2](https://gmplib.org/); this is a free library for arbitrary precision arithmetic, operating on signed integers, rational numbers, and floating-point numbers
 1. [Z3-4.8.4](https://github.com/Z3Prover/z3/releases); this is a state-of-the art theorem prover from [Microsoft Research](https://www.microsoft.com/en-us/research/). It can be used to check the satisfiability of logical formulas over one or more theories
-1. [Parma Polyhedra Library (PPL) 1.2](https://www.bugseng.com/parma-polyhedra-library); this wonderful library is for working polyhedral constraint.
-1. [dReach 3.16.06.02](http://dreal.github.io/dReach/). this is a tool for bounded safety verfication of hybrid systems, and we use it for validating counterexamples. Unfortunately, at the time of writing this document, [dReal 4](https://github.com/dreal/dreal4) does not support integration. Therefore, make sure you download and install the right version.
-1. [Boost 1.69](https://www.boost.org/users/history/version_1_69_0.html). We use the following libraries:
-    1. [File System](https://www.boost.org/doc/libs/1_71_0/libs/filesystem/doc/index.htm)   
-    1. [System](https://www.boost.org/doc/libs/1_71_0/libs/system/doc/html/system.html)        
-    1. [Stacktrace](https://www.boost.org/doc/libs/1_71_0/doc/html/stacktrace.html)               
-    1. [Program Options](https://www.boost.org/doc/libs/1_71_0/doc/html/program_options.html)      
-    1. [Test](https://www.boost.org/doc/libs/1_71_0/libs/test/doc/html/index.html)
+1. [Parma Polyhedra Library (PPL) 1.2](https://www.bugseng.com/parma-polyhedra-library); this wonderful library is for working with polyhedra (for us conjunction of affine constraint).
+1. [dReach 3.16.06.02](http://dreal.github.io/dReach/); this is a tool for bounded safety verification of hybrid systems, and we use it for validating counterexamples. Unfortunately, at the time of writing this document, [dReal 4](https://github.com/dreal/dreal4) does not support integration. Therefore, make sure you download and install the right version.
+1. [Boost 1.69](https://www.boost.org/users/history/version_1_69_0.html). We use the following libraries. Note that the first five in this list should be compiled (ie. the are not header only libraries).
+    1. [File System](https://www.boost.org/doc/libs/1_69_0/libs/filesystem/doc/index.htm)   
+    1. [System](https://www.boost.org/doc/libs/1_69_0/libs/system/doc/html/system.html)        
+    1. [Stacktrace](https://www.boost.org/doc/libs/1_69_0/doc/html/stacktrace.html)               
+    1. [Program Options](https://www.boost.org/doc/libs/1_69_0/doc/html/program_options.html)      
+    1. [Test](https://www.boost.org/doc/libs/1_69_0/libs/test/doc/html/index.html)
+    1. [Predef](https://www.boost.org/doc/libs/1_69_0/doc/html/predef.html)
+    1. [Preprocessing](https://www.boost.org/doc/libs/1_69_0/libs/preprocessor/doc/index.html)
+    1. [Algorithm](https://www.boost.org/doc/libs/1_69_0/libs/algorithm/doc/html/index.html)
+    1. [MPL](https://www.boost.org/doc/libs/1_69_0/libs/mpl/doc/index.html)
+    1. [Property Tree](https://www.boost.org/doc/libs/1_69_0/doc/html/property_tree.html)
+    1. [Iterator](https://www.boost.org/doc/libs/1_69_0/libs/iterator/doc/index.html)
+    1. [optional](https://www.boost.org/doc/libs/1_69_0/libs/optional/doc/html/index.html)
+    1. [Interval](https://www.boost.org/doc/libs/1_69_0/libs/numeric/interval/doc/interval.htm)
+    1. [Lexical Cast](https://www.boost.org/doc/libs/1_69_0/doc/html/boost_lexical_cast.html)
