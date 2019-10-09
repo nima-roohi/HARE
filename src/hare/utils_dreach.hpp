@@ -120,7 +120,7 @@ struct ce_checker {
   auto dreach_path(const pt::ptree& props) const { 
     static val_str_t DEF_Path = 
       #if __linux__
-        "/opt/dReal-3.16.06.02/bin/dReach";
+        "/opt/dreal-3.16.06.02-gcc-8.2.0/bin";
       #else
         "/opt/dReal-3.16.06.02/bin/dReach";
       #endif // __linux__
