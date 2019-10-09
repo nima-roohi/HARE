@@ -34,7 +34,7 @@ project HARE
   : requirements <linkflags>-L/opt/c++/libs/ppl-1.2-clang-6.0.1/lib
   : requirements <linkflags>"-lboost_unit_test_framework-clang60-x64-1_68"
   : requirements <linkflags>"-lboost_filesystem-clang60-x64-1_68"
-  : requirements <linkflags>"-lboost_system-clang60-x64-1_68"
+  : requirements <linkflags>"-lboost_system"
   : requirements <linkflags>"-lboost_program_options-clang60-x64-1_68"
   : requirements <linkflags>"-lboost_stacktrace_basic-clang60-x64-1_68"
   : requirements <linkflags>"-lgmp -lgmpxx -lppl -lz3 -lz -lm"
