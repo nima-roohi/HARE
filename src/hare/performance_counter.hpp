@@ -22,7 +22,7 @@
 
 #include "cmn/type_traits.hpp"
 
-#include "ha/safety_result.hpp"
+#include "hare/safety_result.hpp"
 
 #include <boost/mpl/at.hpp>
 #include <boost/mpl/int.hpp>
@@ -260,7 +260,7 @@ using Record = RAII_Record;
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 /** YES! this is the right place for inclusion, not the begining of this file */
-#include "ha/performance_metrics.hpp"
+#include "hare/performance_metrics.hpp"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 

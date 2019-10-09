@@ -20,7 +20,7 @@
 #ifndef HA__TERM_PARSER__HPP
 #define HA__TERM_PARSER__HPP
 
-#include "ha/term.hpp"
+#include "hare/term.hpp"
 
 #include "cmn/dbc.hpp"
 #include "cmn/logger.hpp"
@@ -37,7 +37,7 @@ namespace ha::parser {
 
 template<typename It, typename Handler>
 void tokenize(const It begin, const It end, Handler& handler) {
-  const auto skip  = [end](const auto begin) { return std::find_if_not(begin, end, std::ptr_fun<int, int>(std::isspace)); };
+  const auto skip  = [end](const auto begin) { return std::find_if_not(begin, end, [](const auto c) { return std::isspace(c); }); };
   const auto op    = [end](const auto begin) { return std::find_if_not(begin, end, [](const auto c) { return std::ispunct(c) && c != '.' && 
                                                                                                              c != '('        && c != ')' ; } ); };
   const auto ident = [end](const auto begin) { return std::find_if_not(begin, end, [](const auto c) { return std::isalnum(c) || c == '\''; } ); };

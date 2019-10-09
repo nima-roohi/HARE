@@ -20,11 +20,11 @@
 #ifndef HA__NLFPOLY_HA_PARSER__HPP
 #define HA__NLFPOLY_HA_PARSER__HPP
 
-#include "ha/nlfpoly_ha.hpp"
-#include "ha/poly_ha_parser.hpp"
-#include "ha/performance_counter.hpp"
-#include "ha/term.hpp"
-#include "ha/term_parser.hpp"
+#include "hare/nlfpoly_ha.hpp"
+#include "hare/poly_ha_parser.hpp"
+#include "hare/performance_counter.hpp"
+#include "hare/term.hpp"
+#include "hare/term_parser.hpp"
 
 #include "cmn/dbc.hpp"
 

@@ -20,9 +20,9 @@
 #ifndef HA__NLFPOLY_HA__HPP
 #define HA__NLFPOLY_HA__HPP
 
-#include "ha/hybrid_automaton.hpp"
-#include "ha/poly_ha.hpp"
-#include "ha/term.hpp"
+#include "hare/hybrid_automaton.hpp"
+#include "hare/poly_ha.hpp"
+#include "hare/term.hpp"
 
 #include <cstdint>
 #include <ostream>          // endl

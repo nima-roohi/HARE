@@ -20,8 +20,8 @@
 #ifndef HA__UTILS_PPL__HPP
 #define HA__UTILS_PPL__HPP
 
-#include "ha/term.hpp"
-#include "ha/utils_term.hpp"
+#include "hare/term.hpp"
+#include "hare/utils_term.hpp"
 
 #include "cmn/dbc.hpp"
 

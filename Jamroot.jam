@@ -22,6 +22,6 @@ using clang
 
 project
 	: requirements <include>./src
-  : requirements <cxxflags>-std=c++2a
+  : requirements <cxxflags>-std=c++17
   : build-dir ./bin
   ;

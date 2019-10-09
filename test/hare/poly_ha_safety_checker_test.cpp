@@ -20,10 +20,10 @@
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
 
-#include "ha/poly_ha_parser.hpp"
-#include "ha/poly_ha_safety_checker.hpp"
-#include "ha/performance_counter.hpp"
-#include "ha/safety_result.hpp"
+#include "hare/poly_ha_parser.hpp"
+#include "hare/poly_ha_safety_checker.hpp"
+#include "hare/performance_counter.hpp"
+#include "hare/safety_result.hpp"
 
 #include "cmn/misc/utils.hpp"
 

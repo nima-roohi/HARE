@@ -20,7 +20,7 @@
 #ifndef HA__UTILS_TERM__HPP
 #define HA__UTILS_TERM__HPP
 
-#include "ha/term.hpp"
+#include "hare/term.hpp"
 
 #include "cmn/dbc.hpp"
 #include "cmn/math/continuous_dynamic_interval.hpp"

@@ -20,7 +20,7 @@
 #ifndef HA__HYBRID_AUTOMATON__HPP
 #define HA__HYBRID_AUTOMATON__HPP
 
-#include "ha/term.hpp"
+#include "hare/term.hpp"
 #include "cmn/type_traits.hpp"
 #include "cmn/misc/utils.hpp"
 

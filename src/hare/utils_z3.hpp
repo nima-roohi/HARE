@@ -20,9 +20,9 @@
 #ifndef HA__UTILS_Z3__HPP
 #define HA__UTILS_Z3__HPP
 
-#include "ha/performance_counter.hpp"
-#include "ha/term.hpp"
-#include "ha/utils_term.hpp"
+#include "hare/performance_counter.hpp"
+#include "hare/term.hpp"
+#include "hare/utils_term.hpp"
 
 #include "cmn/dbc.hpp"
 
@@ -96,7 +96,7 @@ inline z3::expr to_arith_expr(const term_ptr t, z3::context& ctx) {
     case symbol::MINUS : return accumulate_l2r(t->operands(), val(0), ctx, std::minus     <z3::expr>());
     case symbol::MULT  : return accumulate_l2r(t->operands(), val(1), ctx, std::multiplies<z3::expr>());
     case symbol::DIV   : return accumulate_l2r(t->operands(), val(1), ctx, std::divides   <z3::expr>());
-    case symbol::EXP   : return accumulate_r2l(t->operands(), val(1), ctx, [&ctx](const auto& fst, const auto& snd) { return z3::pw(fst, snd); }); 
+    case symbol::EXP   : return accumulate_r2l(t->operands(), val(1), ctx, [](const auto& fst, const auto& snd) { return z3::pw(fst, snd); }); 
     case symbol::SQR   : { const auto op = to_arith_expr(t->operator[](0), ctx); return op * op;      }
     case symbol::CUBE  : { const auto op = to_arith_expr(t->operator[](0), ctx); return op * op * op; }
     case symbol::ABS   : 
@@ -136,9 +136,9 @@ inline z3::expr to_bool_expr(const term_ptr t, z3::context& ctx) {
     case symbol::FALSE : return ctx.bool_val(false);
     case symbol::VAR   : return ctx.bool_const(t->variable().name().c_str());
     case symbol::NOT   : return !to_bool_expr(t->operator[](0), ctx);
-    case symbol::AND   : return accumulate_l2r(t->operands(), TRUE , ctx, [&ctx](const auto& fst, const auto& snd) { return  fst && snd; });
-    case symbol::OR    : return accumulate_l2r(t->operands(), FALSE, ctx, [&ctx](const auto& fst, const auto& snd) { return  fst || snd; });
-    case symbol::IMPLY : return accumulate_r2l(t->operands(), FALSE, ctx, [&ctx](const auto& fst, const auto& snd) { return !fst || snd; });
+    case symbol::AND   : return accumulate_l2r(t->operands(), TRUE , ctx, [](const auto& fst, const auto& snd) { return  fst && snd; });
+    case symbol::OR    : return accumulate_l2r(t->operands(), FALSE, ctx, [](const auto& fst, const auto& snd) { return  fst || snd; });
+    case symbol::IMPLY : return accumulate_r2l(t->operands(), FALSE, ctx, [](const auto& fst, const auto& snd) { return !fst || snd; });
     case symbol::IFF   : { const auto op1 = to_bool_expr(t->operator[](0), ctx); 
                            const auto op2 = to_bool_expr(t->operator[](1), ctx); 
                            return (!op1 || op2) && (op1 || !op2); }

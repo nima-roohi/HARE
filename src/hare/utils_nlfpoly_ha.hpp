@@ -20,10 +20,10 @@
 #ifndef HA__UTILS_NLFPOLY_HA__HPP
 #define HA__UTILS_NLFPOLY_HA__HPP
 
-#include "ha/nlfpoly_ha.hpp"
-#include "ha/utils_poly_ha.hpp"
-#include "ha/utils_ppl.hpp"
-#include "ha/utils_term.hpp"
+#include "hare/nlfpoly_ha.hpp"
+#include "hare/utils_poly_ha.hpp"
+#include "hare/utils_ppl.hpp"
+#include "hare/utils_term.hpp"
 
 #include <ppl.hh>
 

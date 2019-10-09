@@ -20,8 +20,8 @@
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
 
-#include "ha/utils_nlfpoly_ha.hpp"
-#include "ha/nlfpoly_ha_parser.hpp"
+#include "hare/utils_nlfpoly_ha.hpp"
+#include "hare/nlfpoly_ha_parser.hpp"
 
 #include <iostream>
 #include <string>

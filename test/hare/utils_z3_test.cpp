@@ -20,9 +20,9 @@
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
 
-#include "ha/term.hpp"
-#include "ha/term_parser.hpp"
-#include "ha/utils_z3.hpp"
+#include "hare/term.hpp"
+#include "hare/term_parser.hpp"
+#include "hare/utils_z3.hpp"
 
 #include <z3++.h>
 
@@ -118,7 +118,8 @@ BOOST_AUTO_TEST_CASE ( term_to_bool_test ) {
       case z3::sat     : 
       case z3::unknown : std::stringstream buff;
                          buff << "input: " << str << ", result: " << actual << ", expected: " << expected << ", res: " << res;
-                         return buff.str(); } };
+                         return buff.str(); }
+    throw "must be unreachable!"; };
 #define CHECK(act, exp) {             \
 const auto res = test(act, exp);      \
 BOOST_CHECK_MESSAGE(res == "", res);  }

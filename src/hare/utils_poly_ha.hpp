@@ -20,8 +20,8 @@
 #ifndef HA__UTILS_POLY_HA__HPP
 #define HA__UTILS_POLY_HA__HPP
 
-#include "ha/poly_ha.hpp"
-#include "ha/utils_ppl.hpp"
+#include "hare/poly_ha.hpp"
+#include "hare/utils_ppl.hpp"
 
 #include <ppl.hh>
 

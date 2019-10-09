@@ -20,11 +20,11 @@
 #ifndef HA__UTILS_PROPS__HPP
 #define HA__UTILS_PROPS__HPP
 
-#include "ha/performance_counter.hpp"
-#include "ha/poly_ha.hpp"
-#include "ha/utils_poly_ha.hpp"
-#include "ha/utils_ppl.hpp"
-#include "ha/utils_z3.hpp"
+#include "hare/performance_counter.hpp"
+#include "hare/poly_ha.hpp"
+#include "hare/utils_poly_ha.hpp"
+#include "hare/utils_ppl.hpp"
+#include "hare/utils_z3.hpp"
 
 #include "cmn/dbc.hpp"
 #include "cmn/type_traits.hpp"

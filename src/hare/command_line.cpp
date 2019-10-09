@@ -17,17 +17,16 @@
  * If not, see <https://www.gnu.org/licenses/>.                                                   *
  **************************************************************************************************/
 
+#define CMN_LOG_ENABLE_RUNTIME_FILTER
 #include "cmn/dbc.hpp"
 #include "cmn/logger.hpp"
 
-#include "ha/nlfpoly_ha_parser.hpp"
-#include "ha/nlfpoly_ha_safety_checker.hpp"
-#include "ha/poly_ha_parser.hpp"
-#include "ha/poly_ha_safety_checker.hpp"
-#include "ha/performance_counter.hpp"
-#include "ha/safety_result.hpp"
-
-#include <spdlog/common.h>
+#include "hare/nlfpoly_ha_parser.hpp"
+#include "hare/nlfpoly_ha_safety_checker.hpp"
+#include "hare/poly_ha_parser.hpp"
+#include "hare/poly_ha_safety_checker.hpp"
+#include "hare/performance_counter.hpp"
+#include "hare/safety_result.hpp"
 
 #include <boost/filesystem.hpp>
 #include <boost/program_options.hpp>
@@ -460,13 +459,13 @@ int main(const int argc, const char *argv[]) {
 
     const verbosity level = vm[vm.count("-" SHORT_VERBOSITY) > 0 ? "-" SHORT_VERBOSITY : VERBOSITY].as<verbosity>();
     switch(level) {
-    case verbosity::TRACE : cmn::default_logger().set_level(spdlog::level::trace   ); break;
-    case verbosity::DEBUG : cmn::default_logger().set_level(spdlog::level::debug   ); break;
-    case verbosity::INFO  : cmn::default_logger().set_level(spdlog::level::info    ); break;
-    case verbosity::WARN  : cmn::default_logger().set_level(spdlog::level::warn    ); break;
-    case verbosity::ERROR : cmn::default_logger().set_level(spdlog::level::err     ); break;
-    case verbosity::FATAL : cmn::default_logger().set_level(spdlog::level::critical); break;
-    case verbosity::OFF   : cmn::default_logger().set_level(spdlog::level::off     ); break;
+    case verbosity::TRACE : cmn::logger::filter.set_level(CMN_LOG_LEVEL_TRACE); break;
+    case verbosity::DEBUG : cmn::logger::filter.set_level(CMN_LOG_LEVEL_DEBUG); break;
+    case verbosity::INFO  : cmn::logger::filter.set_level(CMN_LOG_LEVEL_INFO ); break;
+    case verbosity::WARN  : cmn::logger::filter.set_level(CMN_LOG_LEVEL_WARN ); break;
+    case verbosity::ERROR : cmn::logger::filter.set_level(CMN_LOG_LEVEL_ERROR); break;
+    case verbosity::FATAL : cmn::logger::filter.set_level(CMN_LOG_LEVEL_FATAL); break;
+    case verbosity::OFF   : cmn::logger::filter.set_level(CMN_LOG_LEVEL_OFF  ); break;
     }
 
     const output_kind out_kind = vm[vm.count("-" SHORT_OUTPUT) > 0 ? "-" SHORT_OUTPUT : OUTPUT].as<output_kind>();

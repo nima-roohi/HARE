@@ -20,10 +20,10 @@
 #ifndef HA__POLY_HA_PARSER__HPP
 #define HA__POLY_HA_PARSER__HPP
 
-#include "ha/poly_ha.hpp"
-#include "ha/term.hpp"
-#include "ha/term_parser.hpp"
-#include "ha/performance_counter.hpp"
+#include "hare/poly_ha.hpp"
+#include "hare/term.hpp"
+#include "hare/term_parser.hpp"
+#include "hare/performance_counter.hpp"
 
 #include "cmn/dbc.hpp"
 #include "cmn/misc/utils.hpp"

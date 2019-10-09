@@ -20,7 +20,7 @@
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
 
-#include "ha/poly_ha_parser.hpp"
+#include "hare/poly_ha_parser.hpp"
 
 using namespace ha::poly_ha;
 using namespace ha::poly_ha::parser;

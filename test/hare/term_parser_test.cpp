@@ -20,8 +20,8 @@
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
 
-#include "ha/term.hpp"
-#include "ha/term_parser.hpp"
+#include "hare/term.hpp"
+#include "hare/term_parser.hpp"
 
 #include <sstream>
 

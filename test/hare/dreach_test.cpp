@@ -20,10 +20,10 @@
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
 
-#include "ha/utils_dreach.hpp"
-#include "ha/poly_ha_parser.hpp"
-#include "ha/poly_ha_safety_checker.hpp"
-#include "ha/safety_result.hpp"
+#include "hare/utils_dreach.hpp"
+#include "hare/poly_ha_parser.hpp"
+#include "hare/poly_ha_safety_checker.hpp"
+#include "hare/safety_result.hpp"
 
 using namespace ha::dreach_utils;
 using namespace ha::poly_ha;

@@ -23,8 +23,8 @@
 #include "cmn/dbc.hpp"
 #include "cmn/misc/hash.hpp"
 
-#include "ha/poly_ha.hpp"
-#include "ha/nlfpoly_ha.hpp"
+#include "hare/poly_ha.hpp"
+#include "hare/nlfpoly_ha.hpp"
 
 #include <boost/optional.hpp>
 

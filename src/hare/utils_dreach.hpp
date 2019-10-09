@@ -20,12 +20,12 @@
 #ifndef HA__UTILS_DREACH__HPP
 #define HA__UTILS_DREACH__HPP
 
-#include "ha/nlfpoly_ha.hpp"
-#include "ha/poly_ha.hpp"
-#include "ha/term.hpp"
-#include "ha/performance_counter.hpp"
-#include "ha/utils_cegar.hpp"
-#include "ha/utils_props.hpp"
+#include "hare/nlfpoly_ha.hpp"
+#include "hare/poly_ha.hpp"
+#include "hare/term.hpp"
+#include "hare/performance_counter.hpp"
+#include "hare/utils_cegar.hpp"
+#include "hare/utils_props.hpp"
 
 #include "cmn/dbc.hpp"
 #include "cmn/type_traits.hpp"

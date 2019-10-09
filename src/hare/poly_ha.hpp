@@ -20,8 +20,8 @@
 #ifndef HA__POLY_HA__HPP
 #define HA__POLY_HA__HPP
 
-#include "ha/hybrid_automaton.hpp"
-#include "ha/utils_ppl.hpp"
+#include "hare/hybrid_automaton.hpp"
+#include "hare/utils_ppl.hpp"
 
 #include "cmn/dbc.hpp"
 

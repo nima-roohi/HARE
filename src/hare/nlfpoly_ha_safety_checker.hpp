@@ -20,16 +20,16 @@
 #ifndef HA__NLFPOLY_HA_SAFETY_CHECKER__HPP
 #define HA__NLFPOLY_HA_SAFETY_CHECKER__HPP
 
-#include "ha/nlfpoly_ha.hpp"
-#include "ha/poly_ha.hpp"
-#include "ha/poly_ha_safety_checker.hpp"
-#include "ha/safety_result.hpp"
-#include "ha/utils_cegar.hpp"
-#include "ha/utils_dreach.hpp"
-#include "ha/utils_nlfpoly_ha.hpp"
-#include "ha/utils_ppl.hpp"
-#include "ha/utils_props.hpp"
-#include "ha/utils_term.hpp"
+#include "hare/nlfpoly_ha.hpp"
+#include "hare/poly_ha.hpp"
+#include "hare/poly_ha_safety_checker.hpp"
+#include "hare/safety_result.hpp"
+#include "hare/utils_cegar.hpp"
+#include "hare/utils_dreach.hpp"
+#include "hare/utils_nlfpoly_ha.hpp"
+#include "hare/utils_ppl.hpp"
+#include "hare/utils_props.hpp"
+#include "hare/utils_term.hpp"
 
 #include "cmn/dbc.hpp"
 
@@ -285,7 +285,7 @@ struct safety_checker {
       return !rel.is_disjoint_from(std::move(inv_src_dst)); };
     // if the new edge with the given soruce, destination, and relation, can ever be enabled, add it to the sequence of new edges.
     std::vector<std::tuple<edge_index_t, abs_edge_t>> new_edges;
-    const auto add_edge = [&enabled_edge, &locs, &new_edges](const auto& old_edge, const auto edge_index, const auto src, const auto dst) {
+    const auto add_edge = [&enabled_edge, &new_edges](const auto& old_edge, const auto edge_index, const auto src, const auto dst) {
       if(!enabled_edge(src, dst, old_edge.rel())) return;
       auto new_edge = abs_edge_t(src, dst, old_edge.lbl(), old_edge.knd(), old_edge.rel());
       new_edges.emplace_back(std::make_tuple(edge_index, std::move(new_edge)));  };

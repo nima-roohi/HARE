@@ -20,13 +20,13 @@
 #ifndef HA__POLY_HA_SAFETY_CHECKER__HPP
 #define HA__POLY_HA_SAFETY_CHECKER__HPP
 
-#include "ha/performance_counter.hpp"
-#include "ha/poly_ha.hpp"
-#include "ha/safety_result.hpp"
-#include "ha/utils_poly_ha.hpp"
-#include "ha/utils_ppl.hpp"
-#include "ha/utils_props.hpp"
-#include "ha/utils_z3.hpp"
+#include "hare/performance_counter.hpp"
+#include "hare/poly_ha.hpp"
+#include "hare/safety_result.hpp"
+#include "hare/utils_poly_ha.hpp"
+#include "hare/utils_ppl.hpp"
+#include "hare/utils_props.hpp"
+#include "hare/utils_z3.hpp"
 
 #include "cmn/dbc.hpp"
 #include "cmn/type_traits.hpp"
