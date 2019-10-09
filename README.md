@@ -25,8 +25,8 @@ HARE uses the following libraries. For each of these libraries, we also mention 
 1. [Parma Polyhedra Library (PPL) 1.2](https://www.bugseng.com/parma-polyhedra-library); this wonderful library is for working polyhedral constraint.
 1. [dReach 3.16.06.02](http://dreal.github.io/dReach/). this is a tool for bounded safety verfication of hybrid systems, and we use it for validating counterexamples. Unfortunately, at the time of writing this document, [dReal 4](https://github.com/dreal/dreal4) does not support integration. Therefore, make sure you download and install the right version.
 1. [Boost 1.69](https://www.boost.org/users/history/version_1_69_0.html). We use the following libraries:
-    1. File System           
-    1. System               
-    1. Program Options      
-    1. Basic Stacktrace     
-    1. Unit Test Framework
+    1. [File System](https://www.boost.org/doc/libs/1_71_0/libs/filesystem/doc/index.htm)   
+    1. [System](https://www.boost.org/doc/libs/1_71_0/libs/system/doc/html/system.html)        
+    1. [Stacktrace](https://www.boost.org/doc/libs/1_71_0/doc/html/stacktrace.html)               
+    1. [Program Options](https://www.boost.org/doc/libs/1_71_0/doc/html/program_options.html)      
+    1. [Test](https://www.boost.org/doc/libs/1_71_0/libs/test/doc/html/index.html)
