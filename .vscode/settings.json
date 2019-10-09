@@ -107,20 +107,12 @@
       "color": "#56709c",
     },
     {
-      "text": "requires",
-      "color": "#80B0FF",
-    },
-    {
       "text": "@ensures",
       "color": "#56709c",
     },
     {
-      "text": "ensures",
-      "color": "#80B0FF",
-    },
-    {
-      "text": "asserts",
-      "color": "#80B0FF",
+      "text": "@asserts",
+      "color": "#56709c",
     },
     {
       "text": "TODO:",

@@ -237,7 +237,7 @@ auto parse_edge(const pt::ptree& tr, const name2var& primed_n2v, const RelP rel_
 template<typename Loc, typename InvP, typename FlowP>
 auto parse_loc(const pt::ptree& tr, const name2var& n2v, const InvP& inv_parser, const FlowP& flow_parser) {
   std::string name = tr.get("name", ""); // name is optional
-  const bool transient = name.length() > 0 || name[0] == '*';
+  const bool transient = name.length() > 0 && name[0] == '*';
   if(transient) name = name.substr(1);
   return Loc(
            tr.get<loc_id>(""),

@@ -1,0 +1,4 @@
+dReal Options:
+SMT: ./ws/n6/dreach_2_0.smt2, PATH : [1,2,3]
+delta-sat with delta = 0.00100000000000000
+For k = 2, [1,2,3] -- SAT
