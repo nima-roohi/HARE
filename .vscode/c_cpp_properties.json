@@ -7,8 +7,8 @@
           "${workspaceFolder}/test",
           "/opt/c++/libs/boost-1.69-clang-8.0.0/include/boost-1_69",
           "/opt/c++/libs/gmp-6.1.2-clang-8.0.0/include",
-          "/opt/c++/libs/gaol-4.2.0-apmathlib-2.1.0-clang-8.0.0/include",
-          "/opt/c++/libs/apmathlib-2.1.0-clang-8.0.0/include"
+          "/opt/c++/libs/opt/c++/libs/z3-4.8.4-clang-8.0.0/include",
+          "/opt/c++/libs/opt/c++/libs/ppl-1.2-clang-8.0.0/include"
       ],
       "defines": [],
       "macFrameworkPath": [

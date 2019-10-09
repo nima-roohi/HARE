@@ -53,7 +53,7 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-namespace ha::poly_ha {
+namespace hare::poly_ha {
 
 using namespace ppl_utils;
 using namespace z3_utils ;
@@ -230,19 +230,19 @@ struct safety_checker {
   //-----------------------------------------------------------------------------------------------------------------------------------------------------------
   
   static auto max_iter_param(const pt::ptree& props) {
-    return ::ha::prop_value<val_uint_t>(props, KEY_MaxIter, DEF_MaxIter); }
+    return ::hare::prop_value<val_uint_t>(props, KEY_MaxIter, DEF_MaxIter); }
   
   static auto should_separate_identity_resets(const pt::ptree& props) {
-    return ::ha::prop_value<val_bool_t>(props, KEY_SepIDReset, DEF_SepIDReset); }
+    return ::hare::prop_value<val_bool_t>(props, KEY_SepIDReset, DEF_SepIDReset); }
 
   static auto should_check_unsafe_after_disc_edge(const pt::ptree& props) {
-    return ::ha::prop_value<val_bool_t>(props, KEY_CheckUnsafeAfterDiscEdge, DEF_CheckUnsafeAfterDiscEdge); }
+    return ::hare::prop_value<val_bool_t>(props, KEY_CheckUnsafeAfterDiscEdge, DEF_CheckUnsafeAfterDiscEdge); }
 
   static auto should_add_to_visiteds_on_check(const pt::ptree& props) {
-    return ::ha::prop_value<val_bool_t>(props, KEY_AddToVisitedsOnCheck, DEF_AddToVisitedsOnCheck); }
+    return ::hare::prop_value<val_bool_t>(props, KEY_AddToVisitedsOnCheck, DEF_AddToVisitedsOnCheck); }
 
   static auto should_inverse_time(const pt::ptree& props, const inits_t inits, const unsafes_t unsafes) {
-    const auto dir = ::ha::prop_value<val_str_t>(props, KEY_Direction, DEF_Direction);
+    const auto dir = ::hare::prop_value<val_str_t>(props, KEY_Direction, DEF_Direction);
     requires_msg(dir == VAL_Direction_Forward            || dir == VAL_Direction_Backward || 
                  dir == VAL_Direction_Smaller_or_Forward || dir == VAL_Direction_Smaller_or_Backward,    
                  "invalid direction " << dir << ", possible values are " << 
@@ -845,6 +845,6 @@ private:
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-} // namespace ha::poly_ha
+} // namespace hare::poly_ha
 
 #endif // HA__POLY_HA_SAFETY_CHECKER__HPP

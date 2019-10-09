@@ -28,8 +28,8 @@
 #include <tuple>
 #include <vector>
 
-using namespace ha::nlfpoly_ha;
-using namespace ha::nlfpoly_ha::parser;
+using namespace hare::nlfpoly_ha;
+using namespace hare::nlfpoly_ha::parser;
 
 BOOST_AUTO_TEST_SUITE ( utils_nlfpoly_ha_test )
 

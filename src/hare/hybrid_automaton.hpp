@@ -36,7 +36,7 @@
 #include <utility>
 #include <vector>
 
-namespace ha {
+namespace hare {
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -694,26 +694,26 @@ inline Out& operator<<(Out& out, const loc<ID, Inv, Flow, InvP, FlowP, TInv, TFl
 namespace std {
 
 template<typename ID, typename Inv, typename Flow, typename InvP, typename FlowP, typename TInv, typename TFlow>
-struct hash<ha::loc<ID, Inv, Flow, InvP, FlowP, TInv, TFlow>> {
-  using argument_type = ha::loc<ID, Inv, Flow, InvP, FlowP, TInv, TFlow>;
+struct hash<hare::loc<ID, Inv, Flow, InvP, FlowP, TInv, TFlow>> {
+  using argument_type = hare::loc<ID, Inv, Flow, InvP, FlowP, TInv, TFlow>;
   using result_type   = size_t;
   result_type operator()(const argument_type& that) const {
     return that.id();  }  };
 
 template<typename ID, typename Lbl, typename Rel, typename RelP, typename TRel>
-struct hash<ha::edge<ID, Lbl, Rel, RelP, TRel>> {
-  using argument_type = ha::edge<ID, Lbl, Rel, RelP, TRel>;
+struct hash<hare::edge<ID, Lbl, Rel, RelP, TRel>> {
+  using argument_type = hare::edge<ID, Lbl, Rel, RelP, TRel>;
   using result_type   = size_t;
   result_type operator()(const argument_type& that) const { 
-    return hash<ID>{}(that.src()) ^ hash<ID>{}(that.dst()) ^ hash<Lbl>{}(that.lbl()) ^ hash<ha::label_kind>{}(that.knd()) /*^ hash<Rel>{}(that.rel())*/; } };
+    return hash<ID>{}(that.src()) ^ hash<ID>{}(that.dst()) ^ hash<Lbl>{}(that.lbl()) ^ hash<hare::label_kind>{}(that.knd()) /*^ hash<Rel>{}(that.rel())*/; } };
 
 template<typename ID, typename Lbl, typename Grd, typename Rst, typename GrdP, typename RstP, typename TGrd, typename TRst>
-struct hash<ha::simple_edge<ID, Lbl, Grd, Rst, GrdP, RstP, TGrd, TRst>> {
-  using argument_type = ha::simple_edge<ID, Lbl, Grd, Rst, GrdP, RstP, TGrd, TRst>;
+struct hash<hare::simple_edge<ID, Lbl, Grd, Rst, GrdP, RstP, TGrd, TRst>> {
+  using argument_type = hare::simple_edge<ID, Lbl, Grd, Rst, GrdP, RstP, TGrd, TRst>;
   using result_type   = size_t;
   result_type operator()(const argument_type& that) const { 
     return hash<ID>            {}(that.src()) ^ hash<ID> {}(that.dst  ()) ^ hash<Lbl>{}(that.lbl  ()) ^ 
-           hash<ha::label_kind>{}(that.knd()) /*^ hash<Grd>{}(that.guard()) ^ hash<Rst>{}(that.reset())*/ ; } };
+           hash<hare::label_kind>{}(that.knd()) /*^ hash<Grd>{}(that.guard()) ^ hash<Rst>{}(that.reset())*/ ; } };
 
 } // namespace std
 

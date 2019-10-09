@@ -46,7 +46,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-namespace ha {
+namespace hare {
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -412,15 +412,15 @@ const term_ptr E     = term_ptr(new term(symbol::E    ));
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-} // namespace ha
+} // namespace hare
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 namespace std {
 
 template<> 
-struct hash<ha::variable> {
-  using argument_type = ha::variable;
+struct hash<hare::variable> {
+  using argument_type = hare::variable;
   using result_type   = size_t;
   result_type operator()(const argument_type& that) const { return that.id(); } };
 

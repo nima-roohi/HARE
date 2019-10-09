@@ -25,7 +25,7 @@
 
 #include <cmath>
 
-using namespace ha;
+using namespace hare;
 
 BOOST_AUTO_TEST_SUITE ( term_utils_test )
 

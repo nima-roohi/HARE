@@ -48,7 +48,7 @@
 #include <utility>
 #include <vector>
 
-namespace ha::poly_ha::parser {
+namespace hare::poly_ha::parser {
   
 namespace pt = boost::property_tree;
 
@@ -158,7 +158,7 @@ inline auto parse_props(const pt::ptree& tr) {
 template<typename P>
 const auto poly_parser = [](const boost::optional<const pt::ptree&>& tr, const name2var& n2v) {
   auto text = tr ? tr->data() : "true"; 
-  const auto term = ha::parser::parse_term(text.begin(), text.end(), n2v);
+  const auto term = hare::parser::parse_term(text.begin(), text.end(), n2v);
   return to_polyhedron<P>(term, n2v.size()); };
 
 template<typename P> using poly_parser_t = std::remove_const_t<std::remove_reference_t<decltype(poly_parser<P>)>>;
@@ -342,6 +342,6 @@ poly_safety<P> parse_poly_safety_from_file(const std::string& file_path) {
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-} // ha::poly_ha::parser
+} // hare::poly_ha::parser
 
 #endif // HA__POLY_HA_PARSER__HPP

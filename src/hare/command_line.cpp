@@ -125,7 +125,7 @@ const unsigned char completeVersion[] = {
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-using namespace ha;
+using namespace hare;
 
 using CPoly   = poly_ha::CPoly  ;
 using NNCPoly = poly_ha::NNCPoly;
@@ -510,8 +510,8 @@ int main(const int argc, const char *argv[]) {
     asserts_msg(false, "none of polyhedral, non_linear, or batch parameters are set.") 
 
     if(metrics) {
-      if(batch) ha::pc::print_table      (std::cout);
-      else      ha::pc::print_curr_record(std::cout); }
+      if(batch) hare::pc::print_table      (std::cout);
+      else      hare::pc::print_curr_record(std::cout); }
 
   } catch(po::error& e) { 
     std::cerr << "ERROR: " << e.what() << std::endl << std::endl; 

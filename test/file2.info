@@ -1,0 +1,86 @@
+params {                                      
+  c1 234                                     
+  c2 345                                     
+  c3 x+y                                      
+}                                              
+vars "x, y, z"
+hybrid-automaton "name-1" {                     
+   loc 0 {                                   
+     name "LOC NAME"                        
+     inv  "x+y < pi + e"                         
+     flow {
+        x  "1"              
+        y  "x+1"              
+        z  "12 z sin(2x) cos z"
+     }
+   }                                          
+   loc 1 {                                   
+     name "LOC NAME2"                       
+     inv  "x+y <= 2"                        
+     flow {
+        x  "x^2 + sqr(y)* 2z+1/(x+y)"              
+        y  "0"              
+        z  "1/tan x"
+     }
+   }                                          
+  edge "a!" {                                    
+     src 0
+     dst 1                                   
+     rel "x==x' && y < 2 && y' >= 3"        
+  }                                           
+  edge a {                                    
+     src 1                                   
+     dst 0                                   
+     rel "x+y' == 3"                         
+  }                                           
+}                                             
+hybrid-automaton name-2 {                     
+   loc 0 {                                   
+     name "LOC NAME"                        
+     inv  "x+y < 2"                         
+     flow {
+        x  "1"              
+        y  "x+1"              
+        z  "12 z abs(2x) cos log lg ln (z^e)"
+     }
+   }                                          
+   loc 1 {                                   
+     name "LOC NAME2"                       
+     inv  "x+y <= 2"                        
+     flow {
+        x  "x^2 + sqr(y)* 2z+1/(x+y)"              
+        y  "cos abs (x^2)"              
+        z  "cot x / tan x"
+     }
+   }                                          
+  edge "a!!" {                                  
+     src 1                                   
+     dst 0                                   
+     rel "x==x' && y < c1 && y' >= 3"       
+  }                                           
+  edge {                                      
+     src 0                                   
+     dst 1                                   
+     rel "c3 == x'"                         
+  }                                           
+  edge "a?" {                                   
+     src 1                                   
+     dst 10                                   
+     rel "c3 == x'"                         
+  }                                           
+}                                             
+inits {                                      
+  "[0,1]" "x==0 && y==0"                       
+  "[1,0]" "true" ;                             
+}                                           
+unsafes {                                    
+  "[_, 1]" "12(x+y)*(1/6) +5< 3z/2 + 3 +4 "     \
+           " && x<3" \
+           " && y<3"
+  "[1,_]"  "false" 
+}                                           
+props {                                       
+  spaceex {                                   
+    time-out c2                               
+  }                                           
+}                                             

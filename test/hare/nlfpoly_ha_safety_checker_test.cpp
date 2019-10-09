@@ -32,18 +32,18 @@
 #include <tuple>
 #include <vector>
 
-using namespace ha::nlfpoly_ha;
-using namespace ha::nlfpoly_ha::parser;
+using namespace hare::nlfpoly_ha;
+using namespace hare::nlfpoly_ha::parser;
 
 BOOST_AUTO_TEST_SUITE ( nlfpoly_ha_safety_checker_test )
 
 template<typename P = NNCPoly>
 bool is_safe(const std::string& text) { 
-  const ha::pc::Record record{};
+  const hare::pc::Record record{};
   const auto safety = parse_nlfpoly_safety_from_string<P>(text);
   const safety_checker<P> mc(safety);
   const auto res = mc.safety_result();
-  return res == ::ha::nlfpoly_safety_result::SAFE; }
+  return res == ::hare::nlfpoly_safety_result::SAFE; }
 
 BOOST_AUTO_TEST_CASE ( simple_test ) {
   const std::string text = 

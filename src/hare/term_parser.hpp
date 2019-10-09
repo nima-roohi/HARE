@@ -33,7 +33,7 @@
 #include <stack>
 #include <string>
 
-namespace ha::parser {
+namespace hare::parser {
 
 template<typename It, typename Handler>
 void tokenize(const It begin, const It end, Handler& handler) {
@@ -297,13 +297,13 @@ private:
 
   //-----------------------------------------------------------------------------------------------------------------------------------------------------------
   
-  std::uint64_t precedence      (const symbol smbl) { return smbl == symbol::CONST || smbl == symbol::VAR ? 0 : ha::precedence()(term(smbl)); }
+  std::uint64_t precedence      (const symbol smbl) { return smbl == symbol::CONST || smbl == symbol::VAR ? 0 : hare::precedence()(term(smbl)); }
   cmn::misc::associativity assoc(const symbol smbl) { return smbl == symbol::CONST || smbl == symbol::VAR ? 
                                                              cmn::misc::associativity::NONE               : 
-                                                             ha::assoc()(term(smbl)); }
+                                                             hare::assoc()(term(smbl)); }
   cmn::misc::op_type op_type    (const symbol smbl) { return smbl == symbol::CONST || smbl == symbol::VAR ? 
                                                              cmn::misc::op_type::PREFIX                   : 
-                                                             ha::op_type()(term(smbl)); }
+                                                             hare::op_type()(term(smbl)); }
 
   //-----------------------------------------------------------------------------------------------------------------------------------------------------------
   
@@ -350,7 +350,7 @@ term_ptr parse_term(const It begin, const It end, const N2V& n2v) {
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-} // ha::parser
+} // hare::parser
 
 #endif // HA__TERM_PARSER__HPP
 

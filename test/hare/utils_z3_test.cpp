@@ -26,9 +26,9 @@
 
 #include <z3++.h>
 
-using namespace ha;
-using namespace ha::parser;
-using namespace ha::z3_utils;
+using namespace hare;
+using namespace hare::parser;
+using namespace hare::z3_utils;
 
 BOOST_AUTO_TEST_SUITE ( z3_utils_test )
 

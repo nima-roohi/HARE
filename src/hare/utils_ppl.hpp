@@ -37,7 +37,7 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-namespace ha::ppl_utils {
+namespace hare::ppl_utils {
 
 namespace ppl = Parma_Polyhedra_Library;
 
@@ -374,6 +374,6 @@ void remove_space_dimensions(P& poly, const Set& vars) {
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-} // namespace ha::ppl_utils
+} // namespace hare::ppl_utils
 
 #endif // HA__UTILS_PPL__HPP

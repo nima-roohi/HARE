@@ -22,7 +22,7 @@
 
 #include <cstdint>
 
-namespace ha {
+namespace hare {
 
 enum class poly_safety_result {
   UNSAFE,
@@ -57,6 +57,6 @@ inline Out& operator<<(Out& os, const nlfpoly_safety_result result) {
 }
 
 
-} // namespace ha
+} // namespace hare
 
 #endif // HA__SAFETY_RESULT__HPP

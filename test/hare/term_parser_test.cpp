@@ -25,8 +25,8 @@
 
 #include <sstream>
 
-using namespace ha;
-using namespace ha::parser;
+using namespace hare;
+using namespace hare::parser;
 
 BOOST_AUTO_TEST_SUITE ( term_parser_test )
 

@@ -19,7 +19,7 @@
 
 #include "performance_counter.hpp"
 
-namespace ha::pc {
+namespace hare::pc {
 
 serializers_t serializers   ({&string_serializer});
 pointers_t    pointers      ({&curr_rec_name});
@@ -66,4 +66,4 @@ std::string   curr_rec_name {};
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-} // namespace ha::pc
+} // namespace hare::pc

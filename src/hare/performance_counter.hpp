@@ -40,7 +40,7 @@
 #include <utility>
 #include <vector>
 
-namespace ha::pc {
+namespace hare::pc {
 
 using counter_t = std::uint_fast64_t;
 using timer_t   = std::uint_fast64_t;
@@ -277,7 +277,7 @@ using Record = RAII_Record;
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-} // namespace ha::pc
+} // namespace hare::pc
 
 #endif // HA__PERFORMANCE_COUNTER__HPP
 

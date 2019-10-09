@@ -24,7 +24,7 @@
 
 #include <sstream>
 
-using namespace ha;
+using namespace hare;
 
 BOOST_AUTO_TEST_SUITE ( term_test )
 

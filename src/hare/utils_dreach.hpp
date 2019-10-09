@@ -43,7 +43,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace ha::dreach_utils {
+namespace hare::dreach_utils {
 
 namespace ppl = Parma_Polyhedra_Library;
 namespace pt  = boost::property_tree;
@@ -124,7 +124,7 @@ struct ce_checker {
       #else
         "/opt/c++/libs/dreal-3.16.05.05/clang-3.9.0/bin/dReach" ;
       #endif // __linux__
-     return ::ha::prop_value<val_str_t>(props, KEY_Path, DEF_Path); }
+     return ::hare::prop_value<val_str_t>(props, KEY_Path, DEF_Path); }
 
   //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -571,7 +571,7 @@ private:
 #undef  DREACH
 };
 
-} // ha::dreal_utils
+} // hare::dreal_utils
 
 #endif // HA__UTILS_DRREACH__HPP
 

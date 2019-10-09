@@ -33,7 +33,7 @@
 
 #include <cmath>  // isnan
 
-namespace ha {
+namespace hare {
 
 using constant2  = ::cmn::math::extended_number<constant>;
 using interval_t = ::cmn::math::continuous_dynamic_interval<constant>;
@@ -336,6 +336,6 @@ boost_interval_t<D> bound_of_expr(const std::unordered_map<term_ptr, boost_inter
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-} // namespace ha
+} // namespace hare
 
 #endif // HA__UTILS_TERM__HPP

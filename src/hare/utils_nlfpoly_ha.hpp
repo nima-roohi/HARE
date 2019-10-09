@@ -32,7 +32,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace ha::nlfpoly_ha {
+namespace hare::nlfpoly_ha {
 
 using namespace ppl_utils;
 namespace ppl = Parma_Polyhedra_Library;
@@ -276,6 +276,6 @@ void force_discrete_edge_by_adding_self_loops_and_restricting_invariants( nlfpol
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-} // namespace ha::nlfpoly_ha
+} // namespace hare::nlfpoly_ha
 
 #endif // HA__UTILS_NLFPOLY_HA__HPP

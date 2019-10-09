@@ -25,9 +25,9 @@
 #include "hare/poly_ha_safety_checker.hpp"
 #include "hare/safety_result.hpp"
 
-using namespace ha::dreach_utils;
-using namespace ha::poly_ha;
-using namespace ha::poly_ha::parser;
+using namespace hare::dreach_utils;
+using namespace hare::poly_ha;
+using namespace hare::poly_ha::parser;
 
 BOOST_AUTO_TEST_SUITE ( dreach_test )
 
@@ -36,7 +36,7 @@ bool is_safe(const std::string& text) {
   const auto safety = parse_poly_safety_from_string<P>(text);
   const safety_checker<P> mc(safety);
   const auto res = mc.safety_result();
-  return res == ha::poly_safety_result::SAFE; }
+  return res == hare::poly_safety_result::SAFE; }
 
 BOOST_AUTO_TEST_CASE ( dreach_test ) {
   const std::string text = 
@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE ( dreach_test ) {
     "  }                                                \n"
     "}                                                  \n";
   BOOST_CHECK(!is_safe(text));
-  parse_poly_safety_from_file<NNCPoly>("./test/file.info");
+  parse_poly_safety_from_file<NNCPoly>("./file.info");
 //  to_dreach(std::cout, safety);
 }
 

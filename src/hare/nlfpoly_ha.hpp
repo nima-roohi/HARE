@@ -28,7 +28,7 @@
 #include <ostream>          // endl
 #include <unordered_map>
 
-namespace ha::nlfpoly_ha {
+namespace hare::nlfpoly_ha {
 
 using namespace ppl_utils;
 
@@ -70,6 +70,6 @@ template<typename P> using nlfpoly_safety = safety<nlfpoly_ha<P>, poly_map<P>, p
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-} // namespace ha::nlfpoly_ha
+} // namespace hare::nlfpoly_ha
 
 #endif // HA__NLFPOLY_HA__HPP

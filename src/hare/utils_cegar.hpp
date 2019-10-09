@@ -28,7 +28,7 @@
 
 #include <boost/optional.hpp>
 
-namespace ha::cegar {
+namespace hare::cegar {
 
 using loc_id_t     = std::uint16_t;
 using par_loc_id_t = std::vector<loc_id_t>;

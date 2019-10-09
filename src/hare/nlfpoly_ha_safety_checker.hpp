@@ -44,7 +44,7 @@
 #include <utility>
 #include <vector>
 
-namespace ha::nlfpoly_ha {
+namespace hare::nlfpoly_ha {
 
 namespace pt  = boost::property_tree   ;
 namespace ppl = Parma_Polyhedra_Library;
@@ -145,19 +145,19 @@ struct safety_checker {
   //-----------------------------------------------------------------------------------------------------------------------------------------------------------
   
   static auto max_iter_param(const pt::ptree& props) {
-    return ::ha::prop_value<val_uint_t>(props, KEY_MaxIter, DEF_MaxIter); }
+    return ::hare::prop_value<val_uint_t>(props, KEY_MaxIter, DEF_MaxIter); }
   
   static auto param_bounded_cont_trans(const pt::ptree& props) { 
-    return ::ha::prop_value<val_bool_t>(props, KEY_BoundContTrans, DEF_BoundContTrans); }
+    return ::hare::prop_value<val_bool_t>(props, KEY_BoundContTrans, DEF_BoundContTrans); }
   
   static auto param_bound_ctran_by_eq(const pt::ptree& props) { 
-    return ::ha::prop_value<val_bool_t>(props, KEY_BoundCTranByEQ, DEF_BoundCTranByEQ); }
+    return ::hare::prop_value<val_bool_t>(props, KEY_BoundCTranByEQ, DEF_BoundCTranByEQ); }
 
   static auto param_connect_splitted_locs(const pt::ptree& props) { 
-    return ::ha::prop_value<val_bool_t>(props, KEY_ConnectSplittedLocs, DEF_ConnectSplittedLocs); }
+    return ::hare::prop_value<val_bool_t>(props, KEY_ConnectSplittedLocs, DEF_ConnectSplittedLocs); }
 
   static auto param_use_empty_labels(const pt::ptree& props) { 
-    return ::ha::prop_value<val_bool_t>(props, KEY_UseEmptyLabels, DEF_UseEmptyLabels); }
+    return ::hare::prop_value<val_bool_t>(props, KEY_UseEmptyLabels, DEF_UseEmptyLabels); }
 
   // the trivial implimentation does not work on Linux!! Damn it GMP on Linux!
   static auto param_ctran_duration(const pt::ptree& props) { 
@@ -167,20 +167,20 @@ struct safety_checker {
                                     buff << DEF_CTranDuration;
                                     buff.str(); 
                                   });
-    const auto str_val = ::ha::prop_value<std::string>(props, KEY_CTranDuration, def_str); 
+    const auto str_val = ::hare::prop_value<std::string>(props, KEY_CTranDuration, def_str); 
     return val_num_t(str_val); 
     #else    
-    return ::ha::prop_value<val_num_t>(props, KEY_CTranDuration, DEF_CTranDuration); 
+    return ::hare::prop_value<val_num_t>(props, KEY_CTranDuration, DEF_CTranDuration); 
     #endif    
   }
 
   static val_uint_t param_init_refine_count(const pt::ptree& props) { 
-    const auto res = ::ha::prop_value<val_uint_t>(props, KEY_InitRefineCount, DEF_InitRefineCount); 
+    const auto res = ::hare::prop_value<val_uint_t>(props, KEY_InitRefineCount, DEF_InitRefineCount); 
     requires_msg(res <= 16, "maximum value for parameter " << KEY_InitRefineCount << "is 16 (input value is " << res << ")");
     return res; }
 
   static val_str_t param_linear_flow_abstraction_method(const pt::ptree& props) {
-    const auto res = ::ha::prop_value<val_str_t>(props, KEY_LinearFlowAbstraction, DEF_LinearFlowAbstraction);
+    const auto res = ::hare::prop_value<val_str_t>(props, KEY_LinearFlowAbstraction, DEF_LinearFlowAbstraction);
     requires_msg(res == VAL_LinearFlowAbstraction_Poly || res == VAL_LinearFlowAbstraction_Rect,
                  "invalid linear-flow-abstraction: " << res << ", possible values are " 
                  << VAL_LinearFlowAbstraction_Poly << " and " << VAL_LinearFlowAbstraction_Rect)
@@ -788,8 +788,8 @@ private:
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-template<typename P> const ::ha::val_num_t safety_checker<P>::DEF_CTranDuration = ::ha::val_num_t(10/*any positive*/); 
+template<typename P> const ::hare::val_num_t safety_checker<P>::DEF_CTranDuration = ::hare::val_num_t(10/*any positive*/); 
 
-} // namespace ha::nlfpoly_ha
+} // namespace hare::nlfpoly_ha
 
 #endif // HA__NLFPOLY_HA_SAFETY_CHECKER__HPP

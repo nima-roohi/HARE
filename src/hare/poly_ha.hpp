@@ -31,7 +31,7 @@
 #include <tuple>
 #include <vector>
 
-namespace ha::poly_ha {
+namespace hare::poly_ha {
 
 using namespace ppl_utils;
 
@@ -110,6 +110,6 @@ template<typename P> using poly_safety = safety<poly_ha<P>, poly_map<P>, poly_ma
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-} // namespace ha::poly_ha
+} // namespace hare::poly_ha
 
 #endif // HA__POLY_HA__HPP

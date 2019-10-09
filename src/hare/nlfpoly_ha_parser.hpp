@@ -43,7 +43,7 @@
 #include <utility>
 #include <vector>
 
-namespace ha::nlfpoly_ha::parser {
+namespace hare::nlfpoly_ha::parser {
   
 namespace pt = boost::property_tree;
 
@@ -59,7 +59,7 @@ const auto flow_parser = [](const boost::optional<const pt::ptree&>& tr, const n
     const auto& var = var_iter->second;
     requires_msg(res.find(var) == res.end(), "duplicate flow definition for variable " << name)
     const auto& str = ch.second.data();
-    auto flow = ha::parser::parse_term(str.begin(), str.end(), n2v);
+    auto flow = hare::parser::parse_term(str.begin(), str.end(), n2v);
     res.emplace(var, std::move(flow)); }
   return res; };
 
@@ -112,6 +112,6 @@ nlfpoly_safety<P> parse_nlfpoly_safety_from_file(const std::string& file_path) {
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-} // ha::nlfpoly_ha::parser
+} // hare::nlfpoly_ha::parser
 
 #endif // HA__NLFPOLY_HA_PARSER__HPP

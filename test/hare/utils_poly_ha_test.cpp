@@ -28,8 +28,8 @@
 #include <tuple>
 #include <vector>
 
-using namespace ha::poly_ha;
-using namespace ha::poly_ha::parser;
+using namespace hare::poly_ha;
+using namespace hare::poly_ha::parser;
 
 BOOST_AUTO_TEST_SUITE ( utils_poly_ha_test )
 

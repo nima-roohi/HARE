@@ -30,7 +30,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace ha::poly_ha {
+namespace hare::poly_ha {
 
 using namespace ppl_utils;
 namespace ppl = Parma_Polyhedra_Library;
@@ -257,6 +257,6 @@ void inverse_time(poly_safety<P>& safety) {
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-} // namespace ha::poly_ha
+} // namespace hare::poly_ha
 
 #endif // HA__UTILS_POLY_HA__HPP
