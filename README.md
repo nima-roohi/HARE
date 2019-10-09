@@ -110,7 +110,33 @@ Boost.Jam  Version 2018.02. OS=LINUX.
 _If you want to compile the source code, you are expected to have some experience working with C++ and compiling codes that use external libraries._
 
 1. Clone the source code on your local computer (if you don't have git, you can download the source code using your browser as well).
-
-```jshelllanguage
+```sh
 ~$ git clone https://github.com/nima-roohi/HARE
 ```
+
+1. Enter HARE folder.
+```sh
+~$ cd HARE
+~/HARE$
+```
+
+1. File `boost-build.jam` contains exactly one non-empty line that is not a comment.
+   Update that line with the correct folder of you Boost Build.
+   
+   
+1. File `jamroot.jam` is the only other file that we need to update before compiling the code.
+   1. Update all library path to where you installed yours.
+   1. Update Boost library file names as well.
+   
+We are ready to compile the code.
+```sh
+~/HARE$ b2 clang release tests
+```
+   1. `clang`   select the compiler,
+   1. `release` chooses the build type,
+   1. `tests`   chooses to build the source code and our unit tests.
+    
+If the compilation ends successfully, Boost immediately run the tests. This will generate a lot of outputs, but successful result will be announced by `ff` at the end of the test. In our experience, the compilation takes about 60 seconds and running the tests takes about 5 seconds.
+
+ Running the Benchmarks
+ ----------------------
