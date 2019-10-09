@@ -5,8 +5,7 @@
 #   3. run the executable test file with -x
 # I prefer the first method, since the other two do not work when I run "b2 <name>". For those options, I have to run "<name> -x".
 
-path-constant SRC : ./src ;
-
+import testing ;
 
 using gcc
 	: 8.3.0
@@ -20,8 +19,64 @@ using clang
   : <cxxflags>-fcolor-diagnostics
   ;
 
-project
-	: requirements <include>./src
+project HARE
+
+  : requirements <include>./src
+  : requirements <include>./test
   : requirements <cxxflags>-std=c++17
+  : requirements <cxxflags>"-isystem/opt/c++/libs/boost-1.69-clang-8.0.0/include/boost-1_69"
+  : requirements <cxxflags>"-isystem/opt/c++/libs/gmp-6.1.2-clang-8.0.0/include"
+  : requirements <cxxflags>"-isystem/opt/c++/libs/z3-4.8.4-clang-8.0.0/include"
+  : requirements <cxxflags>"-isystem/opt/c++/libs/ppl-1.2-clang-8.0.0/include"
+  : requirements <linkflags>-L/opt/c++/libs/boost-1.69-clang-8.0.0/lib
+  : requirements <linkflags>-L/opt/c++/libs/gmp-6.1.2-clang-8.0.0/lib
+  : requirements <linkflags>-L/opt/c++/libs/z3-4.8.4-clang-8.0.0/lib
+  : requirements <linkflags>-L/opt/c++/libs/ppl-1.2-clang-8.0.0/lib
+  : requirements <linkflags>"-lboost_unit_test_framework-clang-darwin80-x64-1_69"
+  : requirements <linkflags>"-lboost_filesystem-clang-darwin80-x64-1_69"
+  : requirements <linkflags>"-lboost_system-clang-darwin80-x64-1_69"
+  : requirements <linkflags>"-lboost_program_options-clang-darwin80-x64-1_69"
+  : requirements <linkflags>"-lboost_stacktrace_basic-clang-darwin80-x64-1_69"
+  : requirements <linkflags>"-lgmp -lgmpxx -lppl -lz3 -lz -lm"
+  : requirements <linkflags>"-Wl,-rpath /opt/c++/libs/boost-1.69-clang-8.0.0/lib/"
+  : requirements <linkflags>"-Wl,-rpath /opt/c++/libs/gmp-6.1.2-clang-8.0.0/lib"
+  : requirements <linkflags>"-Wl,-rpath /opt/c++/libs/z3-4.8.4-clang-8.0.0/lib"
+  : requirements <linkflags>"-Wl,-rpath /opt/c++/libs/ppl-1.2-clang-8.0.0/lib"
+  : requirements <dll-path>/opt/c++/libs/boost-1.69-clang-8.0.0/lib
+  : requirements <dll-path>/opt/c++/libs/gmp-6.1.2-clang-8.0.0/lib
+  : requirements <dll-path>/opt/c++/libs/z3-4.8.4-clang-8.0.0/lib
+  : requirements <dll-path>/opt/c++/libs/ppl-1.2-clang-8.0.0/lib
+
+  : requirements <testing.arg>"--log_level=all"
+
   : build-dir ./bin
+
+  ;
+
+
+  # : requirements <toolset>gcc:<cxxflags>"-isystem/opt/c++/libs/boost-1.69-gcc-8.3.0/include/boost-1_69"
+  # : requirements <toolset>gcc:<cxxflags>"-isystem/opt/c++/libs/gmp-6.1.2-gcc-8.3.0/include"
+  # : requirements <toolset>gcc:<cxxflags>"-isystem/opt/c++/libs/ppl-1.2-gcc-8.3.0/include"
+  # : requirements <toolset>gcc:<cxxflags>"-isystem/opt/c++/libs/z3-4.8.4-gcc-8.3.0/include"
+  # : requirements <toolset>gcc:<linkflags>"-L/opt/c++/libs/boost-1.69-gcc-8.3.0/lib"
+  # : requirements <toolset>gcc:<linkflags>-L/opt/c++/libs/gmp-6.1.2-gcc-8.3.0/lib
+  # : requirements <toolset>gcc:<linkflags>-L/opt/c++/libs/ppl-1.2-gcc-8.3.0/lib
+  # : requirements <toolset>gcc:<linkflags>-L/opt/c++/libs/z3-4.8.4-gcc-8.3.0/lib
+  # : requirements <toolset>gcc:<linkflags>"-Wl,-rpath /opt/c++/libs/boost-1.69-gcc-8.3.0/lib/"
+  # : requirements <toolset>gcc:<linkflags>"-lboost_unit_test_framework-gcc8-x64-1_69"
+  # : requirements <toolset>gcc:<dll-path>/opt/c++/libs/boost-1.69-gcc-8.3.0/lib
+  # : requirements <toolset>gcc:<dll-path>/opt/c++/libs/z3-4.8.4-gcc-8.3.0/lib
+
+  # : requirements <toolset>gcc:<cxxflags>"-Wno-misleading-indentation -Wno-parentheses"
+
+
+
+unit-test tests
+	: ./test/test_runner.cpp  [ GLOB ./test/hare : *.cpp ] [ glob-tree-ex ./src : *.cpp : command_line.cpp ]
+  : 
+  ;
+
+exe bench
+	: ./benchmarks/main.cpp [ glob-tree-ex ./src : *.cpp : command_line.cpp ]
+  :
   ;

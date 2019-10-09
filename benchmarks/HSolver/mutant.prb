@@ -1,0 +1,55 @@
+vars " x1,x2,x3 "
+hybrid-automaton {
+  loc 0 {
+    name "m1"
+    inv  "-13.5 <=  x1 &&  x1 <= 30000 && -36.5 <= x2 && x2 <= 60000 && -17.8 <= x3  && x3  <= 30000"
+    flow {
+      x1 "- 0.0002777778*x1"
+      x2 "0.000075*x1 - 0.0000277853*x2 + 0.000000015*x3"
+      x3 "0.005*x2 - 0.0102777778*x3"
+  } }
+  loc 1 {
+    name "m2"
+    inv  "-13513.5 <=  x1 &&  x1 <= 16486.5 && -36486 <= x2 && x2 <= 23514 && -17750 <= x3  && x3  <= 12250"
+    flow {
+      x1 "- 0.0002777778*x1"
+      x2 "0.000075*x1 - 0.0000277853*x2 + 0.000000015*x3"
+      x3 "0.005*x2 - 0.0102777778*x3"
+  } }
+  edge {
+    src 0
+    dst 1
+    rel "x3 == 1000 - 17.8 && x2 >= 1000 - 36.5 && x2 <= 45000 - 36.5 && x1' + 13513.5 == x1 + 13.5 && x2' + 36486 == x2 + 36.5 && x3' + 17750 == x3 + 17.8" }
+  edge {
+    src 1
+    dst 0
+    rel "x3 == 1000 - 13513.5 && x2 >= 1000 - 36486 && x2 <= 45000 - 36486 && x1' + 13.5 == x1 + 13513.5 && x2' + 36.5 == x2 + 36486 && x3' + 17.8 == x3 + 17750" }
+}
+inits {
+  0 "x1 >= 17500 - 13.5 && x1 <= 20000 - 13.5 && x2 >= 40000 - 36.5 && x2 <= 45000 - 36.5 && x3 >= 5000 - 17.8 && x3 <= 7500 - 17.8" 
+}
+unsafes {
+  0 "x1 >= 27486.5" 
+  0 "x2 >= 49963.5" 
+  0 "x3 >= 24982.2" 
+  1 "x1 >= 13985.5" 
+  1 "x2 >= 13514" 
+  1 "x3 >= 7250" 
+}
+props {
+  mc-poly {
+    direction                    backward
+    check-unsafe-after-disc-edge false
+    separate-identity-resets true
+    add-to-visiteds-on-check true
+  }
+  mc-nlfpoly {
+    bound-cont-trans                   true
+    bound-cont-trans-by-eq             false
+    cont-tran-duration                 "200"
+    connect-splitted-locs              false
+    use-empty-labels-for-bounding-time true
+    linear-flow-abstraction            polyhedronize
+  }
+}
+            

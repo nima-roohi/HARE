@@ -1,0 +1,54 @@
+; time-horizon is 10 in the C2E2 model (exactly one discrete transition). Here we prove unbounded safety.
+
+vars "t,u,v"
+hybrid-automaton {
+  loc 0 {
+    inv "t<=5"                                 ; C2E2 example says t<5 which make the edge always disable
+    flow {
+      u "-0.9*u*u-u*u*u-0.9*u-v+1"
+      v "u-2*v"
+      t 1
+    }
+  }
+  loc 1 {
+    inv "t<=20"                                ; c2e2 example says t<20 which make the edge always disable
+    flow {
+      u "-0.9*u*u-u*u*u-0.9*u-v"
+      v "u-2*v"
+      t 1
+    }
+  }
+  edge {
+    src 0
+    dst 1
+    rel "t>=5 && t'==0 && u'==u && v'==v"
+  }
+  edge {
+    src 1
+    dst 0
+    rel "t>=20 && t'==0 && u'==u && v'==v"
+  }
+}
+inits {
+  0 "u==0 && v==0 && t==0"                    ; c2e2 does not initialize t
+}
+unsafes {
+  _ "u>=2.5"
+}
+
+props {
+  mc-poly {
+    direction                backward
+    separate-identity-resets true
+    add-to-visiteds-on-check false
+  }
+  mc-nlfpoly {
+    bound-cont-trans                   false
+    bound-cont-trans-by-eq             false
+    cont-tran-duration                 "10"
+    connect-splitted-locs              true
+    use-empty-labels-for-bounding-time true
+    initial-refinement-count           8
+  }
+}
+

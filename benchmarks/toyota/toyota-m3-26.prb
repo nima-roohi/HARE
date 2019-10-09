@@ -1,0 +1,201 @@
+params {
+    sig_fix_inv      "period_min <= period && period <= period_max && omega_min <= omega && omega <= omega_max"
+    sys_fix_inv      "amp_min <= theta && theta <= amp_max"
+    sig_soft_reset   "sigT'==sigT && thetaIn'==thetaIn && fix_omega_period"
+    sys_soft_reset   "theta'==theta && p'==p && lambda'==lambda && pe'==pe && i'==i"
+    mon_soft_reset   "tau'==tau"
+    fix_omega_period "omega' == omega && period' == period"
+
+    sys_dot_theta   "10(thetaIn - theta)"
+    sys_dot_pe      "c1(2*c23 theta_hat(c20 p^2 + c21 p + c22) - (c2 + c3 omega pe + c4 omega pe^2 + c5 omega^2 pe))"
+    sys_dot_p       "c1(2theta_hat(c20 p^2 + c21p + c22) - c12(c2 + c3 omega p + c4 omega p^2 + c5 omega^2 p))"
+    sys_dot_lambdaC "c26(c15 + c16*c25 Fc_closed + c17*c25^2 Fc_closed ^2 + c18 mc_dot + c19 mc_dot*c25 Fc_closed - lambda)"
+    sys_dot_lambdaO "c26(c15 + c16*c25 Fc_open   + c17*c25^2 Fc_open   ^2 + c18 mc_dot + c19 mc_dot*c25 Fc_open   - lambda)"
+
+    guess_bound "-100 <= lambda && lambda <= 100 && " \
+                "-100 <= p  && p  <= 100   && "  \
+                "-100 <= pe && pe <= 100   && "  \
+                "-100 <= i  && i  <= 100   "
+
+    theta_hat  "(c6 + c7 theta + c8 theta^2 + c9 theta^3)"
+    Fc_closed  "((1/c11)(1 + i + c13*(c24 lambda - c11))(c2 + c3 omega pe + c4 omega pe^2 + c5 omega^2 pe))"
+    Fc_open    "((1/c11)(1 + i + c13*(c24 lambda - c11)))"
+    mc_dot     "(c12(c2 + c3 omega p + c4 omega p^2 + c5 omega^2 p))"
+    tauI       "10"
+    tauS       "11"
+    delay      "3"
+    epsilon    "0.02"
+    amp_max    "70"
+    amp_min    "8.8"
+    period_min "10"
+    period_max "30"
+    omega_min  "900"
+    omega_max  "1100"
+    c26        "4"
+    c25        "1"
+    c24        "1"
+    c23        "1"
+    c22        "(-0.3273)"
+    c21        " 2.7799"
+    c20        "(-2.3421)"
+    c19        "(-1.592)"
+    c18        " 2.6287"
+    c17        " 20.7364"
+    c16        "(-35.2518)"
+    c15        " 13.893"
+    c14        " 0.14"
+    c13        " 0.04"
+    c12        " 0.9"
+    c11        " 14.7"
+    c10        " 1"
+    c9         "(-0.00063)"
+    c8         " 0.10299"
+    c7         "(-0.05231)"
+    c6         " 2.821"
+    c5         " 0.0001"
+    c4         "(-0.0337)"
+    c3         " 0.08979"
+    c2         "(-0.366)"
+    c1         " 0.41328"
+}
+vars "sigT, thetaIn, period, omega,     theta, p, lambda, pe, i, tau"
+hybrid-automaton system {
+  loc 0 {
+    name "startup"
+    inv  "0 <= tau && tau <= tauI   && sys_fix_inv"
+    flow {
+      theta  sys_dot_theta
+      p      sys_dot_p
+      pe     sys_dot_pe
+      lambda sys_dot_lambdaO
+      i      0  } }
+  loc 1 {
+    name "normal"
+    inv  "sys_fix_inv"
+    flow {
+      theta  sys_dot_theta
+      p      sys_dot_p
+      pe     sys_dot_pe
+      lambda sys_dot_lambdaC
+      i      "c14(c24 lambda - c11)" } } 
+  edge { ;; startup to normal
+    src 0
+    dst 1 
+    rel "tau == tauI      && sys_soft_reset && sig_soft_reset && mon_soft_reset" }
+}
+hybrid-automaton signal {
+  loc 0 {
+    name "initial"
+    inv "0 <= sigT && sigT <= delay && thetaIn == amp_min         && sig_fix_inv"
+    flow {
+      period  0
+      omega   0 
+      sigT    1
+      thetaIn 0  
+  } }
+  loc 1 {
+    name "rising"
+    inv "amp_min <= thetaIn && thetaIn <= amp_max && sigT == 0    && sig_fix_inv"
+    flow {
+      period  0
+      omega   0 
+      sigT    0
+      thetaIn "(amp_max - amp_min) / epsilon"
+  } }
+  loc 2 {
+    name "falling"
+    inv "amp_min <= thetaIn && thetaIn <= amp_max && sigT == 0    && sig_fix_inv"
+    flow {
+      period  0
+      omega   0 
+      sigT    0
+      thetaIn "-(amp_max - amp_min) / epsilon"
+  } }
+  loc 3 {
+    name "up"
+    inv "0 <= sigT && sigT <= period/2 && thetaIn == amp_max      && sig_fix_inv"
+    flow {
+      period  0
+      omega   0 
+      sigT    1
+      thetaIn 0
+  } }
+  loc 4 {
+    name "down"
+    inv "0 <= sigT && sigT <= period/2 && thetaIn == amp_min      && sig_fix_inv"
+    flow {
+      period  0
+      omega   0 
+      sigT    1
+      thetaIn 0
+  } }
+  edge { ;; from initial to rising
+    src 0 
+    dst 1
+    rel "sigT == delay && sigT'==0 && thetaIn'==thetaIn      &&  fix_omega_period && sys_soft_reset && mon_soft_reset"  }
+  edge { ;; rising to up
+    src 1
+    dst 3
+    rel "thetaIn==amp_max && sigT'==0 && thetaIn'==thetaIn   &&  fix_omega_period && sys_soft_reset && mon_soft_reset" }
+  edge { ;; up to falling
+    src 3
+    dst 2
+    rel "sigT == period/2 && sigT'==0 && thetaIn'==thetaIn   &&  fix_omega_period && sys_soft_reset && mon_soft_reset" }
+  edge { ;; falling to down
+    src 2
+    dst 4
+    rel "thetaIn==amp_min && sigT'==0 && thetaIn'==thetaIn   &&  fix_omega_period && sys_soft_reset && mon_soft_reset" }
+  edge { ;; down to rising
+    src 4
+    dst 1
+    rel "sigT == period/2 && sigT'==0 && thetaIn'==thetaIn   &&  fix_omega_period && sys_soft_reset && mon_soft_reset" }
+}
+hybrid-automaton monitor {
+  loc 0 {
+    name init
+    inv  "0<=tau && tau<=tauS   && guess_bound" 
+    flow {
+      tau 1
+  } } 
+  loc 1 {
+    name active
+    inv "0 <= tau && tau <= 20-tauS   && guess_bound"
+    flow {
+      tau 1
+  } }
+  edge {
+    src 0
+    dst 1
+    rel "tau == tauS && tau'==0 && sys_soft_reset && sig_soft_reset"
+  } 
+}
+inits {
+  "[0,0,0]" "sigT == 0 && thetaIn == amp_min && period_min <= period && period <= period_max && omega_min <= omega && omega <= omega_max && "  \
+          "pe == 0 && i == 0 && tau == 0        && "  \
+          "theta == thetaIn && p == 0.9833 && lambda == 14.7"  ; I am not sure about the stuff in this line
+}
+unsafes {
+;  "[_,_,_]" "lambda == -100"
+;  "[_,_,_]" "lambda ==  100"
+;  "[_,_,_]" "i   == -100"
+;  "[_,_,_]" "i   ==  100"
+;  "[_,_,_]" "p   == -100"
+;  "[_,_,_]" "p   ==  100"
+;  "[_,_,_]" "pe  == -100"
+;  "[_,_,_]" "pe  ==  100"
+  "[_,_,1]" "(lambda - c11)/c11 >= 0.05"
+}
+props {
+  mc-poly {
+    direction                forward
+    separate-identity-resets true
+    add-to-visiteds-on-check false
+  }
+  mc-nlfpoly {
+    bound-cont-trans                   true
+    bound-cont-trans-by-eq             false
+    cont-tran-duration                 "10"
+    connect-splitted-locs              false
+    use-empty-labels-for-bounding-time true
+  }
+}

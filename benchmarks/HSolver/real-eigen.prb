@@ -1,0 +1,34 @@
+vars "x1,x2,x3"
+hybrid-automaton {
+  loc 0 {
+    name "m1"
+    inv  "5.3128 <= x1 && x1 <= 14.3128 && 20.7321 <= x2 && x2 <= 29.7321 && 4.3571 <= x3 && x3 <= 13.3571"
+    flow {
+      x1 "0.8*x2 + 0.6*x3"
+      x2 "0.8*x1 + 0.7*x3"
+      x3 "0.6*x1 + 0.7*x2"
+  } }
+}
+inits {
+  0 "x1 >= 19 - 9.6872 && x1 <= 20 - 9.6872 && x2 >= 19 + 5.7321 && x2 <= 20 + 5.7321 && x3 >= 19 - 10.6429 && x3 <= 20 - 10.6429" 
+}
+unsafes {
+  0 "x1 <= 11.3128 && x2 <= 25.7321 && x3 >= 11.8571" 
+}
+props {
+  mc-poly {
+    direction                    forward
+    check-unsafe-after-disc-edge false
+    separate-identity-resets true
+    add-to-visiteds-on-check true
+  }
+  mc-nlfpoly {
+    bound-cont-trans                   true
+    bound-cont-trans-by-eq             false
+    cont-tran-duration                 "4"
+    connect-splitted-locs              false
+    use-empty-labels-for-bounding-time true
+    linear-flow-abstraction            polyhedronize
+  }
+}
+            

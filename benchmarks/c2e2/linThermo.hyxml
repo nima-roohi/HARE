@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hyxml>
+<hyxml>
+  <automaton name="default_automaton">
+    <variable scope="LOCAL_DATA" type="Real" name="x"/>
+    <mode initial="True" id="0" name="heating">
+      <dai equation="x_dot = 40-0.5*x"/>
+      <dai equation="x_out = x"/>
+      <invariant equation="x&lt;75"/>
+      <annotation mode="heating">
+        <K value="1.0"/>
+        <gamma value="0"/>
+        <type string="exponential" value="1"/>
+      </annotation>
+    </mode>
+    <mode initial="False" id="1" name="cooling">
+      <dai equation="x_dot = 30-0.5*x"/>
+      <dai equation="x_out = x"/>
+      <invariant equation="x&gt;65"/>
+      <annotation mode="cooling">
+        <K value="1"/>
+        <gamma value="0"/>
+        <type string="exponential" value="1"/>
+      </annotation>
+    </mode>
+    <transition source="0" destination="1" id="0">
+      <guard equation="x&gt;=75"/>
+    </transition>
+    <transition source="1" destination="0" id="1">
+      <guard equation="x&lt;=65"/>
+    </transition>
+  </automaton>
+  <composition automata="default_automaton"/>
+  <property unsafeSet="x&lt;=66" type="0" name="Property1" initialSet="heating: x&gt;=68&amp;&amp;x&lt;=69">
+    <parameters taylororder="10.0" timestep="0.01" timehorizon="10.0" delta="0.2"/>
+  </property>
+  <property unsafeSet="x&lt;=63" type="0" name="P2" initialSet="cooling: x&gt;=68&amp;&amp;x&lt;=72">
+    <parameters taylororder="10.0" timestep="0.01" timehorizon="10.0" delta="0.2"/>
+  </property>
+</hyxml>

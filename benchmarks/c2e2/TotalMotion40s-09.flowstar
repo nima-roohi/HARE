@@ -1,0 +1,179 @@
+hybrid reachability
+{
+ state var sx, vx, ax, vy, omega, sy
+ 
+ setting
+ {
+  fixed steps 0.001
+  time 1000
+  remainder estimation 1e-2
+  identity precondition
+  gnuplot octagon sx, sy
+  adaptive orders { min 4 , max 8 }
+  cutoff 1e-12
+  precision 53
+  output neuron
+  max jumps 1000
+  print on
+ }
+  
+ modes
+ {
+  l0
+  {
+   poly ode 1
+   {
+      vx' = 0.1*ax
+      sx' = vx - 2.5
+      ax' = - 0.01*sx - 0.01*10.3 + 0.3*2.8 - 0.3*vx - 0.5*ax
+      omega' = -2*omega
+      vy' = - 2*vy
+      sy' = 0.1*vy
+   }
+   inv { sx <= -10 }
+  }
+
+  l1
+  {
+   poly ode 1
+   {
+      vx' = 0.1*ax
+      sx' = vx - 2.5
+      ax' = - 0.5*vx + 1.4 - 0.5*ax
+      omega' = 3 - 3*0.05*omega + 0.2 - 0.01*sy
+      vy' = 2.5*3 - 0.15*3*omega + 0.5 - 0.025*sy - 0.05*vy
+      sy' = 0.1*vy
+   }
+   inv { sy <= 12 }
+  }
+
+  l2
+  {
+   poly ode 1
+   {
+      vx' = 0.1*ax
+      sx' = vx - 2.5
+      ax' = - 0.5*vx + 1.4 - 0.5*ax
+      omega' = -0.1*omega + 0.2 - 0.01*sy
+      vy' = -0.1*2.5*omega + 0.5 - 0.025*sy - 0.05*vy
+      sy' = 0.1*vy
+   }
+   inv { vy >= 0.05 }
+  }
+
+  l3
+  {
+   poly ode 1
+   {
+      vx' = 0.1*ax
+      sx' = vx - 2.5
+      ax' = - 0.5*vx + 1.4 - 0.5*ax
+      omega' = -0.1*omega + 0.2 - 0.01*sy
+      vy' = -0.1*2.5*omega + 0.5 - 0.025*sy - 0.05*vy
+      sy' = 0.1*vy
+   }
+   inv { vy <= -0.05 }
+  }
+
+  l4
+  {
+   poly ode 1
+   {
+      vx' = 0.1*ax
+      sx' = vx - 2.5
+      ax' = - 0.5*vx + 1.4 - 0.5*ax
+      omega' = -3 - 3*0.05*omega + 0.2 - 0.01*sy
+      vy' = -2.5*3 - 0.15*3*omega + 0.5 - 0.025*sy - 0.05*vy
+      sy' = 0.1*vy
+   }
+   inv { sy >= 3.5 }
+  }
+
+  l5
+  {
+   poly ode 1
+   {
+      vx' = 0.1*ax
+      sx' = vx - 2.5
+      ax' = - 0.01*sx + 0.01*10.3 + 0.3*2.8 - 0.3*vx - 0.5*ax
+      omega' = - 2*omega
+      vy' = - 2*vy
+      sy' = 0.1*vy
+   }
+   inv { sx <= 10 }
+  }
+
+  l6
+  {
+   poly ode 1
+   {
+      vx' = 0.1*ax
+      sx' = vx - 2.5
+      ax' = - 0.5*vx + 1.4 - 0.5*ax
+      omega' = - 2*omega
+      vy' = - 2*vy
+      sy' = 0.1*vy
+   }
+   inv { }
+  }
+ }
+
+
+ jumps
+ {
+    l0->l1
+    guard { sx + 10  >= 0 }
+    reset { sx' := sx  vx' := vx  ax' := ax  vy' := vy  omega' := omega  sy' := sy }
+    parallelotope aggregation {  }
+  
+    l1->l2
+    guard { sy >= 12 }
+    reset { sx' := sx  vx' := vx  ax' := ax  vy' := vy  omega' := omega  sy' := sy }
+    parallelotope aggregation {  }
+  
+    l4->l3
+    guard { sy <= 3.5 }
+    reset { sx' := sx  vx' := vx  ax' := ax  vy' := vy  omega' := omega  sy' := sy }
+    parallelotope aggregation {  }
+  
+    l5->l4
+    guard { sx >= 10 }
+    reset { sx' := sx  vx' := vx  ax' := ax  vy' := vy  omega' := omega  sy' := sy }
+    parallelotope aggregation {  }
+  
+    l2->l5
+    guard { vy <= 0.05 }
+    reset { sx' := sx  vx' := vx  ax' := ax  vy' := vy  omega' := omega  sy' := sy }
+    parallelotope aggregation {  }
+  
+    l3->l6
+    guard { vy+0.05 >= 0 }
+    reset { sx' := sx  vx' := vx  ax' := ax  vy' := vy  omega' := omega  sy' := sy }
+    parallelotope aggregation {  }
+ }
+  
+ init
+ {
+  l0 {
+    sx in [-15.0,-14.95]
+    vx in [3.25 , 3.3]
+    ax in [0,0]
+    vy in [0,0]
+    omega in [0,0]
+    sy in [0,0]
+  }
+ }
+
+}
+
+
+unsafe set
+{
+  l0 { vy in [25,100] }
+  l1 { vy in [25,100] }
+  l2 { vy in [25,100] }
+  l3 { vy in [25,100] }
+  l4 { vy in [25,100] }
+  l5 { vy in [25,100] }
+  l6 { vy in [25,100] }
+}

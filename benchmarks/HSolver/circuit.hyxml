@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hyxml>
+<hyxml>
+  <automaton name="default_automaton">
+    <variable name="V" scope="LOCAL_DATA" type="Real"/>
+    <variable name="J" scope="LOCAL_DATA" type="Real"/>
+    <mode id="0" initial="False" name="m0">
+      <dai equation="V_dot = 1000000000000*( - (6.0105*V*V*V - 0.9917*V*V + 0.0545*V) + J)"/>
+      <dai equation="J_dot = 1000000*( - V - 200*J + 0.3)"/>
+      <dai equation="V_out = V"/>
+      <dai equation="J_out = J"/>
+      <invariant equation="-0.1 &lt;= V"/>
+      <invariant equation="V &lt;= 0.055"/>
+      <invariant equation="-0.002 &lt;= J"/>
+      <invariant equation="J &lt;= 0.002"/>
+      <annotation mode="m0">
+        <K value="3.3"/>
+        <gamma value="-0.03"/>
+        <type string="exponential" value="1"/>
+      </annotation>
+    </mode>
+    <mode id="1" initial="False" name="m1">
+      <dai equation="V_dot = 1000000000000*( - (0.0692*V*V*V - 0.0421*V*V + 0.004*V + 0.00089579) + J)"/>
+      <dai equation="J_dot = 1000000*( - V - 200*J + 0.3)"/>
+      <dai equation="V_out = V"/>
+      <dai equation="J_out = J"/>
+      <invariant equation="0.055 &lt;= V"/>
+      <invariant equation="V &lt;= 0.35"/>
+      <invariant equation="-0.002 &lt;= J"/>
+      <invariant equation="J &lt;= 0.002"/>
+      <annotation mode="m1">
+        <K value="3.3"/>
+        <gamma value="-0.03"/>
+        <type string="exponential" value="1"/>
+      </annotation>
+    </mode>
+    <mode id="2" initial="True" name="m2">
+      <dai equation="V_dot = 1000000000000*( - (0.2634*V*V*V - 0.2765*V*V + 0.0968*V - 0.0112) + J)"/>
+      <dai equation="J_dot = 1000000*( - V - 200*J + 0.3)"/>
+      <dai equation="V_out = V"/>
+      <dai equation="J_out = J"/>
+      <invariant equation="0.35 &lt;= V"/>
+      <invariant equation="V &lt;= 0.6"/>
+      <invariant equation="-0.002 &lt;= J"/>
+      <invariant equation="J &lt;= 0.002"/>
+      <annotation mode="m2">
+        <K value="3.3"/>
+        <gamma value="-0.03"/>
+        <type string="exponential" value="1"/>
+      </annotation>
+    </mode>
+    <transition destination="1" id="1" source="0">
+      <guard equation="V &gt;= 0.055 &amp;&amp; J &gt;= 0.0006"/>
+    </transition>
+    <transition destination="0" id="2" source="1">
+      <guard equation="V &lt;= 0.055 &amp;&amp; J &lt;= 0.0006"/>
+    </transition>
+    <transition destination="2" id="3" source="1">
+      <guard equation="V &gt;= 0.35 &amp;&amp; J &gt;= 0.0006"/>
+    </transition>
+    <transition destination="1" id="4" source="2">
+      <guard equation="V &lt;= 0.35 &amp;&amp; J &lt;= 0.0006"/>
+    </transition>
+  </automaton>
+  <composition automata="default_automaton"/>
+  <property initialSet="m2: V &gt;= 0.42 &amp;&amp; V &lt;= 0.52 &amp;&amp; J == 0.0006" name="U1" type="0" unsafeSet="J &lt; - 0.0015">
+    <parameters delta="0.01" taylororder="10.0" timehorizon="40.0" timestep="0.1"/>
+  </property>
+  <property initialSet="m2: V &gt;= 0.42 &amp;&amp; V &lt;= 0.52 &amp;&amp; J == 0.0006" name="U2" type="0" unsafeSet="J &gt; 0.00175">
+    <parameters delta="0.01" taylororder="10.0" timehorizon="40.0" timestep="0.1"/>
+  </property>
+  <property initialSet="m2: V &gt;= 0.42 &amp;&amp; V &lt;= 0.52 &amp;&amp; J == 0.0006" name="U3" type="0" unsafeSet="V &lt; - 0.04">
+    <parameters delta="0.01" taylororder="10.0" timehorizon="40.0" timestep="0.1"/>
+  </property>
+  <property initialSet="m2: V &gt;= 0.42 &amp;&amp; V &lt;= 0.52 &amp;&amp; J == 0.0006" name="U4" type="0" unsafeSet="J &lt; - 0.0015">
+    <parameters delta="0.01" taylororder="10.0" timehorizon="40.0" timestep="0.1"/>
+  </property>
+  <property initialSet="m2: V &gt;= 0.42 &amp;&amp; V &lt;= 0.52 &amp;&amp; J == 0.0006" name="U5" type="0" unsafeSet="J &gt; 0.00175">
+    <parameters delta="0.01" taylororder="10.0" timehorizon="40.0" timestep="0.1"/>
+  </property>
+  <property initialSet="m2: V &gt;= 0.42 &amp;&amp; V &lt;= 0.52 &amp;&amp; J == 0.0006" name="U6" type="0" unsafeSet="J &lt; - 0.0015">
+    <parameters delta="0.01" taylororder="10.0" timehorizon="40.0" timestep="0.1"/>
+  </property>
+  <property initialSet="m2: V &gt;= 0.42 &amp;&amp; V &lt;= 0.52 &amp;&amp; J == 0.0006" name="U7" type="0" unsafeSet="J &gt; 0.00175">
+    <parameters delta="0.01" taylororder="10.0" timehorizon="40.0" timestep="0.1"/>
+  </property>
+  <property initialSet="m2: V &gt;= 0.42 &amp;&amp; V &lt;= 0.52 &amp;&amp; J == 0.0006" name="U8" type="0" unsafeSet="V &gt; 0.54">
+    <parameters delta="0.01" taylororder="10.0" timehorizon="40.0" timestep="0.1"/>
+  </property>
+</hyxml>

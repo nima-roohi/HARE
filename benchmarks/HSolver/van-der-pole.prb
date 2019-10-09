@@ -1,0 +1,47 @@
+vars "x1,x2,x3"
+hybrid-automaton {
+  loc 0 {
+    name "m1"
+    inv  "-2 <= x1 && x1 <= 2 && 0.01 <= x2 && x2 <= 2 && 0 <= x3 && x3 <= 6"
+    flow {
+      x1 "- x2"
+      x2 "x1 - 2*(1 - x1^2)*x2"
+      x3 "1"
+  } }
+  loc 1 {
+    name "m2"
+    inv  "-2 <= x1 && x1 <= 2 && -2 <= x2 && x2 <= -0.01 && 0 <= x3 && x3 <= 6"
+    flow {
+      x1 "- x2"
+      x2 "x1 - 2*(1 - x1^2)*x2"
+      x3 "1"
+  } }
+  edge {
+    src 0
+    dst 1
+    rel "x1 >=  - 2 && x1 < 0 && x2 >= 0.01 && x2 <= 0.02 && x1' == x1 && x2' >=  - 0.01 && x2' <=  - 0.01 && x3' == x3" }
+}
+inits {
+  0 "x1 >= 0.6 && x1 <= 0.9 && x2 >= 0.6 && x2 <= 0.9 && x3 == 0" 
+}
+unsafes {
+  0 "x1 > 1 && x1 <= 2 && x2 >= 0.01 && x2 <= 2 && x3 >= 0 && x3 <= 6" 
+  1 "x1 >=  - 2 && x1 < - 1.5 && x2 >=  - 2 && x2 < - 1.5025 && x3 >= 0 && x3 < 0.375" 
+}
+props {
+  mc-poly {
+    direction                    forward
+    check-unsafe-after-disc-edge false
+    separate-identity-resets true
+    add-to-visiteds-on-check true
+  }
+  mc-nlfpoly {
+    bound-cont-trans                   true
+    bound-cont-trans-by-eq             false
+    cont-tran-duration                 "4"
+    connect-splitted-locs              false
+    use-empty-labels-for-bounding-time true
+    linear-flow-abstraction            polyhedronize
+  }
+}
+            

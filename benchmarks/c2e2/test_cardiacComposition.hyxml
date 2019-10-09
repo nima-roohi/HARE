@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hyxml>
+<hyxml>
+  <automaton name="cell">
+    <variable name="u" scope="LOCAL_DATA" type="Real"/>
+    <variable name="v" scope="LOCAL_DATA" type="Real"/>
+    <variable name="stim" scope="INPUT_DATA" type="Real"/>
+    <mode id="0" initial="True" name="cardiac">
+      <dai equation="u_dot = -0.9*u*u-u*u*u-0.9*u-v+stim"/>
+      <dai equation="v_dot = u-2*v"/>
+      <annotation mode="stimOn">
+        <K value="2000"/>
+        <gamma value="0"/>
+        <type string="exponential" value="1"/>
+      </annotation>
+    </mode>
+  </automaton>
+  <automaton name="pacemaker1">
+    <variable name="t" scope="LOCAL_DATA" type="Real"/>
+    <variable name="stim_local" scope="LOCAL_DATA" type="Real"/>
+    <variable name="stim" scope="OUTPUT_DATA" type="Real"/>
+    <mode id="0" initial="True" name="stimOn">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="stim = stim_local"/>
+      <invariant equation="t&lt;10"/>
+      <annotation mode="stimOn">
+        <K value="2000"/>
+        <gamma value="0"/>
+        <type string="exponential" value="1"/>
+      </annotation>
+    </mode>
+    <mode id="1" initial="False" name="stimOff">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="stim = stim_local"/>
+      <invariant equation="t&lt;10"/>
+      <annotation mode="stimOff">
+        <K value="2000"/>
+        <gamma value="0"/>
+        <type string="exponential" value="1"/>
+      </annotation>
+    </mode>
+    <transition destination="1" id="1" source="0">
+      <guard equation="t&gt;=10"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 0"/>
+    </transition>
+    <transition destination="0" id="2" source="1">
+      <guard equation="t&gt;=10"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 1"/>
+    </transition>
+  </automaton>
+  <automaton name="pacemaker2">
+    <variable name="t" scope="LOCAL_DATA" type="Real"/>
+    <variable name="stim_local" scope="LOCAL_DATA" type="Real"/>
+    <variable name="stim" scope="OUTPUT_DATA" type="Real"/>
+    <mode id="0" initial="True" name="stimOn">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="stim = stim_local"/>
+      <invariant equation="t&lt;5"/>
+      <annotation mode="stimOn">
+        <K value="2000"/>
+        <gamma value="0"/>
+        <type string="exponential" value="1"/>
+      </annotation>
+    </mode>
+    <mode id="1" initial="False" name="stimOff">
+      <dai equation="t_dot = 1"/>
+      <dai equation="stim_local_dot = 0"/>
+      <dai equation="stim = stim_local"/>
+      <invariant equation="t&lt;20"/>
+      <annotation mode="stimOff">
+        <K value="2000"/>
+        <gamma value="0"/>
+        <type string="exponential" value="1"/>
+      </annotation>
+    </mode>
+    <transition destination="1" id="1" source="0">
+      <guard equation="t&gt;=5"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 0"/>
+    </transition>
+    <transition destination="0" id="2" source="1">
+      <guard equation="t&gt;=20"/>
+      <action equation="t = 0"/>
+      <action equation="stim_local = 1"/>
+    </transition>
+  </automaton>
+  <composition automata="pacemaker1;cell"/>
+  <property initialSet="stimOn_cardiac:u&gt;=0&amp;&amp;u&lt;=0&amp;&amp;v&gt;=0&amp;&amp;v&lt;=0&amp;&amp;stim_local&gt;=1&amp;&amp;stim_local&lt;=1&amp;&amp;t==0" name="P1" type="0" unsafeSet="u&gt;=2.5">
+    <parameters delta="0.2" taylororder="10.0" timehorizon="10.0" timestep="0.01"/>
+  </property>
+</hyxml>

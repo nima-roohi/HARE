@@ -1,0 +1,33 @@
+vars "x1,x2"
+hybrid-automaton {
+  loc 0 {
+    name "m1"
+    inv  "-4 <= x1 && x1 <= 4 && -4 <= x2 && x2 <= 4"
+    flow {
+      x1 "x2"
+      x2 "- 1.5*(x1^2 - 1)*x2 - x1"
+  } }
+}
+inits {
+  0 "x1 == 3 && x2 == 3" 
+}
+unsafes {
+  0 "x1 > - 0.1 && x1 < 0.1 && x2 > - 0.1 && x2 < 0.1" 
+}
+props {
+  mc-poly {
+    direction                    backward
+    check-unsafe-after-disc-edge false
+    separate-identity-resets true
+    add-to-visiteds-on-check true
+  }
+  mc-nlfpoly {
+    bound-cont-trans                   true
+    bound-cont-trans-by-eq             false
+    cont-tran-duration                 "20"
+    connect-splitted-locs              false
+    use-empty-labels-for-bounding-time true
+    linear-flow-abstraction            polyhedronize
+  }
+}
+            

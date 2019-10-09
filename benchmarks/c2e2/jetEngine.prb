@@ -1,0 +1,35 @@
+; time-horizon is 10 in the C2E2 model. Here we prove unbounded safety.
+; initial and unsafe regions are open in C2E2. Here we consider the closed forms (stronger results).
+
+vars "x,y"
+hybrid-automaton {
+  loc 0 {
+    flow {
+      x "-y-1.5*x*x-0.5*x*x*x-0.5"
+      y "3*x-y"
+    }
+  }
+}
+
+inits {
+  0 "x>=0.8 && x<=1.2 && y>=0.8 && y<=1.2" 
+}
+unsafes {
+  0 "x>=10"
+}
+
+props {
+  mc-poly {
+    direction                backward
+    separate-identity-resets true
+    add-to-visiteds-on-check false
+  }
+  mc-nlfpoly {
+    bound-cont-trans                   false
+    bound-cont-trans-by-eq             false
+    cont-tran-duration                 "10"
+    connect-splitted-locs              true
+    use-empty-labels-for-bounding-time true
+    initial-refinement-count           10
+  }
+}

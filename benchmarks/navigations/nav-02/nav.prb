@@ -1,0 +1,518 @@
+vars "vy, vx, y, x"
+hybrid-automaton {
+  loc 0 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (0 <= y && y <= 1)) && (0 <= x && x <= 1)" 
+    flow {
+      vy "(1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(-1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 1 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (0 <= y && y <= 1)) && (1 <= x && x <= 2)" 
+    flow {
+      vy "(-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 2 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (0 <= y && y <= 1)) && (2 <= x && x <= 3)" 
+    flow {
+      vy "(-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 3 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (0 <= y && y <= 1)) && (3 <= x && x <= 4)" 
+    flow {
+      vy "(-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 4 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (0 <= y && y <= 1)) && (4 <= x && x <= 5)" 
+    flow {
+      vy "(-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 5 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (1 <= y && y <= 2)) && (0 <= x && x <= 1)" 
+    flow {
+      vy "0"
+      vx "0"
+      y "0"
+      x "0"  }  }
+  loc 6 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (1 <= y && y <= 2)) && (1 <= x && x <= 2)" 
+    flow {
+      vy "(-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 7 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (1 <= y && y <= 2)) && (2 <= x && x <= 3)" 
+    flow {
+      vy "(-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 8 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (1 <= y && y <= 2)) && (3 <= x && x <= 4)" 
+    flow {
+      vy "(-1/10) + (-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/5) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 9 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (1 <= y && y <= 2)) && (4 <= x && x <= 5)" 
+    flow {
+      vy "(-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 10 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (2 <= y && y <= 3)) && (0 <= x && x <= 1)" 
+    flow {
+      vy "(1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(-1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 11 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (2 <= y && y <= 3)) && (1 <= x && x <= 2)" 
+    flow {
+      vy "(-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 12 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (2 <= y && y <= 3)) && (2 <= x && x <= 3)" 
+    flow {
+      vy "(-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 13 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (2 <= y && y <= 3)) && (3 <= x && x <= 4)" 
+    flow {
+      vy "(-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 14 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (2 <= y && y <= 3)) && (4 <= x && x <= 5)" 
+    flow {
+      vy "(1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(-1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 15 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (3 <= y && y <= 4)) && (0 <= x && x <= 1)" 
+    flow {
+      vy "(1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(-1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 16 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (3 <= y && y <= 4)) && (1 <= x && x <= 2)" 
+    flow {
+      vy "(-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 17 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (3 <= y && y <= 4)) && (2 <= x && x <= 3)" 
+    flow {
+      vy "(-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 18 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (3 <= y && y <= 4)) && (3 <= x && x <= 4)" 
+    flow {
+      vy "(-1/10) + (-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/5) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 19 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (3 <= y && y <= 4)) && (4 <= x && x <= 5)" 
+    flow {
+      vy "(1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(-1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 20 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (4 <= y && y <= 5)) && (0 <= x && x <= 1)" 
+    flow {
+      vy "(1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(-1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 21 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (4 <= y && y <= 5)) && (1 <= x && x <= 2)" 
+    flow {
+      vy "(-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 22 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (4 <= y && y <= 5)) && (2 <= x && x <= 3)" 
+    flow {
+      vy "(-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 23 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (4 <= y && y <= 5)) && (3 <= x && x <= 4)" 
+    flow {
+      vy "(-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  loc 24 {
+    inv  "(((-2 <= vy && vy <= 2) && (-2 <= vx && vx <= 2)) && (4 <= y && y <= 5)) && (4 <= x && x <= 5)" 
+    flow {
+      vy "(-1/10) + vy * (1/10) + vx * (-1/10)"
+      vx "(1/10) + vy * (-1/10) + vx * (1/10)"
+      y "vy"
+      x "vx"  }  }
+  edge {
+    src 0
+    dst 5
+    rel "y == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 0
+    dst 1
+    rel "x == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 1
+    dst 6
+    rel "y == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 1
+    dst 2
+    rel "x == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 1
+    dst 0
+    rel "x == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 2
+    dst 7
+    rel "y == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 2
+    dst 3
+    rel "x == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 2
+    dst 1
+    rel "x == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 3
+    dst 8
+    rel "y == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 3
+    dst 4
+    rel "x == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 3
+    dst 2
+    rel "x == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 4
+    dst 9
+    rel "y == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 4
+    dst 3
+    rel "x == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 5
+    dst 10
+    rel "y == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 5
+    dst 6
+    rel "x == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 5
+    dst 0
+    rel "y == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 6
+    dst 11
+    rel "y == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 6
+    dst 7
+    rel "x == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 6
+    dst 1
+    rel "y == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 6
+    dst 5
+    rel "x == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 7
+    dst 12
+    rel "y == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 7
+    dst 8
+    rel "x == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 7
+    dst 2
+    rel "y == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 7
+    dst 6
+    rel "x == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 8
+    dst 13
+    rel "y == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 8
+    dst 9
+    rel "x == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 8
+    dst 3
+    rel "y == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 8
+    dst 7
+    rel "x == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 9
+    dst 14
+    rel "y == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 9
+    dst 4
+    rel "y == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 9
+    dst 8
+    rel "x == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 10
+    dst 15
+    rel "y == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 10
+    dst 11
+    rel "x == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 10
+    dst 5
+    rel "y == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 11
+    dst 16
+    rel "y == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 11
+    dst 12
+    rel "x == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 11
+    dst 6
+    rel "y == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 11
+    dst 10
+    rel "x == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 12
+    dst 17
+    rel "y == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 12
+    dst 13
+    rel "x == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 12
+    dst 7
+    rel "y == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 12
+    dst 11
+    rel "x == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 13
+    dst 18
+    rel "y == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 13
+    dst 14
+    rel "x == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 13
+    dst 8
+    rel "y == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 13
+    dst 12
+    rel "x == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 14
+    dst 19
+    rel "y == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 14
+    dst 9
+    rel "y == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 14
+    dst 13
+    rel "x == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 15
+    dst 20
+    rel "y == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 15
+    dst 16
+    rel "x == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 15
+    dst 10
+    rel "y == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 16
+    dst 21
+    rel "y == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 16
+    dst 17
+    rel "x == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 16
+    dst 11
+    rel "y == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 16
+    dst 15
+    rel "x == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 17
+    dst 22
+    rel "y == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 17
+    dst 18
+    rel "x == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 17
+    dst 12
+    rel "y == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 17
+    dst 16
+    rel "x == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 18
+    dst 23
+    rel "y == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 18
+    dst 19
+    rel "x == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 18
+    dst 13
+    rel "y == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 18
+    dst 17
+    rel "x == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 19
+    dst 24
+    rel "y == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 19
+    dst 14
+    rel "y == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 19
+    dst 18
+    rel "x == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 20
+    dst 21
+    rel "x == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 20
+    dst 15
+    rel "y == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 21
+    dst 22
+    rel "x == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 21
+    dst 16
+    rel "y == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 21
+    dst 20
+    rel "x == 1 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 22
+    dst 23
+    rel "x == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 22
+    dst 17
+    rel "y == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 22
+    dst 21
+    rel "x == 2 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 23
+    dst 24
+    rel "x == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 23
+    dst 18
+    rel "y == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 23
+    dst 22
+    rel "x == 3 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 24
+    dst 19
+    rel "y == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+  edge {
+    src 24
+    dst 23
+    rel "x == 4 && true && vy == vy' && vx == vx' && y == y' && x == x'"  } 
+}
+inits {
+  9 "((x == 21 / 5 && y == 3 / 2) && vx ==  - 1) && vy == 1 / 10" 
+}
+unsafes {
+  5 "true" 
+}
+props {
+  mc-poly {
+    direction                forward
+    separate-identity-resets true
+    add-to-visiteds-on-check true
+  }
+  mc-nlfpoly {
+    bound-cont-trans                   true
+    cont-tran-duration                 "2"
+    connect-splitted-locs              true
+    use-empty-labels-for-bounding-time true
+  }
+}
+      

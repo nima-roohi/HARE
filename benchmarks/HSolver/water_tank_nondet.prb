@@ -1,0 +1,77 @@
+vars "x,a"
+hybrid-automaton {
+  loc 0 {
+    name "opening"
+    inv  "0 <= x && x <= 10 && -1 <= a && a <= 2 (* valve opening "
+    flow {
+       "1 && x_d == - 0.02*x + 0.3*a"
+      a "0.25"
+  } }
+  loc 1 {
+    name "opened"
+    inv  "0 <= x && x <= 10 && -1 <= a && a <= 2 (* valve opened "
+    flow {
+       "8.05 && x_d == - 0.02*x + 0.3"
+      a "0"
+  } }
+  loc 2 {
+    name "closing"
+    inv  "0 <= x && x <= 10 && -1 <= a && a <= 2 (* valve closing "
+    flow {
+       "0 && x_d == - 0.02*x + 0.3*a"
+      a "- 0.25"
+  } }
+  loc 3 {
+    name "closed"
+    inv  "0 <= x && x <= 10 && -1 <= a && a <= 2 (* valve closed "
+    flow {
+       "5.45 && x_d == - 0.02*x"
+      a "0"
+  } }
+  edge {
+    src 0
+    dst 1
+    rel "a == 1 && x' == x && a' == 1" }
+  edge {
+    src 1
+    dst 2
+    rel "x >= 7.95 && x' == x && a' == 1" }
+  edge {
+    src 2
+    dst 3
+    rel "a == 0 && x' == x && a' == 0" }
+  edge {
+    src 3
+    dst 0
+    rel "x <= 5.55 && x' == x && a' == 0" }
+}
+inits {
+  1 "x == 6 && a == 1" 
+}
+unsafes {
+  0 "x >= 8.25" 
+  0 "x <= 5.25" 
+  1 "x >= 8.25" 
+  1 "x <= 5.25" 
+  2 "x >= 8.25" 
+  2 "x <= 5.25" 
+  3 "x >= 8.25" 
+  3 "x <= 5.25" 
+}
+props {
+  mc-poly {
+    direction                    forward
+    check-unsafe-after-disc-edge false
+    separate-identity-resets true
+    add-to-visiteds-on-check true
+  }
+  mc-nlfpoly {
+    bound-cont-trans                   true
+    bound-cont-trans-by-eq             false
+    cont-tran-duration                 "4"
+    connect-splitted-locs              false
+    use-empty-labels-for-bounding-time true
+    linear-flow-abstraction            polyhedronize
+  }
+}
+            

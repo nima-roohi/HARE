@@ -1,0 +1,32 @@
+vars "x,y"
+hybrid-automaton {
+  loc 0 {
+    flow {
+      x "1+x*x*y-2.5*x"
+      y "1.5*x-x*x*y"
+    }
+  }
+}
+inits {
+  _ "x>=2.0 && x<=3.0 && y>=1.0 && y<=1.5"
+}
+unsafes {
+  _ "x>=10"
+
+}
+
+props {
+  mc-poly {
+    direction                backward
+    separate-identity-resets true
+    add-to-visiteds-on-check false
+  }
+  mc-nlfpoly {
+    bound-cont-trans                   false
+    bound-cont-trans-by-eq             false
+    cont-tran-duration                 "10"
+    connect-splitted-locs              true
+    use-empty-labels-for-bounding-time true
+    initial-refinement-count           10
+  }
+}

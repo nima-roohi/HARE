@@ -1,0 +1,59 @@
+; property 1: being unsafe even in the given bounded amount of time
+
+params {
+  time_bound 10
+}
+
+vars "x,z"
+hybrid-automaton {
+  loc 0 {
+    inv "0<=z && z<=time_bound && " \
+        "65<=x && x<=75"           ; c2e2 says x<75 which makes the outgoing edge always disable
+                                   ; I added 65<=x, because we need bounded invariants. But both initially and after any discrete transition,
+                                   ; we know flow of x is positive in this location. 65 is a lower bound for initial state and guard of the 
+                                   ; incoming edge.
+    flow {
+      x "40-0.5*x" 
+      z 1  }
+  }
+  loc 1 {
+    inv "0 <= z && z<=time_bound && " \
+        "65<=x && x<=75"           ; c2e2 says x>65 which makes the outgoing edge always disable
+                                   ; I added x<=65 and the same argument apply here.
+    flow {
+      x "30-0.5*x" 
+      z 1  }
+  }
+  edge {
+    src 0
+    dst 1
+    rel "x>=75 && x'==x && z'==z"
+  }
+  edge {
+    src 1
+    dst 0
+    rel "x<=65 && x'==x && z'==z"
+  }
+}
+
+inits {
+  0 "x>=68 && x<=69"
+}
+unsafes {
+  _ "x<=66"
+}
+
+props {
+  mc-poly {
+    direction                forward
+    separate-identity-resets true
+    add-to-visiteds-on-check false
+  }
+  mc-nlfpoly {
+    bound-cont-trans                   true
+    bound-cont-trans-by-eq             false
+    cont-tran-duration                 "10"
+    connect-splitted-locs              false
+    use-empty-labels-for-bounding-time true
+  }
+}

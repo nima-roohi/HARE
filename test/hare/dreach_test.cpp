@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE ( dreach_test ) {
     "  }                                                \n"
     "}                                                  \n";
   BOOST_CHECK(!is_safe(text));
-  parse_poly_safety_from_file<NNCPoly>("./file.info");
+  parse_poly_safety_from_file<NNCPoly>("./test/file.info");
 //  to_dreach(std::cout, safety);
 }
 

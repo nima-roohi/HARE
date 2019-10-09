@@ -1,0 +1,113 @@
+hybrid reachability
+{
+ state var V, I
+ 
+ setting
+ {
+  fixed steps 0.0000000000001
+  time 1000
+  remainder estimation 1e-2
+  identity precondition
+  gnuplot octagon V , I
+  adaptive orders { min 4 , max 8 }
+  cutoff 1e-12
+  precision 53
+  output neuron
+  max jumps 1000
+  print on
+ }
+  
+ modes
+ {
+  l0
+  {
+   poly ode 1
+   {
+      V' = 1000000000000*( - (6.0105*V*V*V - 0.9917*V*V + 0.0545*V) + I)
+      I' = 1000000*( - V - 200*I + 0.3)
+   }
+   inv
+   {
+    V >= -0.1
+    V <= 0.055
+    I >= -0.002
+    I <= 0.002
+   }
+  }
+
+  l1
+  {
+   poly ode 1
+   {
+      V' = 1000000000000*( - (0.0692*V*V*V - 0.0421*V*V + 0.004*V + 0.00089579) + I)
+      I' = 1000000*( - V - 200*I + 0.3)
+   }
+   inv
+   {
+    V >= 0.055
+    V <= 0.35
+    I >= -0.002
+    I <= 0.002
+   }
+  }
+
+  l2
+  {
+   poly ode 1
+   {
+      V' = 1000000000000*( - (0.2634*V*V*V - 0.2765*V*V + 0.0968*V - 0.0112) + I)
+      I' = 1000000*( - V - 200*I + 0.3)
+   }
+   inv
+   {
+    V >= 0.35
+    V <= 0.6
+    I >= -0.002
+    I <= 0.002
+   }
+  }
+ }
+
+
+ jumps
+ {
+    l1 -> l0
+    guard { V  >= 0.055  I  >= 0.0006 }
+    reset { V' := V      I' := I }
+    parallelotope aggregation {  }
+
+    l1 -> l2
+    guard { V  >= 0.35  I  >= 0.0006 }
+    reset { V' := V      I' := I }
+    parallelotope aggregation {  }
+
+    l2 -> l1
+    guard { V  <= 0.35  I  >= 0.0006 }
+    reset { V' := V      I' := I }
+    parallelotope aggregation {  }
+ }
+  
+ init
+ {
+  l2
+  {
+   V in [0.42, 0.52]
+   I in [0.0006,0.0006]
+  }
+ }
+
+
+}
+
+
+unsafe set
+{
+#  l0 { I in [-100,-0.0015] }
+#  l0 { I in [0.00175,100] }
+#  l0 { V in [-100,-0.04] }
+#  l1 { I in [-100,-0.0015] }
+#  l1 { I in [0.00175,100] }
+#  l2 { I in [-100,-0.0015] }
+#  l2 { I in [0.00175,100] }
+  l2 { V in [0.54,100] }
+}

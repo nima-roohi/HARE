@@ -1,0 +1,136 @@
+; Invariants are not bounded. So calls to dReach will be unsucessful. But after finite number of iterations, the refinement will be good enough to prove safety
+; of the system.
+; There are 10 safety properties defined in the C2E2 model. All with the same initial state. We prove they are all satisfied at one.
+; Note that this is unbounded-time safety model checking (in C2E2 time bound is 40)
+
+params {
+  id_reset "sx' == sx && vx' == vx && ax' == ax && vy' == vy && omega' == omega && sy' == sy"
+}
+vars "sx, vx, ax, vy, omega, sy"
+hybrid-automaton {
+  loc 0 {
+    name "SlowDown"
+    inv "sx+10<0"
+    flow {
+      vx "0.1*ax"
+      sx "vx-2.5"
+      ax "-0.01*sx -0.01*10.3 + 0.3*2.8 - 0.3*vx - 0.5*ax"
+      omega "-2*omega"
+      vy "-2*vy"
+      sy "0.1*vy" } }
+  loc 1 {
+    name "StartTurn1"
+    inv "sy<12"
+    flow {
+      vx "0.1*ax"
+      sx "vx-2.5"
+      ax "-0.5*vx+1.4-0.5*ax"
+      omega "3 - 3*0.05*omega + 0.2-0.01*sy"
+      vy "2.5*3 - 0.15*3*omega + 0.5 - 0.025*sy - 0.05*vy"
+      sy "0.1*vy" } }
+  loc 2 {
+    name "EndTurn1"
+    inv "vy>0.05"
+    flow {
+      vx "0.1*ax"
+      sx "vx-2.5"
+      ax "-0.5*vx+1.4-0.5*ax"
+      omega "-0.1*omega + 0.2 - 0.01*sy"
+      vy "-0.1*2.5*omega + 0.5 - 0.025*sy - 0.05*vy"
+      sy "0.1*vy" } }
+  loc 3 {
+    name "EndTurn2"
+    inv "vy+0.05<0"
+    flow {
+      vx "0.1*ax"
+      sx "vx-2.5"
+      ax "-0.5*vx+1.4-0.5*ax"
+      omega "-0.1*omega + 0.2 - 0.01*sy"
+      vy "-0.1*2.5*omega + 0.5 - 0.025*sy - 0.05*vy"
+      sy "0.1*vy" } }
+  loc 4 {
+    name "StartTurn2"
+    inv "sy>3.5"
+    flow {
+      vx "0.1*ax"
+      sx "vx-2.5"
+      ax "-0.5*vx+1.4-0.5*ax"
+      omega "-3 - 3*0.05*omega + 0.2-0.01*sy"
+      vy "-2.5*3 - 0.15*3*omega + 0.5 - 0.025*sy - 0.05*vy"
+      sy "0.1*vy" } }
+  loc 5 {
+    name "SpeedUp"
+    inv "sx<10"
+    flow {
+      vx "0.1*ax"
+      sx "vx-2.5"
+      ax "-0.01*sx + 0.01*10.3 + 0.3*2.8 - 0.3*vx - 0.5*ax"
+      omega "-2*omega"
+      vy "-2*vy"
+      sy "0.1*vy" } }
+  loc 6 {
+    name "Continue"
+    flow {
+      vx "0.1*ax"
+      sx "vx-2.5"
+      ax "-0.5*vx+1.4-0.5*ax"
+      omega "-2*omega"
+      vy "-2*vy"
+      sy "0.1*vy" } }
+  edge {
+    dst "1"
+    src "0"
+    rel "sx + 10  >= 0 && id_reset" }
+  edge {
+    dst "2"
+    src "1"
+    rel "sy >= 12 && id_reset" }
+  edge {
+    dst "3"
+    src "4"
+    rel "sy <= 3.5 && id_reset" }
+  edge {
+    dst "4"
+    src "5"
+    rel "sx >= 10 && id_reset" }
+  edge {
+    dst "5"
+    src "2"
+    rel "vy <= 0.05 && id_reset" }
+  edge {
+    dst "6"
+    src "3"
+    rel "vy+0.05 >= 0 && id_reset" }
+}
+inits {
+  0 "sx >= -15.0 && sx <= -14.95 && vx >= 3.25 && vx <= 3.3 && ax == 0 && vy == 0 && omega == 0 && sy == 0" 
+}
+unsafes {
+  _ "sx >= 50"
+  _ "sx <= -16.0"
+  _ "vx >= 3.5"
+  _ "vx <= 2.1"
+  _ "ax >= 1.5"
+  _ "ax <= -1.5"
+  _ "sx >= -4 && sx <= 4 && sy <= 7"
+  _ "sx >= 20 && sy >= 5"
+  _ "vy >= 25"
+  _ "vy <= -25"
+}
+props {
+	mc-poly
+	{
+			direction 							 forward
+			separate-identity-resets true
+			add-to-visiteds-on-check false
+	}
+	mc-nlfpoly
+	{
+			bound-cont-trans 									 false
+			bound-cont-trans-by-eq 						 false  ; irrelevant
+			cont-tran-duration 								 10     ; irrelevant
+			connect-splitted-locs 						 true
+			use-empty-labels-for-bounding-time true
+	}
+}
+

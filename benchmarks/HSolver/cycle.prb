@@ -1,0 +1,48 @@
+vars "x,y"
+hybrid-automaton {
+  loc 0 {
+    name "n"
+    inv  "0 <= x && x <= 1 && 0 <= y && y <= 1"
+    flow {
+      x "0"
+      y "1"
+  } }
+  loc 1 {
+    name "m"
+    inv  "0 <= x && x <= 1 && 0 <= y && y <= 1"
+    flow {
+      x "0"
+      y "1"
+  } }
+  edge {
+    src 0
+    dst 1
+    rel "x' == x && y' == y + 0.1" }
+  edge {
+    src 1
+    dst 0
+    rel "x' == x && y' == y" }
+}
+inits {
+  0 "x < 0.5" 
+}
+unsafes {
+  0 "x > 0.6" 
+}
+props {
+  mc-poly {
+    direction                    forward
+    check-unsafe-after-disc-edge false
+    separate-identity-resets true
+    add-to-visiteds-on-check true
+  }
+  mc-nlfpoly {
+    bound-cont-trans                   true
+    bound-cont-trans-by-eq             false
+    cont-tran-duration                 "4"
+    connect-splitted-locs              false
+    use-empty-labels-for-bounding-time true
+    linear-flow-abstraction            polyhedronize
+  }
+}
+            

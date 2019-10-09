@@ -120,9 +120,9 @@ struct ce_checker {
   auto dreach_path(const pt::ptree& props) const { 
     static val_str_t DEF_Path = 
       #if __linux__
-        "/opt/c++/libs/dreal3-3.16.05.05/clang-4.0.0/bin/dReach";
+        "/opt/dReal-3.16.06.02/bin/dReach";
       #else
-        "/opt/c++/libs/dreal-3.16.05.05/clang-3.9.0/bin/dReach" ;
+        "/opt/dReal-3.16.06.02/bin/dReach";
       #endif // __linux__
      return ::hare::prop_value<val_str_t>(props, KEY_Path, DEF_Path); }
 

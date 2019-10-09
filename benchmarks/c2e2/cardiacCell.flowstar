@@ -1,0 +1,68 @@
+hybrid reachability
+{
+ state var u, v
+ 
+ setting
+ {
+  fixed steps 0.1
+  time 1000
+  remainder estimation 1e-2
+  identity precondition
+  gnuplot octagon u, v
+  adaptive orders { min 4 , max 8 }
+  cutoff 1e-12
+  precision 53
+  output neuron
+  max jumps 1000
+  print on
+ }
+  
+ modes
+ {
+  l0  {
+   poly ode 1 {
+      u' =  - 0.9*u*u - u*u*u - 0.9*u - v + 1
+      v' = u - 2*v  }
+   inv { u <= 0.5 }
+  }
+
+  l1 {
+   poly ode 1 {
+      u' = - 0.9*u*u - u*u*u - 0.9*u - v
+      v' = u - 2*v }
+   inv { u >= 0 }
+  }
+
+ }
+
+
+ jumps {
+    l0 -> l1
+    guard { u >= 0.5 }
+    reset { u' := u      v' := v }
+    parallelotope aggregation {  }
+
+    l1 -> l0
+    guard { u <= 0 }
+    reset { u' := u      v' := v }
+    parallelotope aggregation {  }
+ }
+  
+ init
+ {
+  l0
+  {
+   u in [0,0]
+   v in [0,0]
+  }
+ }
+
+
+}
+
+
+unsafe set
+{
+  l0 { u in [2.5,100.0] }
+  l1 { u in [2.5,100.0] }
+}

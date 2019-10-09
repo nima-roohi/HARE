@@ -1,0 +1,69 @@
+vars "x1,x2,x3,x4"
+hybrid-automaton {
+  loc 0 {
+    name "m1"
+    inv  "0 <= x1 && x1 <= 2 && 0 <= x2 && x2 <= 1 && -1.207 <= x3 && x3 <= -0.207 && -1.207 <= x4 && x4 <= -0.207"
+    flow {
+      x1 "x3"
+      x2 "x4"
+      x3 "- 1.2*x3 + 0.1*x4"
+      x4 "0.1*x3 - 1.2*x4"
+  } }
+  loc 1 {
+    name "m2"
+    inv  "0 <= x1 && x1 <= 2 && 1 <= x2 && x2 <= 3 && -1.5 <= x3 && x3 <= -0.5 && -0.5 <= x4 && x4 <= 0.5"
+    flow {
+      x1 "x3"
+      x2 "x4"
+      x3 "- 1.2*x3 + 0.1*x4"
+      x4 "0.1*x3 - 1.2*x4"
+  } }
+  loc 2 {
+    name "m3"
+    inv  "2 <= x1 && x1 <= 3 && 1 <= x2 && x2 <= 3 && -0.5 <= x3 && x3 <= 0.5 && 0.5 <= x4 && x4 <= 1.5"
+    flow {
+      x1 "x3"
+      x2 "x4"
+      x3 "- 1.2*x3 + 0.1*x4"
+      x4 "0.1*x3 - 1.2*x4"
+  } }
+  edge {
+    src 0
+    dst 1
+    rel "x2 >= 1 && x4 >=  - 0.707 && x1' == x1 && x2' == x2 && x3' + 1 == x3 + 0.707 && x4' == x4 + 0.707" }
+  edge {
+    src 1
+    dst 0
+    rel "x2 <= 1 && x4 <= 0 && x1' == x1 && x2' == x2 && x3' + 0.707 == x3 + 1 && x4' + 0.707 == x4" }
+  edge {
+    src 1
+    dst 2
+    rel "x1 >= 2 && x3 >=  - 1 && x1' == x1 && x2' == x2 && x3' == x3 + 1 && x4' - 1 == x4" }
+  edge {
+    src 2
+    dst 1
+    rel "x1 <= 2 && x3 <= 0 && x1' == x1 && x2' == x2 && x3' + 1 == x3 && x4' == x4 - 1" }
+}
+inits {
+  2 "x1 >= 2 && x1 <= 3 && x2 >= 1 && x2 <= 2 && x3 >=  - 0.2 && x3 <= 0.2 && x4 >= 0.85 && x4 <= 1.05" 
+}
+unsafes {
+  1 "x1 < 1 && x2 > 2" 
+}
+props {
+  mc-poly {
+    direction                    forward
+    check-unsafe-after-disc-edge false
+    separate-identity-resets true
+    add-to-visiteds-on-check true
+  }
+  mc-nlfpoly {
+    bound-cont-trans                   true
+    bound-cont-trans-by-eq             false
+    cont-tran-duration                 "4"
+    connect-splitted-locs              false
+    use-empty-labels-for-bounding-time true
+    linear-flow-abstraction            polyhedronize
+  }
+}
+            

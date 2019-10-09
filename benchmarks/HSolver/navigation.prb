@@ -1,0 +1,154 @@
+vars "xx,yy,vx,vy"
+hybrid-automaton {
+  loc 0 {
+    name "m2"
+    inv  "1 <= xx && xx <= 2 && 2 <= yy && yy <= 3 && -2 <= vx && vx <= 2 && -2 <= vy && vy <= 2"
+    flow {
+      xx "vx"
+      yy "vy"
+      vx "- 1.2*(vx - 1) + 0.1*vy"
+      vy "0.1*(vx - 1) - 1.2*vy"
+  } }
+  loc 1 {
+    name "m3"
+    inv  "2 <= xx && xx <= 3 && 2 <= yy && yy <= 3 && -2 <= vx && vx <= 2 && -2 <= vy && vy <= 2"
+    flow {
+      xx "vx"
+      yy "vy"
+      vx "- 1.2*vx + 0.1*(vy + 1)"
+      vy "0.1*vx - 1.2*(vy + 1)"
+  } }
+  loc 2 {
+    name "m4"
+    inv  "0 <= xx && xx <= 1 && 1 <= yy && yy <= 2 && -2 <= vx && vx <= 2 && -2 <= vy && vy <= 2"
+    flow {
+      xx "vx"
+      yy "vy"
+      vx "- 1.2*(vx - 1) + 0.1*vy"
+      vy "0.1*(vx - 1) - 1.2*vy"
+  } }
+  loc 3 {
+    name "m5"
+    inv  "1 <= xx && xx <= 2 && 1 <= yy && yy <= 2 && -2 <= vx && vx <= 2 && -2 <= vy && vy <= 2"
+    flow {
+      xx "vx"
+      yy "vy"
+      vx "- 1.2*(vx - 0.707) + 0.1*(vy + 0.707)"
+      vy "0.1*(vx - 0.707) - 1.2*(vy + 0.707)"
+  } }
+  loc 4 {
+    name "m6"
+    inv  "2 <= xx && xx <= 3 && 1 <= yy && yy <= 2 && -2 <= vx && vx <= 2 && -2 <= vy && vy <= 2"
+    flow {
+      xx "vx"
+      yy "vy"
+      vx "- 1.2*vx + 0.1*(vy + 1)"
+      vy "0.1*vx - 1.2*(vy + 1)"
+  } }
+  loc 5 {
+    name "m7"
+    inv  "0 <= xx && xx <= 1 && 0 <= yy && yy <= 1 && -2 <= vx && vx <= 2 && -2 <= vy && vy <= 2"
+    flow {
+      xx "vx"
+      yy "vy"
+      vx "- 1.2*(vx - 1) + 0.1*vy"
+      vy "0.1*(vx - 1) - 1.2*vy"
+  } }
+  loc 6 {
+    name "m8"
+    inv  "1 <= xx && xx <= 2 && 0 <= yy && yy <= 1 && -2 <= vx && vx <= 2 && -2 <= vy && vy <= 2"
+    flow {
+      xx "vx"
+      yy "vy"
+      vx "- 1.2*(vx - 1) + 0.1*vy"
+      vy "0.1*(vx - 1) - 1.2*vy"
+  } }
+  edge {
+    src 0
+    dst 1
+    rel "xx' == xx && yy' == yy && vx' == vx && vy' == vy" }
+  edge {
+    src 0
+    dst 3
+    rel "xx' == xx && yy' == yy && vx' == vx && vy' == vy" }
+  edge {
+    src 1
+    dst 0
+    rel "xx' == xx && yy' == yy && vx' == vx && vy' == vy" }
+  edge {
+    src 1
+    dst 4
+    rel "xx' == xx && yy' == yy && vx' == vx && vy' == vy" }
+  edge {
+    src 2
+    dst 3
+    rel "xx' == xx && yy' == yy && vx' == vx && vy' == vy" }
+  edge {
+    src 2
+    dst 5
+    rel "xx' == xx && yy' == yy && vx' == vx && vy' == vy" }
+  edge {
+    src 3
+    dst 0
+    rel "xx' == xx && yy' == yy && vx' == vx && vy' == vy" }
+  edge {
+    src 3
+    dst 2
+    rel "xx' == xx && yy' == yy && vx' == vx && vy' == vy" }
+  edge {
+    src 3
+    dst 4
+    rel "xx' == xx && yy' == yy && vx' == vx && vy' == vy" }
+  edge {
+    src 3
+    dst 6
+    rel "xx' == xx && yy' == yy && vx' == vx && vy' == vy" }
+  edge {
+    src 4
+    dst 1
+    rel "xx' == xx && yy' == yy && vx' == vx && vy' == vy" }
+  edge {
+    src 4
+    dst 3
+    rel "xx' == xx && yy' == yy && vx' == vx && vy' == vy" }
+  edge {
+    src 5
+    dst 2
+    rel "xx' == xx && yy' == yy && vx' == vx && vy' == vy" }
+  edge {
+    src 5
+    dst 6
+    rel "xx' == xx && yy' == yy && vx' == vx && vy' == vy" }
+  edge {
+    src 6
+    dst 3
+    rel "xx' == xx && yy' == yy && vx' == vx && vy' == vy" }
+  edge {
+    src 6
+    dst 5
+    rel "xx' == xx && yy' == yy && vx' == vx && vy' == vy" }
+}
+inits {
+  4 "vx >=  - 0.3 && vx <= 0.3 && vy >=  - 0.3 && vy < 0" 
+}
+unsafes {
+  0 "xx == 1" 
+  2 "yy == 2" 
+}
+props {
+  mc-poly {
+    direction                    forward
+    check-unsafe-after-disc-edge false
+    separate-identity-resets true
+    add-to-visiteds-on-check true
+  }
+  mc-nlfpoly {
+    bound-cont-trans                   true
+    bound-cont-trans-by-eq             false
+    cont-tran-duration                 "4"
+    connect-splitted-locs              false
+    use-empty-labels-for-bounding-time true
+    linear-flow-abstraction            polyhedronize
+  }
+}
+            

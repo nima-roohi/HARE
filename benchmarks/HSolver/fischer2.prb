@@ -1,0 +1,686 @@
+vars "t0,t1"
+hybrid-automaton {
+  loc 0 {
+    name "NN0"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "0"
+  } }
+  loc 1 {
+    name "NN1"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "0"
+  } }
+  loc 2 {
+    name "NN2"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "0"
+  } }
+  loc 3 {
+    name "FN0"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "0"
+  } }
+  loc 4 {
+    name "FN1"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "0"
+  } }
+  loc 5 {
+    name "FN2"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "0"
+  } }
+  loc 6 {
+    name "SN0"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "0"
+  } }
+  loc 7 {
+    name "SN1"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "0"
+  } }
+  loc 8 {
+    name "SN2"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "0"
+  } }
+  loc 9 {
+    name "LN0"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "0"
+  } }
+  loc 10 {
+    name "LN1"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "0"
+  } }
+  loc 11 {
+    name "LN2"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "0"
+  } }
+  loc 12 {
+    name "NF0"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "1"
+  } }
+  loc 13 {
+    name "NF1"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "1"
+  } }
+  loc 14 {
+    name "NF2"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "1"
+  } }
+  loc 15 {
+    name "FF0"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "1"
+  } }
+  loc 16 {
+    name "FF1"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "1"
+  } }
+  loc 17 {
+    name "FF2"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "1"
+  } }
+  loc 18 {
+    name "SF0"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "1"
+  } }
+  loc 19 {
+    name "SF1"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "1"
+  } }
+  loc 20 {
+    name "SF2"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "1"
+  } }
+  loc 21 {
+    name "LF0"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "1"
+  } }
+  loc 22 {
+    name "LF1"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "1"
+  } }
+  loc 23 {
+    name "LF2"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "1"
+  } }
+  loc 24 {
+    name "NS0"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "1"
+  } }
+  loc 25 {
+    name "NS1"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "1"
+  } }
+  loc 26 {
+    name "NS2"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "1"
+  } }
+  loc 27 {
+    name "FS0"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "1"
+  } }
+  loc 28 {
+    name "FS1"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "1"
+  } }
+  loc 29 {
+    name "FS2"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "1"
+  } }
+  loc 30 {
+    name "SS0"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "1"
+  } }
+  loc 31 {
+    name "SS1"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "1"
+  } }
+  loc 32 {
+    name "SS2"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "1"
+  } }
+  loc 33 {
+    name "LS0"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "1"
+  } }
+  loc 34 {
+    name "LS1"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "1"
+  } }
+  loc 35 {
+    name "LS2"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "1"
+  } }
+  loc 36 {
+    name "NL0"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "0"
+  } }
+  loc 37 {
+    name "NL1"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "0"
+  } }
+  loc 38 {
+    name "NL2"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "0"
+  } }
+  loc 39 {
+    name "FL0"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "0"
+  } }
+  loc 40 {
+    name "FL1"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "0"
+  } }
+  loc 41 {
+    name "FL2"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "0"
+  } }
+  loc 42 {
+    name "SL0"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "0"
+  } }
+  loc 43 {
+    name "SL1"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "0"
+  } }
+  loc 44 {
+    name "SL2"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "1"
+      t1 "0"
+  } }
+  loc 45 {
+    name "LL0"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "0"
+  } }
+  loc 46 {
+    name "LL1"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "0"
+  } }
+  loc 47 {
+    name "LL2"
+    inv  "0 <= t0 && t0 <= 4 && 0 <= t1 && t1 <= 4"
+    flow {
+      t0 "0"
+      t1 "0"
+  } }
+  edge {
+    src 0
+    dst 3
+    rel "t0' == 0 && t1' == t1" }
+  edge {
+    src 0
+    dst 12
+    rel "t0' == t0 && t1' == 0" }
+  edge {
+    src 3
+    dst 7
+    rel "t0 < 0.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 3
+    dst 15
+    rel "t0' == t0 && t1' == 0" }
+  edge {
+    src 4
+    dst 7
+    rel "t0 < 0.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 5
+    dst 7
+    rel "t0 < 0.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 6
+    dst 0
+    rel "t0 > 1.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 6
+    dst 18
+    rel "t0' == t0 && t1' == 0" }
+  edge {
+    src 7
+    dst 10
+    rel "t0 > 1.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 8
+    dst 2
+    rel "t0 > 1.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 9
+    dst 0
+    rel "t0' == 0 && t1' == t1" }
+  edge {
+    src 9
+    dst 21
+    rel "t0' == t0 && t1' == 0" }
+  edge {
+    src 10
+    dst 0
+    rel "t0' == 0 && t1' == t1" }
+  edge {
+    src 11
+    dst 0
+    rel "t0' == 0 && t1' == t1" }
+  edge {
+    src 12
+    dst 15
+    rel "t0' == 0 && t1' == t1" }
+  edge {
+    src 12
+    dst 26
+    rel "t1 < 0.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 13
+    dst 26
+    rel "t1 < 0.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 14
+    dst 26
+    rel "t1 < 0.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 15
+    dst 19
+    rel "t0 < 0.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 15
+    dst 29
+    rel "t1 < 0.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 16
+    dst 19
+    rel "t0 < 0.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 16
+    dst 29
+    rel "t1 < 0.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 17
+    dst 19
+    rel "t0 < 0.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 17
+    dst 29
+    rel "t1 < 0.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 18
+    dst 12
+    rel "t0 > 1.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 18
+    dst 32
+    rel "t1 < 0.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 19
+    dst 22
+    rel "t0 > 1.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 19
+    dst 32
+    rel "t1 < 0.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 20
+    dst 14
+    rel "t0 > 1.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 20
+    dst 32
+    rel "t1 < 0.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 21
+    dst 12
+    rel "t0' == 0 && t1' == t1" }
+  edge {
+    src 21
+    dst 35
+    rel "t1 < 0.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 22
+    dst 12
+    rel "t0' == 0 && t1' == t1" }
+  edge {
+    src 22
+    dst 35
+    rel "t1 < 0.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 23
+    dst 12
+    rel "t0' == 0 && t1' == t1" }
+  edge {
+    src 23
+    dst 35
+    rel "t1 < 0.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 24
+    dst 27
+    rel "t0' == 0 && t1' == t1" }
+  edge {
+    src 24
+    dst 0
+    rel "t1 > 1.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 25
+    dst 1
+    rel "t1 > 1.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 26
+    dst 38
+    rel "t1 > 1.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 27
+    dst 31
+    rel "t0 < 0.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 27
+    dst 3
+    rel "t1 > 1.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 28
+    dst 31
+    rel "t0 < 0.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 28
+    dst 4
+    rel "t1 > 1.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 29
+    dst 31
+    rel "t0 < 0.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 29
+    dst 41
+    rel "t1 > 1.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 30
+    dst 24
+    rel "t0 > 1.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 30
+    dst 6
+    rel "t1 > 1.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 31
+    dst 34
+    rel "t0 > 1.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 31
+    dst 7
+    rel "t1 > 1.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 32
+    dst 26
+    rel "t0 > 1.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 32
+    dst 44
+    rel "t1 > 1.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 33
+    dst 24
+    rel "t0' == 0 && t1' == t1" }
+  edge {
+    src 33
+    dst 9
+    rel "t1 > 1.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 34
+    dst 24
+    rel "t0' == 0 && t1' == t1" }
+  edge {
+    src 34
+    dst 10
+    rel "t1 > 1.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 35
+    dst 24
+    rel "t0' == 0 && t1' == t1" }
+  edge {
+    src 35
+    dst 47
+    rel "t1 > 1.900000 && t0' == t0 && t1' == 0" }
+  edge {
+    src 36
+    dst 39
+    rel "t0' == 0 && t1' == t1" }
+  edge {
+    src 36
+    dst 0
+    rel "t0' == t0 && t1' == 0" }
+  edge {
+    src 37
+    dst 0
+    rel "t0' == t0 && t1' == 0" }
+  edge {
+    src 38
+    dst 0
+    rel "t0' == t0 && t1' == 0" }
+  edge {
+    src 39
+    dst 43
+    rel "t0 < 0.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 39
+    dst 3
+    rel "t0' == t0 && t1' == 0" }
+  edge {
+    src 40
+    dst 43
+    rel "t0 < 0.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 40
+    dst 3
+    rel "t0' == t0 && t1' == 0" }
+  edge {
+    src 41
+    dst 43
+    rel "t0 < 0.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 41
+    dst 3
+    rel "t0' == t0 && t1' == 0" }
+  edge {
+    src 42
+    dst 36
+    rel "t0 > 1.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 42
+    dst 6
+    rel "t0' == t0 && t1' == 0" }
+  edge {
+    src 43
+    dst 46
+    rel "t0 > 1.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 43
+    dst 6
+    rel "t0' == t0 && t1' == 0" }
+  edge {
+    src 44
+    dst 38
+    rel "t0 > 1.900000 && t0' == 0 && t1' == t1" }
+  edge {
+    src 44
+    dst 6
+    rel "t0' == t0 && t1' == 0" }
+  edge {
+    src 45
+    dst 36
+    rel "t0' == 0 && t1' == t1" }
+  edge {
+    src 45
+    dst 9
+    rel "t0' == t0 && t1' == 0" }
+  edge {
+    src 46
+    dst 36
+    rel "t0' == 0 && t1' == t1" }
+  edge {
+    src 46
+    dst 9
+    rel "t0' == t0 && t1' == 0" }
+  edge {
+    src 47
+    dst 36
+    rel "t0' == 0 && t1' == t1" }
+  edge {
+    src 47
+    dst 9
+    rel "t0' == t0 && t1' == 0" }
+}
+inits {
+  0 "t0 == 0 && t1 == 0" 
+}
+unsafes {
+  1 "1 > 0" 
+  2 "1 > 0" 
+  45 "1 > 0" 
+  46 "1 > 0" 
+  47 "1 > 0" 
+}
+props {
+  mc-poly {
+    direction                    forward
+    check-unsafe-after-disc-edge false
+    separate-identity-resets true
+    add-to-visiteds-on-check true
+  }
+  mc-nlfpoly {
+    bound-cont-trans                   false
+    bound-cont-trans-by-eq             false
+    cont-tran-duration                 "4"
+    connect-splitted-locs              false
+    use-empty-labels-for-bounding-time true
+    linear-flow-abstraction            polyhedronize
+  }
+}
+            
