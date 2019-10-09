@@ -8,8 +8,8 @@
 import testing ;
 
 using gcc
-	: 8.3.0
-	: /opt/c++/gcc-8.3.0/bin/g++
+	: 8.2.0
+	: /opt/c++/gcc-8.2.0/bin/g++
   : <cxxflags>-fdiagnostics-color
   ;
 
@@ -54,18 +54,18 @@ project HARE
   ;
 
 
-  # : requirements <toolset>gcc:<cxxflags>"-isystem/opt/c++/libs/boost-1.68-gcc-8.3.0/include/boost-1_69"
-  # : requirements <toolset>gcc:<cxxflags>"-isystem/opt/c++/libs/gmp-6.1.2-gcc-8.3.0/include"
-  # : requirements <toolset>gcc:<cxxflags>"-isystem/opt/c++/libs/ppl-1.2-gcc-8.3.0/include"
-  # : requirements <toolset>gcc:<cxxflags>"-isystem/opt/c++/libs/z3-4.8.4-gcc-8.3.0/include"
-  # : requirements <toolset>gcc:<linkflags>"-L/opt/c++/libs/boost-1.68-gcc-8.3.0/lib"
-  # : requirements <toolset>gcc:<linkflags>-L/opt/c++/libs/gmp-6.1.2-gcc-8.3.0/lib
-  # : requirements <toolset>gcc:<linkflags>-L/opt/c++/libs/ppl-1.2-gcc-8.3.0/lib
-  # : requirements <toolset>gcc:<linkflags>-L/opt/c++/libs/z3-4.8.4-gcc-8.3.0/lib
-  # : requirements <toolset>gcc:<linkflags>"-Wl,-rpath /opt/c++/libs/boost-1.68-gcc-8.3.0/lib/"
+  # : requirements <toolset>gcc:<cxxflags>"-isystem/opt/c++/libs/boost-1.68-gcc-8.2.0/include/boost-1_69"
+  # : requirements <toolset>gcc:<cxxflags>"-isystem/opt/c++/libs/gmp-6.1.2-gcc-8.2.0/include"
+  # : requirements <toolset>gcc:<cxxflags>"-isystem/opt/c++/libs/ppl-1.2-gcc-8.2.0/include"
+  # : requirements <toolset>gcc:<cxxflags>"-isystem/opt/c++/libs/z3-4.8.4-gcc-8.2.0/include"
+  # : requirements <toolset>gcc:<linkflags>"-L/opt/c++/libs/boost-1.68-gcc-8.2.0/lib"
+  # : requirements <toolset>gcc:<linkflags>-L/opt/c++/libs/gmp-6.1.2-gcc-8.2.0/lib
+  # : requirements <toolset>gcc:<linkflags>-L/opt/c++/libs/ppl-1.2-gcc-8.2.0/lib
+  # : requirements <toolset>gcc:<linkflags>-L/opt/c++/libs/z3-4.8.4-gcc-8.2.0/lib
+  # : requirements <toolset>gcc:<linkflags>"-Wl,-rpath /opt/c++/libs/boost-1.68-gcc-8.2.0/lib/"
   # : requirements <toolset>gcc:<linkflags>"-lboost_unit_test_framework-gcc8-x64-1_69"
-  # : requirements <toolset>gcc:<dll-path>/opt/c++/libs/boost-1.68-gcc-8.3.0/lib
-  # : requirements <toolset>gcc:<dll-path>/opt/c++/libs/z3-4.8.4-gcc-8.3.0/lib
+  # : requirements <toolset>gcc:<dll-path>/opt/c++/libs/boost-1.68-gcc-8.2.0/lib
+  # : requirements <toolset>gcc:<dll-path>/opt/c++/libs/z3-4.8.4-gcc-8.2.0/lib
 
   # : requirements <toolset>gcc:<cxxflags>"-Wno-misleading-indentation -Wno-parentheses"
 
