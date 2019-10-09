@@ -19,7 +19,7 @@ _The following steps are tested on MacOS and Ubuntu._
 Prerequisites
 -------------
 
-HARE uses the following libraries. For each of these libraries, we also mention the current version that we are using right now. However, using more recent versions should be fine.
+HARE uses the following libraries. For each of these libraries, we also mention the current version that we are currently using. However, more recent versions should be fine.
 
 1. [GMP 6.1.2](https://gmplib.org/); this is a free library for arbitrary precision arithmetic, operating on signed integers, rational numbers, and floating-point numbers
 1. [Z3-4.8.4](https://github.com/Z3Prover/z3/releases); this is a state-of-the art theorem prover from [Microsoft Research](https://www.microsoft.com/en-us/research/). It can be used to check the satisfiability of logical formulas over one or more theories
