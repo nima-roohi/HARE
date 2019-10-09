@@ -71,7 +71,7 @@ enum class symbol : std::uint8_t {
 /** @note other than \c CONST and \c VAR, the exact symbols are used in parsing. Therefore, we require the followings to be true for string of any symbol
   * other than \c CONST and \c VAR:
   *       1.  it should be non-empty
-  *       1.  it should contain only english letters or only punchuations
+  *       1.  it should contain only english letters or only punctuations
   *       1.  if it has english letters it must be unique
   *       1.  text of unary  operators must be disjoint
   *       1.  text of binary operators must be disjoint */
