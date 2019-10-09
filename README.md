@@ -55,4 +55,24 @@ HARE uses the following libraries. For each of these libraries, we also mention 
     1. [Lexical Cast](https://www.boost.org/doc/libs/1_69_0/doc/html/boost_lexical_cast.html);
        Converting strings to integers.
 
-In addition to these libraries, we use [Boost Build](https://boostorg.github.io/build/) to compile the source codes and run our tests. Last but not least, we are using [Clang 8.0.0](https://releases.llvm.org/8.0.0/tools/clang/docs/ReleaseNotes.html) as our compiler.
+In addition to these libraries, we use [Boost Build](https://boostorg.github.io/build/) to compile the source codes and run our tests. Last but not least, we are using [Clang 8.0.0](https://clang.llvm.org/get_started.html) as our compiler.
+
+Before we use these libraries, we should set the environment variable `LD_LIBRARY_PATH` for linux and `DYLD_LIBRARY_PATH` for MacOS.
+Here is an example of how it can be done (it is OK to set both `LD_LIBRARY_PATH` and `DYLD_LIBRARY_PATH`).
+Make sure to replace paths in the following example with those you installed these libraries in them.
+```sh
+~/Git/codes/HARE$ export GMP_HOME=/opt/c++/libs/gmp-6.1.2-clang-6.0.1
+~/Git/codes/HARE$ export Z3_HOME=/opt/c++/libs/z3-4.7.1-clang-6.0.1 
+~/Git/codes/HARE$ export PPL_HOME=/opt/c++/libs/ppl-1.2-clang-6.0.1
+~/Git/codes/HARE$ export BOOST_HOME=/opt/c++/libs/boost-1.68-clang-6.0.1
+~/Git/codes/HARE$ export LD_LIBRARY_PATH=$GMP_HOME/lib:$Z3_HOME/lib:$PPL_HOME/lib:$BOOST_HOME/lib:$DYLD_LIBRARY_PATH
+~/Git/codes/HARE$ export DYLD_LIBRARY_PATH=$GMP_HOME/lib:$Z3_HOME/lib:$PPL_HOME/lib:$BOOST_HOME/lib:$DYLD_LIBRARY_PATH
+```
+
+Here are a few tests to verify some of these libraries are correctly installed:
+```sh
+~/Git/codes/HARE$ $Z3_HOME/bin/z3 -v 
+```
+```sh
+~/Git/codes/HARE$ BOOST_HOME/bin/b2 -v 
+```
