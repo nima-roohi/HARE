@@ -337,7 +337,8 @@ Don't forget to replace `clang-darwin-8.0.0` with the right folder in the follow
     echo "ex9, non-linear,  safe , ./benchmarks/navigations/nav-05/nav.prb" >> ./hare.batch 
     ```
     ```sh
-    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare --file ./hare.batch --batch --verbosity info --metrics
+    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare           \
+    --file ./hare.batch --batch --verbosity info --metrics
     ```
     In our experience, this example takes about 70 seconds to terminate.
 
