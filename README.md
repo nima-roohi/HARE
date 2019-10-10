@@ -193,7 +193,7 @@ We are ready to compile the code and run our tests.
    1. `release` chooses the build type,
    1. `tests`   chooses to build the source code and our unit tests.
     
-If the compilation ends successfully, Boost immediately runs the tests. This generates lots of outputs, but a successful result is announced by `No errors detected` at the end of execution. In our experience, the compilation takes about 4 minutes, and running the tests takes about 20 seconds. Note that if all tests pass and you want to run them again, you have to first find the file `release/tests.passed` in your `HARE/bin` folder and remove it. After that `~/HARE$ b2 clang release tests` will run the tests without compiling the source code again.
+If the compilation ends successfully, Boost immediately runs the tests. This generates lots of outputs, but a successful result is announced by `No errors detected` at the end of execution. In our experience, the compilation takes about 4 minutes, and running the tests takes about 20 seconds. Note that if all tests pass and you want to rerun them, you have to find the file `release/tests.passed` in your `HARE/bin` folder first and remove it. After that, `~/HARE$ b2 clang release tests` runs the tests without recompiling the source code.
 
 
 
@@ -201,20 +201,20 @@ If the compilation ends successfully, Boost immediately runs the tests. This gen
  Running the Benchmarks
  ----------------------
 
-If you have successfully run the tests then running the benchmarks should be an easy process.
+If you have successfully run the tests, then running the benchmarks should be an easy process.
 
 1. Compile the file that is going to run all benchmarks.
   ```sh
   ~/HARE$ b2 clang release bench
   ```
-   In our experience this will take about half a minutes.
+   In our experience, this takes about half a minute.
 1. Run the benchmarks. 
    Make sure to replace `clang-darwin-8.0.0` with the right folder in your command.
   ```sh
   ~/HARE$ ./bin/clang-darwin-8.0.0/release/bench
   ```
-   In our experience this wil take about 5 minutes.
-   You will see different steps HARE takes to do it job. And there will be a very big table at the end summarizing all the metrics HARE collected for each benchmark during the execution.
+   In our experience, this takes about 5 minutes.
+   You are going to see different steps HARE takes to do its job. Also, a huge table, summarizing all the metrics HARE collected for each benchmark during the execution, is going to be printed at the end of the test.
 
 
 
