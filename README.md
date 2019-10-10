@@ -320,7 +320,7 @@ Don't forget to replace `clang-darwin-8.0.0` with the right folder in the follow
 5. Set verbosity to its highest value (we changed the input file in this example. It takes about 30 seconds to prove the system is safe).
     ```sh
     ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare   \
-    --file ./benchmarks/navigation/nav-01/nav.prb  \
+    --file ./benchmarks/navigation/nav-01/nav.prb   \
     --non-linear --verbosity trace
     ```
 6. Bach processing.
@@ -345,7 +345,7 @@ Don't forget to replace `clang-darwin-8.0.0` with the right folder in the follow
 ### Input File Options
 Each input file ends in a section called `props`.
 It contains different settings for how HARE should do its job.
-Please look at `./benchmarks/navigation/nav-01/nav.prb` as an example.
+Please look at [`./benchmarks/navigation/nav-01/nav.prb`](https://github.com/nima-roohi/HARE/blob/master/benchmarks/navigation/nav-01/nav.prb) as an example.
 In the following, we use `::` to write each property in a single line.
 For example, we write `mn-poly::direction` to refer to the `direction` property inside `mc-poly`.
 
@@ -365,6 +365,7 @@ For example, we write `mn-poly::direction` to refer to the `direction` property 
     Possible values are `true` and `false`.
     The default value is `false`.
     Tells HARE to test intersection with the unsafe set after every discrete transition in addition to after every continuous transition.
+    Note that if the direction is backward, then HARE uses the initial set instead of the unsafe set for this option.
 
 
 1. `mc-poly::add-to-visiteds-on-check`.
@@ -375,7 +376,7 @@ For example, we write `mn-poly::direction` to refer to the `direction` property 
 1. `mc-poly::max-iter`.
     Possible values are non-negative integers. 
     The default value is `0`.
-    How many iterations HARE should take before it gives up its goal for reaching to a fixed-point in the abstract system.
+    How many iterations HARE should take before it gives up its goal for reaching to a fixed-point in the abstract system (`0` means unlimited).
 
 1. `mc-nlfpoly::bound-cont-trans`.
     Possible values are `true` and `false`.
@@ -423,5 +424,5 @@ For example, we write `mn-poly::direction` to refer to the `direction` property 
 1.  `mc-nlfpoly::max-iter`
     Possible values are non-negative integers.
     The default value is `0`.
-    The maximum number of times HARE tries to find a new counterexample before it gives up and tells the user the result is `unknown`.
+    The maximum number of times HARE tries to find a new counterexample before it gives up and tells the user the result is `unknown` (`0` means unlimited).
 
