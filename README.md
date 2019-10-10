@@ -180,9 +180,10 @@ boost-build /opt/c++/libs/boost-1.69-clang-8.0.0/share/boost-build/src/kernel ;
 ```   
    
 1. `Jamroot.jam` is the only other file that we need to update before compiling the code.
+   1. Update the Clang version (Line 17).
    1. Update the address to your Clang compiler (Line 18).
-   2. Update all library paths to where you installed yours (Lines 28-35, 42-45, and 55-58).
-   3. Update Boost's library file names as well (Lines 42-45).
+   1. Update all library paths to where you installed yours (Lines 28-35, 42-45, and 55-58).
+   1. Update Boost's library file names as well (Lines 42-45).
    
 We are ready to compile the code and run our tests.
 ```sh
@@ -192,14 +193,30 @@ We are ready to compile the code and run our tests.
    1. `release` chooses the build type,
    1. `tests`   chooses to build the source code and our unit tests.
     
-If the compilation ends successfully, Boost immediately runs the tests. This generates lots of outputs, but a successful result is announced by `No errors detected` at the end of execution. In our experience, the compilation takes about 4 minutes, and running the tests takes about 20 seconds.
+If the compilation ends successfully, Boost immediately runs the tests. This generates lots of outputs, but a successful result is announced by `No errors detected` at the end of execution. In our experience, the compilation takes about 4 minutes, and running the tests takes about 20 seconds. Note that if all tests pass and you want to run them again, you have to first find the file `release/tests.passed` in your `HARE/bin` folder and remove it. After that `~/HARE$ b2 clang release tests` will run the tests without compiling the source code again.
+
 
 
 
  Running the Benchmarks
  ----------------------
 
- 
+If you have successfully run the tests then running the benchmarks should be an easy process.
+
+1. Compile the file that is going to run all benchmarks.
+  ```sh
+  ~/HARE$ b2 clang release bench
+  ```
+   In our experience this will take about half a minutes.
+1. Run the benchmarks. 
+   Make sure to replace `clang-darwin-8.0.0` with the right folder in your command.
+  ```sh
+  ~/HARE$ ./bin/clang-darwin-8.0.0/release/bench
+  ```
+   In our experience this wil take about 5 minutes.
+   You will see different steps HARE takes to do it job. And there will be a very big table at the end summarizing all the metrics HARE collected for each benchmark during the execution.
+
+
 
 
  Running Single Examples
