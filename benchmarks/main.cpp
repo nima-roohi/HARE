@@ -148,7 +148,7 @@ int main() {
 
   // the only example can be added is "heating-old". Its relations contain many disjunctions.
   check(nlf::SAFE  , "1-flow"              , path_bench + path_hsolver + "1-flow.prb"              ); // rectangular
-  check(nlf::SAFE  , "circuit"             , path_bench + path_hsolver + "circuit.prb"             ); // non-linear  
+  check(nlf::UNSAFE, "circuit"             , path_bench + path_hsolver + "circuit.prb"             ); // non-linear  
   check(nlf::SAFE  , "clock"               , path_bench + path_hsolver + "clock.prb"               ); // non-linear - needs 4 initial refinement
   check(nlf::SAFE  , "convoi-1"            , path_bench + path_hsolver + "convoi-1.prb"            ); // linear
   check(nlf::SAFE  , "cycle"               , path_bench + path_hsolver + "cycle.prb"               ); // rectangular

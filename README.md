@@ -213,8 +213,9 @@ If you have successfully run the tests, then running the benchmarks should be an
   ```sh
   ~/HARE$ ./bin/clang-darwin-8.0.0/release/bench
   ```
-   In our experience, this takes about 5 minutes.
-   You are going to see different steps HARE takes to do its job. Also, a huge table, summarizing all the metrics HARE collected for each benchmark during the execution, is going to be printed at the end of the test.
+  There are currently 85 examples set up to run.
+  In our experience, this takes about 20 minutes.
+  You are going to see different steps HARE takes to do its job. Also, a huge table, summarizing all the metrics HARE collected for each benchmark during the execution, is going to be printed at the end of the test.
 
 
 
