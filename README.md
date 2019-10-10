@@ -239,11 +239,11 @@ Hybrid Abstraction Refinement Engine (HARE) version 0.3-2019.10.09
 
 Execution of HARE must be adjusted using options and switches.
 There are two mains categories:
-Switches set in the command line and 
+Switches set in the command-line and 
 switches set in the input file.
 In the rest of this file we explain different switches in each of these categories.
 
-### Command line Switches
+### Command-Line Switches
 
 1. `--version`;
    Print version of the tool and exist.
