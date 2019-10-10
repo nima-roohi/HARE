@@ -198,8 +198,8 @@ If the compilation ends successfully, Boost immediately runs the tests. This gen
 
 
 
- Running the Benchmarks
- ----------------------
+Running the Benchmarks
+----------------------
 
 If you have successfully run the tests, then running the benchmarks should be an easy process.
 
@@ -222,16 +222,113 @@ If you have successfully run the tests, then running the benchmarks should be an
 
 
 
- Running Other Examples
- -----------------------
+Running Other Examples
+-----------------------
 
- In order to run other examples, we still need to compile one more file; `command_line.cpp`. Fortunately, that is quite simple.
+In order to run other examples, we still need to compile one more file; `command_line.cpp`. Fortunately, that is quite simple.
 ```sh
 ~/HARE$ b2 clang release hare
 ```
 In our experience, this takes less than a minute (assuming you did not delete whatever that is compiled in the previous steps).
-Next we check if out build was successful.
+
+Next, we check if our build was successful.
 ```sh
 ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare --version
 Hybrid Abstraction Refinement Engine (HARE) version 0.3-2019.10.09
 ```
+
+Execution of HARE must be adjusted using options and switches.
+There are two mains categories:
+Switches set in the command line and 
+switches set in the input file.
+In the rest of this file we explain different switches in each of these categories.
+
+### Command line Switches
+
+1. `--version`;
+   Print version of the tool and exist.
+
+1. `--help` or `h`; 
+   Show the usage (i.e., list of command-line switches and a short description for each one of them). 
+
+1. `--polyhedral`;
+   Input file specifies a polyhedral hybrid automaton (everything is polyhedron).
+
+1. `--non-linear`;
+   Input file specifies a non-linear hybrid automaton (everything is polyhedron except flows that are either affine or non-linear ODEs).
+
+1. `--verbosity arg` or `-v arg` (default value for the argument is `debug`);
+   Set the log level.
+   Possible values are `trace`, `debug`, `info`, `warn`, `error`, `fatal`, and `off`.    
+
+1. `--file arg` or `-f arg`;
+   Set the input file.
+
+1. `--metrics` or `-m`;
+   Print performance metrics after a successful termination.
+
+1. `--output arg` or `-o arg` (the default value for the argument is `safety`);
+   Kind of information to be generated on a successful termination. 
+   Possible values are:
+   1. `safety`: whether or not the system is safe.
+   1. `counter-example`: in addition to the previous part, 
+      in case the input was unsafe, a counter-example 
+      (sequence of edges) will also be generated.
+   1. `annotated-counter-example`: in addition to the previous part, 
+      in case the input was unsafe, (abstract) states reachable along 
+      with the generated counterexample will also be generated.
+   1. `reachable-set`: (abstract) reachable states, 
+      whether or not the system is found to be safe, will be printed out.
+
+1. `--batch` or `-b`;
+   Batch processing.
+   Non-empty lines in the input file that are not started with the character `#`, each must contain four comma-separated values:
+     1. name (need not be unique),
+     1. type of input (`polyhedral` or `non-linear`),
+     1. expected answer (`safe`, `unsafe`, `bounded-safe`, `unknown`, or `?`).
+        1.  Expected answer `unknown` means the tool could not decide, and it 
+            only makes sense if the input type is `non-linear`.
+        1.  Expected answer `?` means there is no expected answer.
+     2. (full) path to the model file.
+
+#### Examples:
+
+1. Simply model check a file.
+    ```sh
+    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare --file ./benchmarks/tanks/tank-01/tank.prb --polyhedral
+    ```
+1. Model check the same file, but print the counterexample.
+    ```sh
+    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare --file ./benchmarks/tanks/tank-01/tank.prb --polyhedral --output counter-example
+    ```
+1. Model check the same file, but print the counterexample along with the states that are reached using that counterexample.
+    ```sh
+    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare --file ./benchmarks/tanks/tank-01/tank.prb --polyhedral --output annotated-counter-example
+    ```
+1. Print the metrics.
+    ```sh
+    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare --file ./benchmarks/tanks/tank-01/tank.prb --polyhedral --metrics
+    ```
+1. Set verbosity to its highest value (we changed the input file in this example. It takes about 30 seconds to prove the system is safe).
+    ```sh
+    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare --file ./benchmarks/navigations/nav-01/nav.prb --non-linear --verbosity trace
+    ```
+1. Bach processing.
+   Let's first create a sample input file.
+    ```sh
+    echo "ex1, polyhedral, unsafe, ./benchmarks/tanks/tank-01/tank.prb" >  ./hare.batch 
+    echo "ex2, polyhedral,   ?   , ./benchmarks/tanks/tank-02/tank.prb" >> ./hare.batch 
+    echo "ex3, polyhedral, unsafe, ./benchmarks/tanks/tank-03/tank.prb" >> ./hare.batch 
+    echo "ex4, polyhedral,   ?   , ./benchmarks/tanks/tank-04/tank.prb" >> ./hare.batch 
+    echo "ex5, non-linear,  safe , ./benchmarks/navigations/nav-01/nav.prb" >> ./hare.batch 
+    echo "ex6, non-linear, unsafe, ./benchmarks/navigations/nav-02/nav.prb" >> ./hare.batch 
+    echo "ex7, non-linear, unsafe, ./benchmarks/navigations/nav-03/nav.prb" >> ./hare.batch 
+    echo "ex8, non-linear,   ?   , ./benchmarks/navigations/nav-04/nav.prb" >> ./hare.batch 
+    echo "ex9, non-linear,  safe , ./benchmarks/navigations/nav-05/nav.prb" >> ./hare.batch 
+    ```
+    ```sh
+    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare --file ./hare.batch --batch --verbosity info --metrics
+    ```
+    In our experience, this example takes about 70 seconds to terminate.
+
+### Input File Options

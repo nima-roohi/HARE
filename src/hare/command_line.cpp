@@ -423,7 +423,7 @@ int main(const int argc, const char *argv[]) {
                                   "   i)  \tExpected answer 'unknown' only makes sense if the input type is non-linear.\n"
                                   "   ii) \tExpected answer '?' means there is no expected answer.\n"
                                   "4. \t(full) path to the model file.")
-      (METRICS   "," SHORT_METRICS  , "print performance metrics after successfull termination")
+      (METRICS   "," SHORT_METRICS  , "print performance metrics after a successful termination")
       (FILEE     "," SHORT_FILEE    , po::value<std::string>(), "input file")
       (VERBOSITY "," SHORT_VERBOSITY, po::value<verbosity>()->default_value(verbosity::DEBUG), 
                                       "log level (trace, debug, info, warn, error, fatal, off).")
