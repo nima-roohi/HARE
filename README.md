@@ -8,19 +8,32 @@ These advances have led to better performance results for a broader class of exa
 In the [tool's page](https://nima-roohi.github.io/HARE), we report our experimental comparison of HARE against other state-of-the-art tools for affine models ([SpaceEx](http://spaceex.imag.fr/), [PHAVer](http://spaceex.imag.fr/phaver-8), and [SpaceEx AGAR](https://swt.informatik.uni-freiburg.de/tool/spaceex/agar)) and non-linear models ([FLOW*](https://flowstar.org/), [HSolver](http://hsolver.sourceforge.net/), and [C2E2](http://publish.illinois.edu/c2e2-tool/)).
 In the rest of this file, we explain how to install HARE, run benchmarks, and different options for verifying a model.
 
+
+
+
+
+
 Virtual Machine
 ---------------
 
 HARE is written in C++ and uses a few libraries. 
 While each of these libraries is perhaps the most famous in what they do, installing all of them to get a sense of what HARE does might be overwhelming. Therefore, we have prepared a virtual machine that contains everything; source codes, binaries, benchmarks, scripts for running those benchmarks, as well as what you should expect to see at the end of running those benchmarks. All these can are available at https://uofi.app.box.com/v/HARE. You need [7-Zip](https://www.7-zip.org/) to extract downloaded files, and virtualization software to load our virtual machine (we use [VirtualBox](https://www.virtualbox.org/)).
 
-
 **_Note:_**
 _We have tested the following steps on macOS and Ubuntu._ 
 
 
+
+
+
+
+
+
 Prerequisites
 -------------
+
+**_Note:_**
+_If you want to compile the source code, you are expected to have some experience working with C++ and compiling codes that use external libraries._
 
 HARE uses the following libraries, and you need to install all of them. For each of these libraries, we also mention the version that we are currently using. However, there should be no problem with using more recent versions.
 
@@ -125,26 +138,18 @@ Boost.Jam  Version 2018.02. OS=MACOSX.
    Copyright 2003-2015 Vladimir Prus.
 ```
 
+
+
+
+
+
 Compiling the Source Code
 -------------------------
 
-We use [Boost Build](https://boostorg.github.io/build/) to compile the source code and running our tests. Therefore, we suggest that one puts it in their `PATH` environment variable.
+As we mentioned in [Prerequisite](#Prerequisite) section,
+we use [Boost Build](https://boostorg.github.io/build/) to compile the source code and running our tests. 
 
-```sh
-~$ export PATH=$BOOST_HOME/bin:$PATH
-~$ b2 -v
-Boost.Jam  Version 2018.02. OS=LINUX.
-   Copyright 1993-2002 Christopher Seiwald and Perforce Software, Inc.
-   Copyright 2001 David Turner.
-   Copyright 2001-2004 David Abrahams.
-   Copyright 2002-2015 Rene Rivera.
-   Copyright 2003-2015 Vladimir Prus.
-```
-
-**_Note:_**
-_If you want to compile the source code, you are expected to have some experience working with C++ and compiling codes that use external libraries._
-
-1. Clone the source code on your local computer (if you don't have git, you can download the source code using your browser as well).
+1. Clone the source code on your local computer (if you don't have `git`, you can download the source code using your browser as well).
 ```sh
 ~$ git clone https://github.com/nima-roohi/HARE
 ```
