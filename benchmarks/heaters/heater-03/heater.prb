@@ -68,7 +68,7 @@ props {
     bound-cont-trans                   true
     bound-cont-trans-by-eq             false
     cont-tran-duration                 "100"
-    connect-splitted-locs              false
+    connect-split-locs                 false
     use-empty-labels-for-bounding-time true
     initial-refinement-count           5
   }

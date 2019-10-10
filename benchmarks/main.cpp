@@ -24,7 +24,7 @@ using rect = poly_safety_result   ;
 const std::string path_bench      = "./benchmarks/";
 const std::string path_heats      = "heaters/"     ;
 const std::string path_sats       = "satellites/"  ;
-const std::string path_navs       = "navigations/" ;
+const std::string path_navs       = "navigation/" ;
 const std::string path_sttt_navs  = "sttt-navs/"   ;
 const std::string path_tanks      = "tanks/"       ;
 const std::string path_hsolver    = "HSolver/"     ;
@@ -78,7 +78,7 @@ int main() {
   //       invariant is bounded and their flows are same as their invariant, which means flows are rectangular constraints not equality constraints. But we 
   //       can check them all since the abstraction is safe, so there is no need to call dReach. 
   // @note all of satellite examples will be proved safe in the first iteration of the cegar loop. Therefore, there is no need to bound duration of continouus 
-  //       transitions since no location will be splitted. This reduces number of edges and results in efficiency improvement. 
+  //       transitions since no location will be split. This reduces number of edges and results in efficiency improvement. 
   check(nlf::SAFE, "sat-01", path_bench + path_sats + "sat-01/sat.prb");
   check(nlf::SAFE, "sat-02", path_bench + path_sats + "sat-02/sat.prb");
   check(nlf::SAFE, "sat-03", path_bench + path_sats + "sat-03/sat.prb");

@@ -1,0 +1,158 @@
+vars "x, y, vx, vy"
+hybrid-automaton {
+  loc 0 {
+    inv  "(((0 <= x && x <= (11/10)) && (0 <= y && y <= (11/10))) && (-1 <= vx && vx <= 1)) && (-1 <= vy && vy <= 1)" 
+    flow {
+      x "vx"
+      y "vy"
+      vx "(6/5) + vy * (1/10) + vx * (-6/5)"
+      vy "(-1/10) + vy * (-6/5) + vx * (1/10)"  }  }
+  loc 1 {
+    inv  "((((9/10) <= x && x <= (21/10)) && (0 <= y && y <= (11/10))) && (-1 <= vx && vx <= 1)) && (-1 <= vy && vy <= 1)" 
+    flow {
+      x "vx"
+      y "vy"
+      vx "(6/5) + vy * (1/10) + vx * (-6/5)"
+      vy "(-1/10) + vy * (-6/5) + vx * (1/10)"  }  }
+  loc 2 {
+    inv  "((((19/10) <= x && x <= 3) && (0 <= y && y <= (11/10))) && (-1 <= vx && vx <= 1)) && (-1 <= vy && vy <= 1)" 
+    flow {
+      x "0"
+      y "0"
+      vx "0"
+      vy "0"  }  }
+  loc 3 {
+    inv  "(((0 <= x && x <= (11/10)) && ((9/10) <= y && y <= (21/10))) && (-1 <= vx && vx <= 1)) && (-1 <= vy && vy <= 1)" 
+    flow {
+      x "vx"
+      y "vy"
+      vx "(1/10) + vy * (1/10) + vx * (-6/5)"
+      vy "(-6/5) + vy * (-6/5) + vx * (1/10)"  }  }
+  loc 4 {
+    inv  "((((9/10) <= x && x <= (21/10)) && ((9/10) <= y && y <= (21/10))) && (-1 <= vx && vx <= 1)) && (-1 <= vy && vy <= 1)" 
+    flow {
+      x "vx"
+      y "vy"
+      vx "(91/100) + vy * (1/10) + vx * (-6/5)"
+      vy "(-91/100) + vy * (-6/5) + vx * (1/10)"  }  }
+  loc 5 {
+    inv  "((((19/10) <= x && x <= 3) && ((9/10) <= y && y <= (21/10))) && (-1 <= vx && vx <= 1)) && (-1 <= vy && vy <= 1)" 
+    flow {
+      x "vx"
+      y "vy"
+      vx "(1/10) + vy * (1/10) + vx * (-6/5)"
+      vy "(-6/5) + vy * (-6/5) + vx * (1/10)"  }  }
+  loc 6 {
+    inv  "(((0 <= x && x <= (11/10)) && ((19/10) <= y && y <= 3)) && (-1 <= vx && vx <= 1)) && (-1 <= vy && vy <= 1)" 
+    flow {
+      x "0"
+      y "0"
+      vx "0"
+      vy "0"  }  }
+  loc 7 {
+    inv  "((((9/10) <= x && x <= (21/10)) && ((19/10) <= y && y <= 3)) && (-1 <= vx && vx <= 1)) && (-1 <= vy && vy <= 1)" 
+    flow {
+      x "vx"
+      y "vy"
+      vx "(6/5) + vy * (1/10) + vx * (-6/5)"
+      vy "(-1/10) + vy * (-6/5) + vx * (1/10)"  }  }
+  loc 8 {
+    inv  "((((19/10) <= x && x <= 3) && ((19/10) <= y && y <= 3)) && (-1 <= vx && vx <= 1)) && (-1 <= vy && vy <= 1)" 
+    flow {
+      x "vx"
+      y "vy"
+      vx "(1/10) + vy * (1/10) + vx * (-6/5)"
+      vy "(-6/5) + vy * (-6/5) + vx * (1/10)"  }  }
+  edge {
+    src 0
+    dst 3
+    rel "(9/10) <= y && y <= (11/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 0
+    dst 1
+    rel "(9/10) <= x && x <= (11/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 1
+    dst 0
+    rel "(9/10) <= x && x <= (11/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 1
+    dst 4
+    rel "(9/10) <= y && y <= (11/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 3
+    dst 0
+    rel "(9/10) <= y && y <= (11/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 3
+    dst 6
+    rel "(19/10) <= y && y <= (21/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 3
+    dst 4
+    rel "(9/10) <= x && x <= (11/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 4
+    dst 1
+    rel "(9/10) <= y && y <= (11/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 4
+    dst 3
+    rel "(9/10) <= x && x <= (11/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 4
+    dst 7
+    rel "(19/10) <= y && y <= (21/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 4
+    dst 5
+    rel "(19/10) <= x && x <= (21/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 5
+    dst 4
+    rel "(19/10) <= x && x <= (21/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 5
+    dst 8
+    rel "(19/10) <= y && y <= (21/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 7
+    dst 4
+    rel "(19/10) <= y && y <= (21/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 7
+    dst 6
+    rel "(9/10) <= x && x <= (11/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 7
+    dst 8
+    rel "(19/10) <= x && x <= (21/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 8
+    dst 5
+    rel "(19/10) <= y && y <= (21/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+  edge {
+    src 8
+    dst 7
+    rel "(19/10) <= x && x <= (21/10) && true && x == x' && y == y' && vx == vx' && vy == vy'"  } 
+}
+inits {
+  5 "(( - (3/10) <= vx && vx <= (3/10)) &&  - (3/10) <= vy) && vy <= (3/10)" 
+}
+unsafes {
+  6 "true" 
+}
+props {
+  mc-poly {
+    direction                forward
+    separate-identity-resets true
+    add-to-visiteds-on-check true
+  }
+  mc-nlfpoly {
+    bound-cont-trans                   true
+    cont-tran-duration                 "2"
+    connect-split-locs                 false
+    use-empty-labels-for-bounding-time true
+  }
+}
+      

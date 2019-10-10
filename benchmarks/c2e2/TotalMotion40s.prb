@@ -129,7 +129,7 @@ props {
 			bound-cont-trans 									 false
 			bound-cont-trans-by-eq 						 false  ; irrelevant
 			cont-tran-duration 								 10     ; irrelevant
-			connect-splitted-locs 						 true
+			connect-split-locs 						 true
 			use-empty-labels-for-bounding-time true
 	}
 }

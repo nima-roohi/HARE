@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE ( simple_test ) {
     "  mc-nlfpoly {                                     \n"
     "    bound-cont-trans true                          \n"
     "    cont-tran-duration \"10/3\"                    \n"
-    "    connect-splitted-locs false                    \n"
+    "    connect-split-locs                 false                    \n"
     "    use-empty-labels-for-bounding-time true        \n"
     "    max-iter 2        \n"
     "  }                                                \n"

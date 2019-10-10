@@ -101,7 +101,7 @@ struct safety_checker {
   template<typename SS, std::enable_if_t<std::is_same<safety_t, std::remove_const_t<std::remove_reference_t<SS>>>::value>* = nullptr>
   safety_checker(SS&& safety) : bounded_cont_trans   (param_bounded_cont_trans   (safety.props())),
                                 bound_ctran_by_eq    (param_bound_ctran_by_eq    (safety.props())),
-                                connect_splitted_locs(param_connect_splitted_locs(safety.props())),
+                                connect_split_locs(param_connect_split_locs(safety.props())),
                                 use_empty_labels     (param_use_empty_labels     (safety.props())),
                                 ctran_duration       (param_ctran_duration       (safety.props())),
                                 linear_flow_abst     (param_linear_flow_abstraction_method(safety.props())),
@@ -153,8 +153,8 @@ struct safety_checker {
   static auto param_bound_ctran_by_eq(const pt::ptree& props) { 
     return ::hare::prop_value<val_bool_t>(props, KEY_BoundCTranByEQ, DEF_BoundCTranByEQ); }
 
-  static auto param_connect_splitted_locs(const pt::ptree& props) { 
-    return ::hare::prop_value<val_bool_t>(props, KEY_ConnectSplittedLocs, DEF_ConnectSplittedLocs); }
+  static auto param_connect_split_locs(const pt::ptree& props) { 
+    return ::hare::prop_value<val_bool_t>(props, KEY_ConnectsplitLocs, DEF_ConnectsplitLocs); }
 
   static auto param_use_empty_labels(const pt::ptree& props) { 
     return ::hare::prop_value<val_bool_t>(props, KEY_UseEmptyLabels, DEF_UseEmptyLabels); }
@@ -298,8 +298,8 @@ struct safety_checker {
     requires_msg(!loc1.is_trans(), "something is wrong! transient locations should not need splitting (they don't have any continuous dynamics)")
     P& inv1(loc1.inv());
     P  inv2(std::forward<PP>(par_inv));
-    const bool splitted = split_inv(ha_index, loc_index, inv1, inv2, flow);
-    if(!splitted)
+    const bool split = split_inv(ha_index, loc_index, inv1, inv2, flow);
+    if(!split)
       return false;
     auto name2 = loc1.name() + "_2"; 
     loc1.name() += "_1";
@@ -337,20 +337,20 @@ struct safety_checker {
       edge_backtrace.push_back(std::move(std::get<0>(tuple)));
       edges         .push_back(std::move(std::get<1>(tuple))); }
     /* 1.  if bound_ctran_by_eq is true, it means the extra edges will be guarded by <tt>z==d</tt> where \c z is the bounding variable and \c d is the 
-     *     time-bound. These edges cannot be used to connect splitted locations, since the connector edges must be enabled at all possible times.
+     *     time-bound. These edges cannot be used to connect split locations, since the connector edges must be enabled at all possible times.
      * 1.  if use_empty_labels is false, it means the extra edges that bound duration of continuous transitions will be synchoronized across different 
      *     automata. So they cannot appear independently, which makes them not usable for connector edges.
      * 1.  if bounded_cont_trans is false, it means no extra edges has been added to the locations. So we need connector edges.
      * If none of the above conditions are true, i.e. duration of continuous transitions are bounded using self-loops, labels of the self-loops are empty, and
      * guard of these slef-loops are <tt>(z<=d)</tt> then we don't need to explicitly connect these edges. */
     if(bound_ctran_by_eq || !use_empty_labels || !bounded_cont_trans) { 
-      if(connect_splitted_locs) {
+      if(connect_split_locs) {
         edge_backtrace.push_back(MAX_EDGE_INDEX);
         edge_backtrace.push_back(MAX_EDGE_INDEX);
         edges.emplace_back(id1, id2, "" /*always empty*/, label_kind::SYNC, connector_rel);
         edges.emplace_back(id2, id1, "" /*always empty*/, label_kind::SYNC, connector_rel); 
         requires_msg(edges.size() < MAX_EDGE_INDEX, "too many edges! MAX_EDGE_INDEX=" << MAX_EDGE_INDEX) }
-      else log_warn << "location " << loc_index << " in automaton at index " << ha_index << " is splitted, "
+      else log_warn << "location " << loc_index << " in automaton at index " << ha_index << " is split, "
                     << "but no effort has been made to directly connect the new locations ("
                     << "bounded_cont_trans=" << bounded_cont_trans << ", "
                     << "use_empty_labels="   << use_empty_labels   << ", " 
@@ -479,7 +479,7 @@ struct safety_checker {
 
   //-----------------------------------------------------------------------------------------------------------------------------------------------------------
   
-  /* @brief create the relation of the connector edges. A connector edge has no correspondent edge in the concrete automaton. It connects splitted locations 
+  /* @brief create the relation of the connector edges. A connector edge has no correspondent edge in the concrete automaton. It connects split locations 
    *        (in both directions) so the abstracted continuous dynamics can change while in the concrete automata no discrete transition happened (so the 
    *        location is not changed).
    * @return the idendity relation. It means it maps every variable, including the bounding variable, to itselt. */ 
@@ -679,15 +679,15 @@ struct safety_checker {
           if(i++ >= index) break;
           par_id = abs_mc->destination_of(par_id, edge); }
         log_debug << "splitting location: " << to_str(par_id);
-        bool splitted_some_loc = false;
+        bool split_some_loc = false;
         auto par_inv = abst_inv_of(par_id);
         for(ha_index_t i = 0; i < ha_size; i++) {
-          const bool splitted = i == ha_size - 1 ? split_loc(std::move            (par_inv), i, par_id[i])  :
+          const bool split = i == ha_size - 1 ? split_loc(std::move            (par_inv), i, par_id[i])  :
                                                    split_loc(static_cast<const P&>(par_inv), i, par_id[i])  ;
-          splitted_some_loc |= splitted;
-          if(splitted)
+          split_some_loc |= split;
+          if(split)
             abs_ha_seq[i].refill_edge_indices();  }
-        requires_msg(splitted_some_loc, "no location in any of the automata are splitted")
+        requires_msg(split_some_loc, "no location in any of the automata are split")
       }
     }
   }
@@ -698,7 +698,7 @@ private:
 
   const val_bool_t bounded_cont_trans   ;
   const val_bool_t bound_ctran_by_eq    ;
-  const val_bool_t connect_splitted_locs;
+  const val_bool_t connect_split_locs;
   const val_bool_t use_empty_labels     ; 
   const val_num_t  ctran_duration       ;
   const val_str_t  linear_flow_abst     ;
@@ -746,20 +746,20 @@ private:
   static constexpr val_bool_t VAL_UseEmptyLabels_False = false;
   static constexpr val_bool_t DEF_UseEmptyLabels = VAL_UseEmptyLabels_True;
 
-  /** @brief Whether or not refinement should add edges between the splitted locations. 
+  /** @brief Whether or not refinement should add edges between the split locations. 
     * @note  At the time of writing this comment, this property will be ignored if <tt>bound-cont-trans<\tt> abd <tt>use-empty-labels-for-bounding-time</tt> 
     *        are both \c true. Duration of continuous transitions are bounded in abstract system by initially adding self loops to the concrete system. When 
-    *        hybrid automata have those special-purpose self-loops with empty labels (so they won't sync with other edges) splitted locations will 
+    *        hybrid automata have those special-purpose self-loops with empty labels (so they won't sync with other edges) split locations will 
     *        automatically be added. 
     * @note  Setting values of both <tt>bound-cont-trans</tt> and <tt>connect-splitting-locs</tt> to \c false generates a warning. Because it becomes the 
-    *        user's responsibility to make sure that after splitting locations of the automata under consideration, the splitted locations will automatically 
+    *        user's responsibility to make sure that after splitting locations of the automata under consideration, the split locations will automatically 
     *        be connected. */
-  static constexpr key_t      KEY_ConnectSplittedLocs = NLFPOLY_MC "connect-splitted-locs";
-  static constexpr val_bool_t VAL_ConnectSplittedLocs_True  = true ;
-  static constexpr val_bool_t VAL_ConnectSplittedLocs_False = false;
-  static constexpr val_bool_t DEF_ConnectSplittedLocs = VAL_ConnectSplittedLocs_True;
+  static constexpr key_t      KEY_ConnectsplitLocs = NLFPOLY_MC "connect-split-locs";
+  static constexpr val_bool_t VAL_ConnectsplitLocs_True  = true ;
+  static constexpr val_bool_t VAL_ConnectsplitLocs_False = false;
+  static constexpr val_bool_t DEF_ConnectsplitLocs = VAL_ConnectsplitLocs_True;
 
-  /** @brief whether or not the new edges that bound time use equality in their guards (as opposed to non-strict equality) */
+  /** @brief whether or not the new edges that bound time use equality in their guards (as opposed to non-strict inequality) */
   static constexpr key_t      KEY_BoundCTranByEQ = NLFPOLY_MC "bound-cont-trans-by-eq";
   static constexpr val_bool_t VAL_BoundCTranByEQ_True  = true ;
   static constexpr val_bool_t VAL_BoundCTranByEQ_False = false;

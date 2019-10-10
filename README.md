@@ -320,7 +320,7 @@ Don't forget to replace `clang-darwin-8.0.0` with the right folder in the follow
 5. Set verbosity to its highest value (we changed the input file in this example. It takes about 30 seconds to prove the system is safe).
     ```sh
     ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare   \
-    --file ./benchmarks/navigations/nav-01/nav.prb  \
+    --file ./benchmarks/navigation/nav-01/nav.prb  \
     --non-linear --verbosity trace
     ```
 6. Bach processing.
@@ -330,16 +330,116 @@ Don't forget to replace `clang-darwin-8.0.0` with the right folder in the follow
     echo "ex2, polyhedral,   ?   , ./benchmarks/tanks/tank-02/tank.prb" >> ./hare.batch 
     echo "ex3, polyhedral, unsafe, ./benchmarks/tanks/tank-03/tank.prb" >> ./hare.batch 
     echo "ex4, polyhedral,   ?   , ./benchmarks/tanks/tank-04/tank.prb" >> ./hare.batch 
-    echo "ex5, non-linear,  safe , ./benchmarks/navigations/nav-01/nav.prb" >> ./hare.batch 
-    echo "ex6, non-linear, unsafe, ./benchmarks/navigations/nav-02/nav.prb" >> ./hare.batch 
-    echo "ex7, non-linear, unsafe, ./benchmarks/navigations/nav-03/nav.prb" >> ./hare.batch 
-    echo "ex8, non-linear,   ?   , ./benchmarks/navigations/nav-04/nav.prb" >> ./hare.batch 
-    echo "ex9, non-linear,  safe , ./benchmarks/navigations/nav-05/nav.prb" >> ./hare.batch 
+    echo "ex5, non-linear,  safe , ./benchmarks/navigation/nav-01/nav.prb" >> ./hare.batch 
+    echo "ex6, non-linear, unsafe, ./benchmarks/navigation/nav-02/nav.prb" >> ./hare.batch 
+    echo "ex7, non-linear, unsafe, ./benchmarks/navigation/nav-03/nav.prb" >> ./hare.batch 
+    echo "ex8, non-linear,   ?   , ./benchmarks/navigation/nav-04/nav.prb" >> ./hare.batch 
+    echo "ex9, non-linear,  safe , ./benchmarks/navigation/nav-05/nav.prb" >> ./hare.batch 
     ```
     ```sh
-    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare           \
+    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare        \
     --file ./hare.batch --batch --verbosity info --metrics
     ```
     In our experience, this example takes about 70 seconds to terminate.
 
 ### Input File Options
+Each input file ends in a section called `props`.
+It contains different settings for how HARE should do its job.
+Please look at `./benchmarks/navigation/nav-01/nav.prb` as an example.
+In the following, we use `::` to write each property in a single line.
+For example, we write `mn-poly::direction` to refer to the `direction` property inside `mc-poly`.
+
+1.  `mc-poly::direction`.
+    Possible values are   
+      `forward`,
+      `backward`,
+      `smaller-or-forward`, and 
+      `smaller-or-backward`.
+    Default value is `smaller-or-forward`.
+    Whether forward reachability should be used or backward reachability.
+
+1. `mc-poly::separate-identity-resets`.
+    Possible values are   
+      `true` and
+      `false`.
+    Default value is `true`.
+    Tells HARE that during interaction with PPL, do not introduce new variables for identity resets (i.e., a variable that is reset to itself on a discrete transition).
+
+1. `mc-poly::check-unsafe-after-disc-edge`.
+    Possible values are   
+      `true` and
+      `false`.
+    Default value is `false`.
+    Tells HARE to test intersection with the unsafe set after every discrete transition in addition to after every continuous transition.
+
+
+1. `mc-poly::add-to-visiteds-on-check`.
+    Possible values are   
+      `true` and
+      `false`.
+    Default value is `false`.
+    Tells HARE whether or not it should immediately adds input sets to the set of visited states whenever it checks if they have been reached before. `false` delays adding new states to the set of visited states a little bit.
+
+1. `mc-poly::max-iter`.
+    Possible values are non-negative integers. 
+    Default value is `0`.
+    How many iterations HARE should take before it gives up its goal for reaching to a fixed-point in the abstract system.
+
+1. `mc-nlfpoly::bound-cont-trans`.
+    Possible values are   
+      `true` and
+      `false`.
+    Default value is `true`.
+    Tells HARE whether or not continuous transitions in the abstract system should be bounded. Setting the value of this parameter to `false` generates a warning because it becomes the user's responsibility to make sure that either there is a bound in the abstract automata anyway, or the concrete model checker can handle infinite time transitions.
+
+1.  `mc-nlfpoly::use-empty-labels-for-bounding-time`.
+    Possible values are   
+      `true` and
+      `false`.
+    Default value is `true`.
+    Tells HARE whether or not an empty label should be used for transitions that bound time. In Parallel composition this reduces the number of discrete transitions.
+
+1.  `mc-nlfpoly::connect-split-locs`.
+    Possible values are   
+      `true` and
+      `false`.
+    Default value is `true`.
+    Whether or not refinement should add edges between the split locations. 
+
+    Duration of continuous transitions are bounded in the abstract system by initially adding self loops to the concrete system. When hybrid automata have those special-purpose self-loops with empty labels (so they won't sync with other edges) split locations remain connected. 
+
+    Setting values of both `mc-nlfpoly::bound-cont-trans` and `connect-split-locs` to `false` generates a warning. Because it becomes the user's responsibility to make sure that after splitting locations of the automata under consideration, the split locations remain connected.
+    
+    At the time of writing this comment, this property will be ignored if `mc-nlfpoly::bound-cont-trans` and `mc-nlfpoly::use-empty-labels-for-bounding-time` are both set to `true`.
+
+1.  `mc-nlfpoly::bound-cont-trans-by-eq`
+    Possible values are   
+      `true` and
+      `false`.
+    Default value is `true`.
+    Whether or not new edges that bound the time should use equality in their guards (as opposed to non-strict inequality).
+
+1.  `mc-nlfpoly::cont-tran-duration`. 
+    Possible values are positive rational numbers.
+    Default value is `10`.
+    The bound on duration on each continuous transition. 
+    Even if `mc-nlfpoly::bound-cont-trans` is `false`, this parameter is used in verifying counterexamples. If `mc-nlfpoly::bound-cont-trans` is `true`, this parameter is also used to force the duration of continuous transitions in abstract models.
+  
+1.  `mc-nlfpoly::linear-flow-abstraction`
+    Possible values are   
+      `polyhedronize` and
+      `rectangularize`.
+    Default value is `polyhedronize`.
+    When input dynamics is affine (and not linear), this option can be used to specify what should be used for abstract dynamics.
+  
+1.  `initial-refinement-count`
+    Possible values are non-negative integers.
+    Default value is `0`.
+    Sometimes it is very helpful to immediately split locations.
+    This option tells HARE how many of those blind splitting should happen at the beginning.
+
+1.  `max-iter`
+    Possible values are non-negative integers.
+    Default value is `0`.
+    Maximum number of times HARE tries to find a new counterexample before it gives up and tell the user result is `unknown`.
+

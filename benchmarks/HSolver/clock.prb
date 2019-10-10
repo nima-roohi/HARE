@@ -26,7 +26,7 @@ props {
     bound-cont-trans                   true
     bound-cont-trans-by-eq             false
     cont-tran-duration                 "20"
-    connect-splitted-locs              false
+    connect-split-locs                 false
     use-empty-labels-for-bounding-time true
     linear-flow-abstraction            polyhedronize
     initial-refinement-count           4
