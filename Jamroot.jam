@@ -56,7 +56,7 @@ unit-test tests
     <dll-path>/opt/c++/libs/gmp-6.1.2-clang-8.0.0/lib
     <dll-path>/opt/c++/libs/z3-4.8.4-clang-8.0.0/lib
     <dll-path>/opt/c++/libs/ppl-1.2-clang-8.0.0/lib
-    <<hardcode-dll-paths>true
+    <hardcode-dll-paths>true
   ;
 
 exe bench
