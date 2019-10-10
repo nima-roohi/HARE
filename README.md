@@ -78,17 +78,19 @@ Here is an example of how it can be done (it is OK to set both `LD_LIBRARY_PATH`
 Make sure to replace paths in the following example with those you installed these libraries in them.
 Also, remember that unless you put these in a shell script that is automatically executed every time you open a terminal (e.g., by putting them in `~/.bashrc` in Ubuntu or in `~.bash_profile` in macOS), you will most likely need to run them every time you open a new terminal.
 
+For the rest of this section, we assume you are in your home folder and use `~` to denote that folder.
+
 ```sh
 ~$ export GMP_HOME=/opt/c++/libs/gmp-6.1.2-clang-8.0.0
 ~$ export Z3_HOME=/opt/c++/libs/z3-4.8.4-clang-8.0.0 
 ~$ export PPL_HOME=/opt/c++/libs/ppl-1.2-clang-8.0.0
-~$ export LD_LIBRARY_PATH=$GMP_HOME/lib:$Z3_HOME/lib:$PPL_HOME/lib:$BOOST_HOME/lib:$LD_LIBRARY_PATH
-~$ export DYLD_LIBRARY_PATH=$GMP_HOME/lib:$Z3_HOME/lib:$PPL_HOME/lib:$BOOST_HOME/lib:$DYLD_LIBRARY_PATH
+~$ export BOOST_HOME=/opt/c++/libs/boost-1.68-clang-8.0.0
+~$ export LD_LIBRARY_PATH=$GMP_HOME/lib:$Z3_HOME/lib:$PPL_HOME/lib:$BOOST_HOME/lib:$BOOST_HOME/lib:$LD_LIBRARY_PATH
+~$ export DYLD_LIBRARY_PATH=$GMP_HOME/lib:$Z3_HOME/lib:$PPL_HOME/lib:$BOOST_HOME/lib:$BOOST_HOME/lib:$DYLD_LIBRARY_PATH
 ```
 
 Since every time you work with HARE, you need to interact with [Boost Build](https://boostorg.github.io/build/), it would be easier if it is included in your `PATH` environment variable. Here is an example showing how this can be done.
 ```sh
-~$ export BOOST_HOME=/opt/c++/libs/boost-1.68-clang-8.0.0
 ~$ export PATH=$BOOST_HOME/bin:$PATH
 ```
 
@@ -147,26 +149,40 @@ Compiling the Source Code
 -------------------------
 
 As we mentioned in [Prerequisite](#Prerequisite) section,
-we use [Boost Build](https://boostorg.github.io/build/) to compile the source code and running our tests. 
+we use [Boost Build](https://boostorg.github.io/build/) to compile the source code and running our tests. The following steps are the same for macOS and Ubuntu.
+
+1. Open a terminal and go to a folder you want to download and compile HARE.
+   For the rest of this section, we use `~` to denote that folder.
 
 1. Clone the source code on your local computer (if you don't have `git`, you can download the source code using your browser as well).
 ```sh
 ~$ git clone https://github.com/nima-roohi/HARE
+Cloning into 'HARE'...
+remote: Enumerating objects: 655, done.
+remote: Counting objects: 100% (655/655), done.
+remote: Compressing objects: 100% (321/321), done.
+remote: Total 655 (delta 323), reused 583 (delta 258), pack-reused 0
+Receiving objects: 100% (655/655), 8.10 MiB | 4.89 MiB/s, done.
+Resolving deltas: 100% (323/323), done.
 ```
 
 1. Enter HARE folder.
 ```sh
-~$ cd HARE
+~$ cd ./HARE
 ~/HARE$
 ```
 
 1. File `boost-build.jam` contains exactly one non-empty line that is not a comment.
    Update that line with the correct folder of your Boost Build.
+   For us that line looks as follows. Notice that there is a space between `kernel` and `;`.
+```sh
+boost-build /opt/c++/libs/boost-1.69-clang-8.0.0/share/boost-build/src/kernel ;
+```   
    
-   
-1. File `jamroot.jam` is the only other file that we need to update before compiling the code.
-   1. Update all library path to where you installed yours.
-   1. Update Boost's library file names as well.
+1. `Jamroot.jam` is the only other file that we need to update before compiling the code.
+   1. Update the address to your Clang compiler (Line 18).
+   1. Update all library paths to where you installed yours (Lines 28-35 and 42-49).
+   1. Update Boost's library file names as well (Lines 42-45)).
    
 We are ready to compile the code.
 ```sh
