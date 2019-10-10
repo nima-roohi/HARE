@@ -399,7 +399,7 @@ For example, we write `mn-poly::direction` to refer to the `direction` property 
     
     At the time of writing this comment, this property will be ignored if `mc-nlfpoly::bound-cont-trans` and `mc-nlfpoly::use-empty-labels-for-bounding-time` are both set to `true`.
 
-1.  `mc-nlfpoly::bound-cont-trans-by-eq`
+1.  `mc-nlfpoly::bound-cont-trans-by-eq`.
     Possible values are `true` and `false`.
     The default value is `true`.
     Whether or not new edges that bound the time should use equality in their guards (as opposed to non-strict inequality).
@@ -410,18 +410,18 @@ For example, we write `mn-poly::direction` to refer to the `direction` property 
     The bound on the duration on each continuous transition. 
     Even if `mc-nlfpoly::bound-cont-trans` is `false`, this parameter is used in verifying counterexamples. If `mc-nlfpoly::bound-cont-trans` is `true`, this parameter is also used to force the duration of continuous transitions in abstract models.
   
-1.  `mc-nlfpoly::linear-flow-abstraction`
+1.  `mc-nlfpoly::linear-flow-abstraction`.
     Possible values are `polyhedronize` and `rectangularize`.
     The default value is `polyhedronize`.
     When input dynamics are affine (and not linear), this option can be used to specify what should be used for abstract dynamics.
   
-1.  `mc-nlfpoly::initial-refinement-count`
+1.  `mc-nlfpoly::initial-refinement-count`.
     Possible values are non-negative integers.
     The default value is `0`.
     Sometimes it is very helpful to split locations immediately.
     This option tells HARE how many of those blind splittings should happen at the beginning.
 
-1.  `mc-nlfpoly::max-iter`
+1.  `mc-nlfpoly::max-iter`.
     Possible values are non-negative integers.
     The default value is `0`.
     The maximum number of times HARE tries to find a new counterexample before it gives up and tells the user the result is `unknown` (`0` means unlimited).
