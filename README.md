@@ -229,7 +229,7 @@ If you have successfully run the tests, then running the benchmarks should be an
 ```sh
 ~/HARE$ b2 clang release hare
 ```
-In our experience, this takes less than a minute.
+In our experience, this takes less than a minute (assuming you did not delete whatever that is compiled in the previous steps).
 Next we check if out build was successful.
 ```sh
 ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare --version
