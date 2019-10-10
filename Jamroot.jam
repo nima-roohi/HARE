@@ -63,3 +63,8 @@ exe bench
 	: ./benchmarks/main.cpp [ glob-tree-ex ./src : *.cpp : command_line.cpp ]
   :
   ;
+
+exe hare
+	: [ glob-tree-ex ./src : *.cpp ]
+  :
+  ;
