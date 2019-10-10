@@ -89,7 +89,7 @@
     "numeric": "cpp",
     "__tree": "cpp",
     "__memory": "cpp",
-    "*.md": "cpp"
+    "*.md": "markdown"
   },
   "todohighlight.keywords": [
     "@copydoc",
