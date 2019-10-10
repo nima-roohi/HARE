@@ -148,7 +148,7 @@ Boost.Jam  Version 2018.02. OS=MACOSX.
 Compiling the Source Code
 -------------------------
 
-As we mentioned in [Prerequisite](#Prerequisite) section,
+As we mentioned in [Prerequisites](#Prerequisites) Section,
 we use [Boost Build](https://boostorg.github.io/build/) to compile the source code and run our tests. The following steps are the same for macOS and Ubuntu.
 
 1. Open a terminal and go to a folder you want to download and compile HARE.
@@ -204,18 +204,18 @@ If the compilation ends successfully, Boost immediately runs the tests. This gen
 If you have successfully run the tests, then running the benchmarks should be an easy process.
 
 1. Compile the file that is going to run all benchmarks.
-  ```sh
-  ~/HARE$ b2 clang release bench
-  ```
-   In our experience, this takes about 40 seconds.
+    ```sh
+    ~/HARE$ b2 clang release bench
+    ```
+    In our experience, this takes about 40 seconds.
 2. Run the benchmarks. 
    Make sure to replace `clang-darwin-8.0.0` with the right folder in your command.
-  ```sh
-  ~/HARE$ ./bin/clang-darwin-8.0.0/release/bench
-  ```
-  There are currently 85 examples set up to run.
-  In our experience, this takes about 20 minutes.
-  You are going to see different steps HARE takes to do its job. Also, a huge table, summarizing all the metrics HARE collected for each benchmark during the execution, is going to be printed at the end of the test.
+    ```sh
+    ~/HARE$ ./bin/clang-darwin-8.0.0/release/bench
+    ```
+    There are currently 85 examples set up to run.
+    In our experience, this takes about 20 minutes.
+    You are going to see different steps HARE takes to do its job. Also, a huge table, summarizing all the metrics HARE collected for each benchmark during the execution, is going to be printed at the end of the test.
 
 
 
