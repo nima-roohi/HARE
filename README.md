@@ -154,17 +154,17 @@ we use [Boost Build](https://boostorg.github.io/build/) to compile the source co
 1. Open a terminal and go to a folder you want to download and compile HARE.
    For the rest of this section, we use `~` to denote that folder.
 
-2. Clone the source code on your local computer (if you don't have `git`, you can download the source code using your browser as well).
-```sh
-~$ git clone https://github.com/nima-roohi/HARE
-Cloning into 'HARE'...
-remote: Enumerating objects: 655, done.
-remote: Counting objects: 100% (655/655), done.
-remote: Compressing objects: 100% (321/321), done.
-remote: Total 655 (delta 323), reused 583 (delta 258), pack-reused 0
-Receiving objects: 100% (655/655), 8.10 MiB | 4.89 MiB/s, done.
-Resolving deltas: 100% (323/323), done.
-```
+1. Clone the source code on your local computer (if you don't have `git`, you can download the source code using your browser as well).
+  ```sh
+  ~$ git clone https://github.com/nima-roohi/HARE
+  Cloning into 'HARE'...
+  remote: Enumerating objects: 655, done.
+  remote: Counting objects: 100% (655/655), done.
+  remote: Compressing objects: 100% (321/321), done.
+  remote: Total 655 (delta 323), reused 583 (delta 258), pack-reused 0
+  Receiving objects: 100% (655/655), 8.10 MiB | 4.89 MiB/s, done.
+  Resolving deltas: 100% (323/323), done.
+  ```
 
 1. Enter HARE folder.
 ```sh
@@ -175,8 +175,8 @@ Resolving deltas: 100% (323/323), done.
 1. File `boost-build.jam` contains exactly one non-empty line that is not a comment.
    Update that line with the correct folder of your Boost Build.
    For us that line looks as follows. Notice that there is a space between `kernel` and `;`.
-```sh
-boost-build /opt/c++/libs/boost-1.69-clang-8.0.0/share/boost-build/src/kernel ;
+  ```sh
+  boost-build /opt/c++/libs/boost-1.69-clang-8.0.0/share/boost-build/src/kernel ;
 ```   
    
 1. `Jamroot.jam` is the only other file that we need to update before compiling the code.
@@ -185,10 +185,10 @@ boost-build /opt/c++/libs/boost-1.69-clang-8.0.0/share/boost-build/src/kernel ;
    1. Update all library paths to where you installed yours (Lines 28-35, 42-45, and 55-58).
    1. Update Boost's library file names as well (Lines 42-45).
    
-We are ready to compile the code and run our tests.
-```sh
-~/HARE$ b2 clang release tests
-```
+  We are ready to compile the code and run our tests.
+  ```sh
+  ~/HARE$ b2 clang release tests
+  ```
    1. `clang`   selects the compiler,
    1. `release` chooses the build type,
    1. `tests`   chooses to build the source code and our unit tests.
@@ -207,8 +207,8 @@ If you have successfully run the tests, then running the benchmarks should be an
   ```sh
   ~/HARE$ b2 clang release bench
   ```
-   In our experience, this takes about half a minute.
-1. Run the benchmarks. 
+   In our experience, this takes about 40 seconds.
+2. Run the benchmarks. 
    Make sure to replace `clang-darwin-8.0.0` with the right folder in your command.
   ```sh
   ~/HARE$ ./bin/clang-darwin-8.0.0/release/bench
