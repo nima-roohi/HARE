@@ -43,10 +43,6 @@ project HARE
   : requirements <linkflags>"-Wl,-rpath /opt/c++/libs/gmp-6.1.2-clang-8.0.0/lib"
   : requirements <linkflags>"-Wl,-rpath /opt/c++/libs/z3-4.8.4-clang-8.0.0/lib"
   : requirements <linkflags>"-Wl,-rpath /opt/c++/libs/ppl-1.2-clang-8.0.0/lib"
-  : requirements <dll-path>/opt/c++/libs/boost-1.69-clang-8.0.0/lib
-  : requirements <dll-path>/opt/c++/libs/gmp-6.1.2-clang-8.0.0/lib
-  : requirements <dll-path>/opt/c++/libs/z3-4.8.4-clang-8.0.0/lib
-  : requirements <dll-path>/opt/c++/libs/ppl-1.2-clang-8.0.0/lib
 
   : requirements <testing.arg>"--log_level=all"
 
@@ -54,10 +50,13 @@ project HARE
 
   ;
 
-
 unit-test tests
-	: ./test/test_runner.cpp  [ GLOB ./test/hare : *.cpp ] [ glob-tree-ex ./src : *.cpp : command_line.cpp ]
-  : 
+	: ./test/test_runner.cpp [ glob-tree-ex ./test : *.cpp : command_line.cpp ] [ glob-tree-ex ./src : *.cpp : command_line.cpp ]
+  : <dll-path>/opt/c++/libs/boost-1.69-clang-8.0.0/lib
+    <dll-path>/opt/c++/libs/gmp-6.1.2-clang-8.0.0/lib
+    <dll-path>/opt/c++/libs/z3-4.8.4-clang-8.0.0/lib
+    <dll-path>/opt/c++/libs/ppl-1.2-clang-8.0.0/lib
+    <<hardcode-dll-paths>true
   ;
 
 exe bench

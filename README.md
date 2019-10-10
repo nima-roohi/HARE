@@ -75,7 +75,7 @@ In addition to these libraries, we use [Boost Build](https://boostorg.github.io/
 
 Before we use these libraries, we should set the environment variable `LD_LIBRARY_PATH` for Linux and `DYLD_LIBRARY_PATH` for macOS.
 Here is an example of how it can be done (it is OK to set both `LD_LIBRARY_PATH` and `DYLD_LIBRARY_PATH`).
-Make sure to replace paths in the following example with those you installed these libraries in them.
+Make sure to replace paths in the following examples with those you installed these libraries in them.
 Also, remember that unless you put these in a shell script that is automatically executed every time you open a terminal (e.g., by putting them in `~/.bashrc` in Ubuntu or in `~.bash_profile` in macOS), you will most likely need to run them every time you open a new terminal.
 
 For the rest of this section, we assume you are in your home folder and use `~` to denote that folder.
@@ -149,12 +149,12 @@ Compiling the Source Code
 -------------------------
 
 As we mentioned in [Prerequisite](#Prerequisite) section,
-we use [Boost Build](https://boostorg.github.io/build/) to compile the source code and running our tests. The following steps are the same for macOS and Ubuntu.
+we use [Boost Build](https://boostorg.github.io/build/) to compile the source code and run our tests. The following steps are the same for macOS and Ubuntu.
 
 1. Open a terminal and go to a folder you want to download and compile HARE.
    For the rest of this section, we use `~` to denote that folder.
 
-1. Clone the source code on your local computer (if you don't have `git`, you can download the source code using your browser as well).
+2. Clone the source code on your local computer (if you don't have `git`, you can download the source code using your browser as well).
 ```sh
 ~$ git clone https://github.com/nima-roohi/HARE
 Cloning into 'HARE'...
@@ -181,18 +181,26 @@ boost-build /opt/c++/libs/boost-1.69-clang-8.0.0/share/boost-build/src/kernel ;
    
 1. `Jamroot.jam` is the only other file that we need to update before compiling the code.
    1. Update the address to your Clang compiler (Line 18).
-   1. Update all library paths to where you installed yours (Lines 28-35 and 42-49).
-   1. Update Boost's library file names as well (Lines 42-45)).
+   2. Update all library paths to where you installed yours (Lines 28-35, 42-45, and 55-58).
+   3. Update Boost's library file names as well (Lines 42-45).
    
-We are ready to compile the code.
+We are ready to compile the code and run our tests.
 ```sh
 ~/HARE$ b2 clang release tests
 ```
-   1. `clang`   select the compiler,
+   1. `clang`   selects the compiler,
    1. `release` chooses the build type,
    1. `tests`   chooses to build the source code and our unit tests.
     
-If the compilation ends successfully, Boost immediately runs the tests. This generates lots of outputs, but a successful result is announced by `ff` at the end of the test. In our experience, the compilation takes about 60 seconds, and running the tests takes about 5 seconds.
+If the compilation ends successfully, Boost immediately runs the tests. This generates lots of outputs, but a successful result is announced by `No errors detected` at the end of execution. In our experience, the compilation takes about 4 minutes, and running the tests takes about 20 seconds.
+
+
 
  Running the Benchmarks
  ----------------------
+
+ 
+
+
+ Running Single Examples
+ -----------------------
