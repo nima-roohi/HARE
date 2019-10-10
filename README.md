@@ -292,28 +292,38 @@ In the rest of this file we explain different switches in each of these categori
      2. (full) path to the model file.
 
 #### Examples:
+Don't forget to replace `clang-darwin-8.0.0` with the right folder in the following examples.
 
 1. Simply model check a file.
     ```sh
-    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare --file ./benchmarks/tanks/tank-01/tank.prb --polyhedral
+    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare  \
+    --file ./benchmarks/tanks/tank-01/tank.prb --polyhedral
     ```
-1. Model check the same file, but print the counterexample.
+2. Model check the same file, but print the counterexample.
     ```sh
-    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare --file ./benchmarks/tanks/tank-01/tank.prb --polyhedral --output counter-example
+    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare   \
+    --file ./benchmarks/tanks/tank-01/tank.prb      \
+    --polyhedral --output counter-example
     ```
-1. Model check the same file, but print the counterexample along with the states that are reached using that counterexample.
+3. Model check the same file, but print the counterexample along with the states that are reached using that counterexample.
     ```sh
-    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare --file ./benchmarks/tanks/tank-01/tank.prb --polyhedral --output annotated-counter-example
+    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare   \
+    --file ./benchmarks/tanks/tank-01/tank.prb      \
+    --polyhedral --output annotated-counter-example
     ```
-1. Print the metrics.
+4. Print the metrics.
     ```sh
-    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare --file ./benchmarks/tanks/tank-01/tank.prb --polyhedral --metrics
+    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare   \
+    --file ./benchmarks/tanks/tank-01/tank.prb      \
+    --polyhedral --metrics
     ```
-1. Set verbosity to its highest value (we changed the input file in this example. It takes about 30 seconds to prove the system is safe).
+5. Set verbosity to its highest value (we changed the input file in this example. It takes about 30 seconds to prove the system is safe).
     ```sh
-    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare --file ./benchmarks/navigations/nav-01/nav.prb --non-linear --verbosity trace
+    ~/HARE$ ./bin/clang-darwin-8.0.0/release/hare   \
+    --file ./benchmarks/navigations/nav-01/nav.prb  \
+    --non-linear --verbosity trace
     ```
-1. Bach processing.
+6. Bach processing.
    Let's first create a sample input file.
     ```sh
     echo "ex1, polyhedral, unsafe, ./benchmarks/tanks/tank-01/tank.prb" >  ./hare.batch 
