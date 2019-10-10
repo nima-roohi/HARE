@@ -350,78 +350,78 @@ In the following, we use `::` to write each property in a single line.
 For example, we write `mn-poly::direction` to refer to the `direction` property inside `mc-poly`.
 
 1.  `mc-poly::direction`.
-    Possible values are `forward`, `backward`, `smaller-or-forward`, and `smaller-or-backward`.
-    Default value is `smaller-or-forward`.
+    Possible values are `forward`, `backward`, `smaller-or-forward`, and `smaller-or-backward`.  The default value is `smaller-or-forward`.
     Whether forward reachability should be used or backward reachability.
+    `smaller` refers to the number of regions.
+    That is, if the number of initial regions is smaller than the number of unsafe regions, then use `forward`.
+    Similarly, if the number of initial regions is larger than the number of unsafe regions, then use `backward`.
 
 1. `mc-poly::separate-identity-resets`.
-    Possible values are   
-      `true` and
-      `false`.
-    Default value is `true`.
+    Possible values are `true` and `false`.
+    The default value is `true`.
     Tells HARE that during interaction with PPL, do not introduce new variables for identity resets (i.e., a variable that is reset to itself on a discrete transition).
 
-2. `mc-poly::check-unsafe-after-disc-edge`.
+1. `mc-poly::check-unsafe-after-disc-edge`.
     Possible values are `true` and `false`.
-    Default value is `false`.
+    The default value is `false`.
     Tells HARE to test intersection with the unsafe set after every discrete transition in addition to after every continuous transition.
 
 
-3. `mc-poly::add-to-visiteds-on-check`.
+1. `mc-poly::add-to-visiteds-on-check`.
     Possible values are `true` and `false`.
-    Default value is `false`.
-    Tells HARE whether or not it should immediately adds input sets to the set of visited states whenever it checks if they have been reached before. `false` delays adding new states to the set of visited states a little bit.
+    The default value is `false`.
+    Tells HARE whether or not it should immediately add input sets to the set of visited states whenever it checks if they have been reached before. `false` delays adding new states to the set of visited states a little bit.
 
-4. `mc-poly::max-iter`.
+1. `mc-poly::max-iter`.
     Possible values are non-negative integers. 
-    Default value is `0`.
+    The default value is `0`.
     How many iterations HARE should take before it gives up its goal for reaching to a fixed-point in the abstract system.
 
-5. `mc-nlfpoly::bound-cont-trans`.
+1. `mc-nlfpoly::bound-cont-trans`.
     Possible values are `true` and `false`.
-    Default value is `true`.
+    The default value is `true`.
     Tells HARE whether or not continuous transitions in the abstract system should be bounded. Setting the value of this parameter to `false` generates a warning because it becomes the user's responsibility to make sure that either there is a bound in the abstract automata anyway, or the concrete model checker can handle infinite time transitions.
 
-6.  `mc-nlfpoly::use-empty-labels-for-bounding-time`.
+1.  `mc-nlfpoly::use-empty-labels-for-bounding-time`.
     Possible values are `true` and `false`.
-    Default value is `true`.
-    Tells HARE whether or not an empty label should be used for transitions that bound time. In Parallel composition this reduces the number of discrete transitions.
+    The default value is `true`.
+    Tells HARE whether or not an empty label should be used for transitions that bound time. In parallel composition this reduces the number of discrete transitions.
 
-7.  `mc-nlfpoly::connect-split-locs`.
+1.  `mc-nlfpoly::connect-split-locs`.
     Possible values are `true` and `false`.
-    Default value is `true`.
+    The default value is `true`.
     Whether or not refinement should add edges between the split locations. 
 
-    Duration of continuous transitions are bounded in the abstract system by initially adding self loops to the concrete system. When hybrid automata have those special-purpose self-loops with empty labels (so they won't sync with other edges) split locations remain connected. 
+    The duration of continuous transitions is bounded in the abstract system by initially adding self-loops to the concrete system. When hybrid automata have those special-purpose self-loops with empty labels (so they won't sync with other edges), split locations remain connected. 
 
     Setting values of both `mc-nlfpoly::bound-cont-trans` and `connect-split-locs` to `false` generates a warning. Because it becomes the user's responsibility to make sure that after splitting locations of the automata under consideration, the split locations remain connected.
     
     At the time of writing this comment, this property will be ignored if `mc-nlfpoly::bound-cont-trans` and `mc-nlfpoly::use-empty-labels-for-bounding-time` are both set to `true`.
 
-8.  `mc-nlfpoly::bound-cont-trans-by-eq`
+1.  `mc-nlfpoly::bound-cont-trans-by-eq`
     Possible values are `true` and `false`.
-    Default value is `true`.
+    The default value is `true`.
     Whether or not new edges that bound the time should use equality in their guards (as opposed to non-strict inequality).
 
-9.  `mc-nlfpoly::cont-tran-duration`. 
+1.  `mc-nlfpoly::cont-tran-duration`. 
     Possible values are positive rational numbers.
-    Default value is `10`.
-    The bound on duration on each continuous transition. 
+    The default value is `10`.
+    The bound on the duration on each continuous transition. 
     Even if `mc-nlfpoly::bound-cont-trans` is `false`, this parameter is used in verifying counterexamples. If `mc-nlfpoly::bound-cont-trans` is `true`, this parameter is also used to force the duration of continuous transitions in abstract models.
   
-10. `mc-nlfpoly::linear-flow-abstraction`
+1.  `mc-nlfpoly::linear-flow-abstraction`
     Possible values are `polyhedronize` and `rectangularize`.
-    Default value is `polyhedronize`.
-    When input dynamics is affine (and not linear), this option can be used to specify what should be used for abstract dynamics.
+    The default value is `polyhedronize`.
+    When input dynamics are affine (and not linear), this option can be used to specify what should be used for abstract dynamics.
   
-11. `mc-nlfpoly::initial-refinement-count`
+1.  `mc-nlfpoly::initial-refinement-count`
     Possible values are non-negative integers.
-    Default value is `0`.
-    Sometimes it is very helpful to immediately split locations.
-    This option tells HARE how many of those blind splitting should happen at the beginning.
+    The default value is `0`.
+    Sometimes it is very helpful to split locations immediately.
+    This option tells HARE how many of those blind splittings should happen at the beginning.
 
-12. `mc-nlfpoly::max-iter`
+1.  `mc-nlfpoly::max-iter`
     Possible values are non-negative integers.
-    Default value is `0`.
-    Maximum number of times HARE tries to find a new counterexample before it gives up and tell the user result is `unknown`.
+    The default value is `0`.
+    The maximum number of times HARE tries to find a new counterexample before it gives up and tells the user the result is `unknown`.
 
