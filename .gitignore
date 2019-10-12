@@ -14,3 +14,6 @@
 
 # HARE's workspace
 /ws
+
+# Apple MacOS file
+*.DS_Store
