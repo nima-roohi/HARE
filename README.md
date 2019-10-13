@@ -349,6 +349,9 @@ Please look at [`./benchmarks/navigation/nav-01/nav.prb`](https://github.com/nim
 In the following, we use `::` to write each property in a single line.
 For example, we write `mn-poly::direction` to refer to the `direction` property inside `mc-poly`.
 
+1.  `dreach::path`.
+    Full path to dreach executable file.
+
 1.  `mc-poly::direction`.
     Possible values are `forward`, `backward`, `smaller-or-forward`, and `smaller-or-backward`.  The default value is `smaller-or-forward`.
     Whether forward reachability should be used or backward reachability.
