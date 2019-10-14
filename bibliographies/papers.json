@@ -1,0 +1,46 @@
+{
+  "papers": [
+    {
+      "name": "Relating Syntactic and Semantic Perturbations of Hybrid Automata",
+      "authors": "Nima Roohi, Pavithra Prabhakar, and Mahesh Viswanathan",
+      "address": "International Conference on Concurrency Theory (CONCUR) 26:1–26:16, 2018",
+      "bibtex": "/bibliographies/2018-CONCUR.bib",
+      "doi": "10.4230/LIPIcs.CONCUR.2018.26"
+    },
+    {
+      "name": "Remedies for Building Reliable Cyber-Physical Systems",
+      "authors": "Nima Roohi",
+      "address": "Ph.D. Thesis, 2017",
+      "bibtex": "/bibliographies/2017-PhD.bib",
+      "doi": "10.13140/RG.2.2.27157.88800"
+    },
+    {
+      "name": "HARE: A Hybrid Abstraction Refinement Engine for Verifying Non-Linear Hybrid Automata",
+      "authors": "Nima Roohi, Pavithra Prabhakar, and Mahesh Viswanathan",
+      "address": "International Conference on Tools and Algorithms for the Construction and Analysis of Systems (TACAS), LNCS 10205:573–588, 2017",
+      "bibtex": "/bibliographies/2017-TACAS.bib",
+      "doi": "10.1007/978-3-662-54577-5_33"
+    },
+    {
+      "name": "Hybridization based CEGAR for Hybrid Automata with Affine Dynamics",
+      "authors": "Nima Roohi, Pavithra Prabhakar, and Mahesh Viswanathan",
+      "address": "International Conference on Tools and Algorithms for the Construction and Analysis of Systems (TACAS), LNCS 9636:752–769, 2016",
+      "bibtex": "/bibliographies/2016-TACAS.bib",
+      "doi": "10.1007/978-3-662-49674-9_48"
+    },
+    {
+      "name": "Hybrid automata-based CEGAR for rectangular hybrid systems",
+      "authors": "Pavithra Prabhakar, Parasara Sridhar Duggirala, Sayan Mitra and Mahesh Viswanathan",
+      "address": "Formal Methods in System Design (2015) 46:105.",
+      "bibtex": "/bibliographies/2015-FMSD.bib",
+      "doi": "10.1007/s10703-015-0225-4"
+    },
+    {
+      "name": "Hybrid Automata-Based CEGAR for Rectangular Hybrid Systems",
+      "authors": "Pavithra Prabhakar, Parasara Sridhar Duggirala, Sayan Mitra and Mahesh Viswanathan",
+      "address": "Verification, Model Checking, and Abstract Interpretation, 14th International Conference (VMCAI) 48-67, 2013",
+      "bibtex": "/bibliographies/2013-VMCAI.bib",
+      "doi": "10.1007/978-3-642-35873-9_6"
+    }
+  ]
+}
