@@ -71,7 +71,7 @@ HARE uses the following libraries, and you need to install all of them. For each
     14. [Lexical Cast](https://www.boost.org/doc/libs/1_69_0/doc/html/boost_lexical_cast.html);
        Converting strings to integers.
 
-In addition to these libraries, we use [Boost Build](https://boostorg.github.io/build/) to compile the source code and run our tests. Last but not least, we are using [Clang 8.0.0](https://clang.llvm.org/get_started.html) as our compiler.
+In addition to these libraries, we use [Boost Build](https://boostorg.github.io/build/) to compile the source code and run our tests. Last but not least, we use [Clang 8.0.0](https://clang.llvm.org/get_started.html) as our compiler.
 
 Before we use these libraries, we should set the environment variable `LD_LIBRARY_PATH` for Linux and `DYLD_LIBRARY_PATH` for macOS.
 Here is an example of how it can be done (it is OK to set both `LD_LIBRARY_PATH` and `DYLD_LIBRARY_PATH`).
@@ -89,7 +89,7 @@ For the rest of this section, we assume you are in your home folder and use `~` 
 ~$ export DYLD_LIBRARY_PATH=$GMP_HOME/lib:$Z3_HOME/lib:$PPL_HOME/lib:$BOOST_HOME/lib:$BOOST_HOME/lib:$DYLD_LIBRARY_PATH
 ```
 
-Since every time you work with HARE, you need to interact with [Boost Build](https://boostorg.github.io/build/), it would be easier if it is included in your `PATH` environment variable. Here is an example showing how this can be done.
+Since every time you compile HARE, you need to interact with [Boost Build](https://boostorg.github.io/build/), it would be easier if it is included in your `PATH` environment variable. Here is an example showing how this can be done.
 ```sh
 ~$ export PATH=$BOOST_HOME/bin:$PATH
 ```
@@ -193,7 +193,7 @@ we use [Boost Build](https://boostorg.github.io/build/) to compile the source co
     2. `release` chooses the build type,
     3. `tests`   chooses to build the source code and our unit tests.
     
-If the compilation ends successfully, Boost immediately runs the tests. This generates lots of outputs, but a successful result is announced by `No errors detected` at the end of execution. In our experience, the compilation takes about 4 minutes, and running the tests takes about 20 seconds. Note that if all tests pass and you want to rerun them, you have to find the file `release/tests.passed` in your `HARE/bin` folder first and remove it. After that, `~/HARE$ b2 clang release tests` runs the tests without recompiling the source code.
+If the compilation ends successfully, Boost immediately runs the tests. This generates lots of outputs, but a successful result is announced by `No errors detected` at the end of execution. In our experience, the compilation takes about 4 minutes, and running the tests takes about 20 seconds. Note that if all tests pass and you want to rerun them, you have to find the file `release/tests.passed` in your `HARE/bin` folder first and delete it. After that, `~/HARE$ b2 clang release tests` runs the tests without recompiling the source code.
 
 
 
@@ -218,6 +218,7 @@ If you have successfully run the tests, then running the benchmarks should be an
     You are going to see different steps HARE takes to do its job. Also, a huge table, summarizing all the metrics HARE collected for each benchmark during the execution, is going to be printed at the end of the test.
     This repository contains an example of such [output](https://github.com/nima-roohi/HARE/blob/master/benchmarks/log-20191009).
     Also, [this](https://github.com/nima-roohi/HARE/blob/master/benchmarks/metrics-20191009) file contains the metrics we got during our experiments.
+    Finally, you can also look at these metrics at the [tool's benchmarks page](https://nima-roohi.github.io/HARE/#/benchmarks).
 
 
 
@@ -239,14 +240,14 @@ Hybrid Abstraction Refinement Engine (HARE) version 0.3-2019.10.09
 
 Execution of HARE must be adjusted using options and switches.
 There are two mains categories:
-Switches set in the command-line and 
-switches set in the input file.
+Switches that are set in the command-line and 
+switches that are set in the input file.
 In the rest of this file we explain different switches in each of these categories.
 
 ### Command-Line Switches
 
 1. `--version`;
-   Print version of the tool and exist.
+   Print version of the tool and exit.
 
 1. `--help` or `h`; 
    Show the usage (i.e., list of command-line switches and a short description for each one of them). 
@@ -278,7 +279,7 @@ In the rest of this file we explain different switches in each of these categori
       in case the input was unsafe, (abstract) states reachable along 
       with the generated counterexample will also be generated.
    1. `reachable-set`: (abstract) reachable states, 
-      whether or not the system is found to be safe, will be printed out.
+      regardless of whether or not the system is found to be safe, will be printed out.
 
 1. `--batch` or `-b`;
    Batch processing.
@@ -411,7 +412,7 @@ For example, we write `mn-poly::direction` to refer to the `direction` property 
     Possible values are positive rational numbers.
     The default value is `10`.
     The bound on the duration on each continuous transition. 
-    Even if `mc-nlfpoly::bound-cont-trans` is `false`, this parameter is used in verifying counterexamples. If `mc-nlfpoly::bound-cont-trans` is `true`, this parameter is also used to force the duration of continuous transitions in abstract models.
+    Even if `mc-nlfpoly::bound-cont-trans` is `false`, this parameter is still used in verifying counterexamples. If `mc-nlfpoly::bound-cont-trans` is `true`, this parameter is also used to force the duration of continuous transitions in abstract models.
   
 1.  `mc-nlfpoly::linear-flow-abstraction`.
     Possible values are `polyhedronize` and `rectangularize`.
@@ -421,7 +422,7 @@ For example, we write `mn-poly::direction` to refer to the `direction` property 
 1.  `mc-nlfpoly::initial-refinement-count`.
     Possible values are non-negative integers.
     The default value is `0`.
-    Sometimes it is very helpful to split locations immediately.
+    Sometimes it is very helpful to split locations right before the abstract model checking starts.
     This option tells HARE how many of those blind splittings should happen at the beginning.
 
 1.  `mc-nlfpoly::max-iter`.
